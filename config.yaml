@@ -12,14 +12,13 @@ menu:
   main:
     - name: About
       url: /about/
+      weight: 10
     - name: Infographics
       url: https://public.tableau.com/views/Candlegraph/Candlegraph
-    - name: GitHub
-      url: https://github.com/terryology
-    - name: Bluesky
-      url: https://bsky.app/profile/slax0r.bsky.social
+      weight: 20
     - name: Archive
       url: /archive/  
+      weight: 30
 params:
   MathJaxCDN: //cdnjs.cloudflare.com/ajax/libs
   MathJaxVersion: 2.7.5
