@@ -4,7 +4,7 @@
   "home_page_url": "{{ .Permalink }}",
   "feed_url": "{{ .Permalink }}feed.json",
   "items": [
-    {{- range $index, $page := first 5 site.RegularPages }}
+    {{- range $index, $page := first 5 (where .Site.RegularPages "Section" "post") }}
     {{- if $index }}, {{ end }}
     {
       "id": "{{ $page.Permalink }}",
