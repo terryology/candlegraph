@@ -43,3 +43,16 @@ markup:
       unsafe: yes
   highlight:
     codeFences: no
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+    - jsonfeed
+
+outputFormats:
+  jsonfeed:
+    mediaType: "application/json"
+    baseName: "feed"
+    isPlainText: true
