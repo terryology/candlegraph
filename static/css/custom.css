@@ -9,13 +9,30 @@
   --border-soft: #E5E7EB;
 }
 
+/* Global Typography: Using Lora for the 'Warm Journal' feel */
 body {
   background-color: var(--antique-white);
   color: var(--charcoal);
   font-family: 'Lora', serif !important;
-  line-height: 1.6;
+  font-size: 1.1rem;
+  line-height: 1.7;
   margin: 0;
   -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Lora', serif !important;
+  font-weight: 700;
+  color: var(--charcoal);
+}
+
+/* Technical Data: Keep the JSON/Code looking 'Engineered' */
+code, pre, .data-output {
+  font-family: 'Courier New', Courier, monospace !important;
+  font-size: 0.95rem;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
 }
 
 /* --- 2. HEADER: THE STATELY WHITE BAR --- */
@@ -31,10 +48,10 @@ body {
   display: flex !important;
   justify-content: space-between;
   align-items: center;
-  position: relative; /* Context for Title centering */
+  position: relative;
   max-width: 1100px;
   margin: 0 auto;
-  min-height: 90px; /* Restored professional height */
+  min-height: 95px; /* Slightly taller to accommodate larger nav font */
   padding: 0 1.5rem;
 }
 
@@ -79,11 +96,11 @@ body {
   text-shadow: 0 0 12px var(--amber-glow);
 }
 
-/* 2.3 Links (Right & Tight) */
+/* 2.3 Links (Balanced & Bold) */
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 15px; /* Tightened horizontal spacing */
+  gap: 18px; /* Tighter gap for better grouping */
   margin: 0;
   padding: 0;
   align-items: center;
@@ -93,7 +110,7 @@ body {
 .nav-links a {
   font-family: 'Lora', serif !important;
   color: var(--gray-muted) !important;
-  font-size: 0.9rem;
+  font-size: 1.05rem; /* Larger font size for better visual balance */
   font-weight: 500;
   text-decoration: none !important;
   transition: color 0.2s ease;
@@ -103,14 +120,19 @@ body {
   color: var(--charcoal) !important;
 }
 
-/* 2.4 The Hub Button Styling */
+/* 2.4 The Hub Button (Portal Styling) */
 .terry-link {
   border: 1px solid rgba(217, 119, 6, 0.3) !important;
-  padding: 4px 10px !important;
+  padding: 5px 14px !important;
   border-radius: 4px !important;
   background: rgba(217, 119, 6, 0.05) !important;
   font-weight: 600 !important;
   color: var(--amber) !important;
+  font-size: 1rem !important;
+}
+
+.terry-link:hover {
+  background: rgba(217, 119, 6, 0.1) !important;
 }
 
 /* --- 3. FOOTER: FULL WIDTH --- */
@@ -127,8 +149,8 @@ body {
   background-color: var(--pure-white) !important;
   border: 1px solid var(--border-soft) !important;
   border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 1.2rem;
+  padding: 1.8rem;
+  margin-bottom: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
@@ -136,18 +158,19 @@ body {
   color: var(--charcoal) !important;
   text-decoration: none;
   font-weight: 700;
+  font-size: 1.4rem;
 }
 
 .post-meta {
   display: block;
-  margin-top: 0.4rem;
+  margin-top: 0.5rem;
   color: var(--gray-muted);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-style: italic;
 }
 
-/* --- 5. MOBILE OPTIMIZATIONS (Height & Stack) --- */
-@media (max-width: 800px) {
+/* --- 5. MOBILE OPTIMIZATIONS --- */
+@media (max-width: 850px) {
   .nav {
     flex-direction: column;
     min-height: auto;
@@ -164,10 +187,11 @@ body {
   .nav-logo { order: 0; }
   .nav-links { 
     order: 2; 
-    gap: 12px;
+    gap: 15px;
+    justify-content: center;
   }
 
   .nav-title a {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
   }
 }
