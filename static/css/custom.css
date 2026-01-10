@@ -149,6 +149,41 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   margin-left: 5px;
 }
 
+/* Scale the main post title */
+.article-title {
+  font-size: 2.3rem !important; /* Slightly larger than Site Title (2rem) */
+  line-height: 1.2;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+  color: var(--charcoal);
+}
+
+/* Adjust the meta-data on the post page */
+.article-meta {
+  color: var(--amber);
+  font-family: 'Lora', serif !important;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-soft);
+  padding-bottom: 1rem;
+}
+
+/* Scale down the body text slightly for high-density readability */
+.article-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--charcoal);
+}
+
+/* Ensure images don't blow out the layout on mobile */
+.article-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
 .footer {
   background-color: var(--pure-white) !important;
   border-top: 1px solid var(--border-soft) !important;
@@ -168,4 +203,7 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   .intro.article { margin-top: 0 !important; padding-top: 0 !important; margin-bottom: 2rem; }
   .intro .article-title { font-size: 1.7rem; line-height: 1.1; }
   .intro .article-content { font-size: 1.05rem; }
+  .article-title {
+    font-size: 1.8rem !important; /* Scale down for mobile screens */
+  }
 }
