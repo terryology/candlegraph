@@ -20,7 +20,33 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* --- 2. HEADER: STABLE CENTERING --- */
+/* --- 2. THE TYPOGRAPHY OVERRIDES (Lithium Fixes) --- */
+h1, h2, h3, h4, 
+h1.article-title, 
+.post-title, 
+.post-title a, 
+.archive-item-link {
+  font-family: 'Lora', serif !important;
+  font-weight: 700;
+  color: var(--charcoal);
+  text-decoration: none !important;
+}
+
+/* Technical Data: JSON/Code */
+code, pre, .data-output {
+  font-family: 'Courier New', Courier, monospace !important;
+  font-size: 0.95rem;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.post-meta {
+  font-size: 0.90rem;
+  color: var(--amber);
+}
+
+/* --- 3. HEADER: THE STATELY WHITE BAR --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
@@ -103,14 +129,6 @@ body {
   font-weight: 600 !important;
   color: var(--amber) !important;
   font-size: 1rem !important;
-}
-
-/* --- 3. POST TITLES (Simplified) --- */
-.post-title, 
-.post-title a {
-  font-family: 'Lora', serif !important;
-  font-weight: 700 !important;
-  color: var(--charcoal) !important;
 }
 
 /* --- 4. CARDS & FOOTER --- */
