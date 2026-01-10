@@ -38,6 +38,24 @@
     line-height: 1;
 }
 
+/* Style the Title Text */
+.nav-title a {
+    color: #2D2D2D !important; /* Your deep charcoal */
+    text-decoration: none !important; /* Remove the underline */
+    font-family: 'Inter', sans-serif; /* Clean technical font */
+    font-weight: 800; /* Extra bold for branding */
+    text-transform: uppercase; /* Optional: gives it a "logotype" feel */
+    letter-spacing: -0.04em; /* Tighten it up for a modern look */
+    font-size: 1.6rem;
+    transition: all 0.3s ease;
+}
+
+/* Subtle Hover Effect */
+.nav-title a:hover {
+    color: #D97706 !important; /* Fades to Amber on hover */
+    letter-spacing: 0.02em; /* Very subtle "expansion" on hover */
+}
+
 /* 4. Fix the Links (Right) */
 .nav-links {
     flex: 1;
@@ -52,4 +70,35 @@
 .nav-links li {
     display: inline-block;
     margin: 0;
+}
+
+.nav-links a {
+    color: #6B7280 !important; /* Muted gray */
+    text-decoration: none !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #2D2D2D !important; /* Darkens when you hover over them */
+}
+
+/* Special styling for the 'Hub' link to Terryology */
+.terry-link {
+    border: 1px solid rgba(217, 119, 6, 0.3);
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: rgba(217, 119, 6, 0.03);
+}
+
+@media (max-width: 600px) {
+    .nav-title a {
+        font-size: 1.2rem; /* Shrinks the title slightly on mobile */
+    }
+    
+    .nav {
+        min-height: 60px; /* Reduces header height to save vertical space */
+    }
 }
