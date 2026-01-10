@@ -106,10 +106,52 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
 
 /* --- 7. FOOTER & CLEANUP --- */
 .footer {
-  background-color: var(--pure-white) !important; border-top: 1px solid var(--border-soft) !important;
-  padding: 1.5rem 0 !important; margin-top: 3rem; text-align: center;
+  background-color: var(--pure-white) !important;
+  border-top: 1px solid var(--border-soft) !important;
+  padding: 1.5rem 0 !important;
+  margin-top: 3rem;
+  text-align: center;
 }
-.footer-links { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; padding: 0; margin: 0; }
-.footer-links li::before, .footer-links li::after { content: "" !important; display: none !important; }
-.footer-links-kudos { display: inline-flex !important; align-items: center !important; gap: 6px; color: var(--gray-muted) !important; font-size: 0.85rem; text-decoration: none; }
-.footer-links li:last-child { width: 100%; display: flex; justify-content: center; margin-top: 0.4rem !important; }
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.2rem; /* Balanced horizontal spacing */
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li::before, .footer-links li::after { 
+  content: "" !important; 
+  display: none !important; 
+}
+
+/* Perfecting the "Made with Hugo" centering */
+.footer-links-kudos {
+  display: inline-flex !important;
+  align-items: center !important; /* This handles the container alignment */
+  justify-content: center;
+  gap: 6px;
+  color: var(--gray-muted) !important;
+  font-size: 0.85rem;
+  text-decoration: none;
+  line-height: 1 !important; /* Prevents text descent from pushing the box */
+}
+
+.footer-links-kudos img {
+  display: inline-block;
+  margin: 0;
+  /* The Secret Sauce: Middle alignment + a tiny 1px nudge up */
+  vertical-align: middle; 
+  transform: translateY(-1px); 
+}
+
+/* Reduced spacing between the link rows */
+.footer-links li:last-child {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.3rem !important; 
+}
