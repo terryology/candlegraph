@@ -1,0 +1,32 @@
+/* Ensure the Nav container takes full width */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; /* This allows the absolute centering of the title */
+  padding: 1rem 2rem;
+}
+
+.nav-logo {
+  flex: 1; /* Pushes toward the left */
+}
+
+.nav-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+}
+
+.nav-title a {
+  text-decoration: none;
+  color: #2D2D2D;
+}
+
+.nav-links {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end; /* Pushes toward the right */
+  list-style: none;
+  gap: 1.5rem;
+}

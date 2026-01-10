@@ -1,0 +1,24 @@
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="60" width="12" height="20" rx="2" fill="#D97706" />
+      <rect x="40" y="45" width="12" height="35" rx="2" fill="#D97706" />
+      <rect x="60" y="55" width="12" height="25" rx="2" fill="#D97706" />
+      <rect x="80" y="35" width="12" height="45" rx="2" fill="#D97706" />
+      <path d="M46 40C46 40 42 32 46 25C50 18 46 10 46 10C46 10 54 18 50 28C46 38 46 40 46 40Z" fill="#F59E0B">
+        <animate attributeName="opacity" values="1;0.7;1" dur="2s" repeatCount="indefinite" />
+      </path>
+    </svg>
+  </a>
+
+  <h1 class="nav-title">
+    <a href="/">{{ .Site.Title }}</a>
+  </h1>
+
+  <ul class="nav-links">
+    {{ range .Site.Menus.main }}
+      <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+    {{ end }}
+    <li><a href="https://terryology.com" class="terry-link">Hub</a></li>
+  </ul>
+</nav>
