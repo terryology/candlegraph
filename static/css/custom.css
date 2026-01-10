@@ -9,7 +9,6 @@
   --border-soft: #E5E7EB;
 }
 
-/* Global Typography: Using Lora for the 'Warm Journal' feel */
 body {
   background-color: var(--antique-white);
   color: var(--charcoal);
@@ -20,13 +19,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4 {
+/* Site-wide Headings */
+h1, h2, h3, h4, .post-title, .post-title a {
   font-family: 'Lora', serif !important;
   font-weight: 700;
   color: var(--charcoal);
 }
 
-/* Technical Data: Keep the JSON/Code looking 'Engineered' */
+/* Technical Data Consistency */
 code, pre, .data-output {
   font-family: 'Courier New', Courier, monospace !important;
   font-size: 0.95rem;
@@ -51,11 +51,10 @@ code, pre, .data-output {
   position: relative;
   max-width: 1100px;
   margin: 0 auto;
-  min-height: 95px; /* Slightly taller to accommodate larger nav font */
+  min-height: 95px;
   padding: 0 1.5rem;
 }
 
-/* 2.1 Logo (Left) */
 .nav-logo {
   display: flex;
   align-items: center;
@@ -70,7 +69,6 @@ code, pre, .data-output {
   filter: drop-shadow(0 0 8px var(--amber-glow));
 }
 
-/* 2.2 Title (Perfectly Centered) */
 .nav-title {
   position: absolute !important;
   left: 50% !important;
@@ -96,11 +94,10 @@ code, pre, .data-output {
   text-shadow: 0 0 12px var(--amber-glow);
 }
 
-/* 2.3 Links (Balanced & Bold) */
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 18px; /* Tighter gap for better grouping */
+  gap: 18px;
   margin: 0;
   padding: 0;
   align-items: center;
@@ -110,7 +107,7 @@ code, pre, .data-output {
 .nav-links a {
   font-family: 'Lora', serif !important;
   color: var(--gray-muted) !important;
-  font-size: 1.05rem; /* Larger font size for better visual balance */
+  font-size: 1.05rem;
   font-weight: 500;
   text-decoration: none !important;
   transition: color 0.2s ease;
@@ -120,7 +117,6 @@ code, pre, .data-output {
   color: var(--charcoal) !important;
 }
 
-/* 2.4 The Hub Button (Portal Styling) */
 .terry-link {
   border: 1px solid rgba(217, 119, 6, 0.3) !important;
   padding: 5px 14px !important;
@@ -129,10 +125,6 @@ code, pre, .data-output {
   font-weight: 600 !important;
   color: var(--amber) !important;
   font-size: 1rem !important;
-}
-
-.terry-link:hover {
-  background: rgba(217, 119, 6, 0.1) !important;
 }
 
 /* --- 3. FOOTER: FULL WIDTH --- */
@@ -154,11 +146,15 @@ code, pre, .data-output {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-.post-title a {
+/* Targeted Post Title Fix */
+.post-title, 
+.post-title a,
+.archive-item h2 a,
+article h1 {
+  font-family: 'Lora', serif !important;
+  font-weight: 700 !important;
   color: var(--charcoal) !important;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.4rem;
+  text-decoration: none !important;
 }
 
 .post-meta {
@@ -177,21 +173,16 @@ code, pre, .data-output {
     padding: 1.5rem 1rem;
     gap: 1rem;
   }
-
   .nav-title {
     position: static !important;
     transform: none !important;
     order: 1;
   }
-
   .nav-logo { order: 0; }
   .nav-links { 
     order: 2; 
     gap: 15px;
     justify-content: center;
   }
-
-  .nav-title a {
-    font-size: 1.7rem;
-  }
+  .nav-title a { font-size: 1.7rem; }
 }
