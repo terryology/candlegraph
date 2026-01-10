@@ -44,7 +44,6 @@
     text-decoration: none !important; /* Remove the underline */
     font-family: 'Inter', sans-serif; /* Clean technical font */
     font-weight: 800; /* Extra bold for branding */
-    text-transform: uppercase; /* Optional: gives it a "logotype" feel */
     letter-spacing: -0.04em; /* Tighten it up for a modern look */
     font-size: 1.6rem;
     transition: all 0.3s ease;
