@@ -1,32 +1,55 @@
-/* Ensure the Nav container takes full width */
+/* --- LITHIUM RESET --- */
+
+/* 1. Force the header and nav to behave as a single line */
+.header {
+    padding: 0; 
+    border: none;
+}
+
 .nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative; /* This allows the absolute centering of the title */
-  padding: 1rem 2rem;
+    display: flex !important; /* Force flexbox */
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Context for the absolute title */
+    min-height: 80px; /* Controls the height of the bar */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
+/* 2. Fix the Logo (Left) */
 .nav-logo {
-  flex: 1; /* Pushes toward the left */
+    flex: 1; 
+    display: flex;
+    justify-content: flex-start;
+    position: static; /* Ensures it doesn't try to center itself */
+    margin: 0;
 }
 
+/* 3. Fix the Title (Center) */
 .nav-title {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+    padding: 0;
+    z-index: 10;
+    line-height: 1;
 }
 
-.nav-title a {
-  text-decoration: none;
-  color: #2D2D2D;
-}
-
+/* 4. Fix the Links (Right) */
 .nav-links {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end; /* Pushes toward the right */
-  list-style: none;
-  gap: 1.5rem;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline-block;
+    margin: 0;
 }
