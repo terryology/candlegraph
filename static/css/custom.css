@@ -101,9 +101,10 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   .article-meta { display: block; text-align: center; font-size: 0.8rem; margin: 0.1rem 0 0.3rem 0 !important; }
   .nav-links { margin: 0.4rem 0 0 0 !important; gap: 12px !important; justify-content: center; width: 100%; }
   
-  .footer-links li:not(:last-child)::after { content: none !important; } /* Hide slashes on mobile for better wrapping */
-  .footer-links { gap: 1rem; }
-  
+  /* Mobile Footer Cleanup: Hiding hardcoded slashes if they exist in standard Lithium markup */
+  .footer-links li span { display: none !important; } 
+  .footer-links { gap: 1.2rem; }
+
   .intro.article { margin-bottom: 2rem; }
   .content .article:not(.intro) { padding: 1.5rem; margin: 0 1rem 2rem 1rem; }
   .article-title { font-size: 1.8rem !important; }
@@ -114,6 +115,5 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   background-color: var(--pure-white) !important; border-top: 1px solid var(--border-soft) !important;
   padding: 2.5rem 0; margin-top: 4rem; text-align: center;
 }
-.footer-links { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0; }
-.footer-links li:not(:last-child)::after { content: "/"; margin-left: 0.5rem; color: var(--border-soft); }
-.footer p { margin-top: 1.5rem; font-size: 0.85rem; color: var(--gray-muted); display: block; }
+.footer-links { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem; padding: 0; margin: 0; }
+.footer p { margin-top: 1.5rem; font-size: 0.85rem; color: var(--gray-muted); display: block; width: 100%; }
