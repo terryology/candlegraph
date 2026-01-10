@@ -36,7 +36,6 @@ body {
   transition: background-color 0.5s ease;
 }
 
-/* Grouped Typography Optimization */
 h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link {
   font-family: 'Lora', serif !important;
   font-weight: 700;
@@ -44,15 +43,7 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link {
   text-decoration: none !important;
 }
 
-code, pre, .data-output {
-  font-family: 'Courier New', Courier, monospace !important;
-  font-size: 0.95rem;
-  background: rgba(125, 125, 125, 0.1);
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-}
-
-/* --- 3. HEADER & NAVIGATION --- */
+/* --- 3. HEADER & NAVIGATION (Redesigned for Alignment) --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
@@ -63,12 +54,18 @@ code, pre, .data-output {
 .nav {
   display: flex !important;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; /* This handles vertical centering for Logo and Links */
   position: relative;
   max-width: 1100px;
   margin: 0 auto;
   min-height: 95px;
   padding: 0 1.5rem;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  z-index: 5;
 }
 
 .nav-logo svg {
@@ -80,10 +77,16 @@ code, pre, .data-output {
 }
 
 .nav-title {
+  /* This ensures it stays centered regardless of neighbor size */
   position: absolute !important;
   left: 50% !important;
-  top: 50% !important;
-  transform: translate(-50%, -50%) !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  transform: translateX(-50%) !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important; /* Forces vertical centering */
+  z-index: 10;
 }
 
 .nav-title a {
@@ -99,20 +102,18 @@ code, pre, .data-output {
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 4px; /* Desktop high-density gap */
-  margin: 0 -4rem 0 0 !important; /* The precision hyphen-alignment nudge */
+  gap: 4px;
+  margin: 0 -4rem 0 0 !important;
   padding: 0;
   align-items: center;
+  z-index: 5;
 }
 
 .nav-links a {
   color: var(--gray-muted) !important;
   font-size: 1.05rem;
   font-weight: 500;
-  transition: color 0.2s ease;
 }
-
-.nav-links a:hover { color: var(--charcoal) !important; }
 
 .terry-link {
   border: 1px solid var(--amber) !important;
@@ -150,60 +151,43 @@ code, pre, .data-output {
 
 /* --- 5. MOBILE OPTIMIZATIONS --- */
 @media (max-width: 850px) {
-  /* Header: Equidistant Stack */
   .nav {
     flex-direction: column;
     min-height: auto !important;
-    padding: 1rem !important;
-    gap: 0.6rem !important;
+    padding: 0.8rem 1rem !important; /* Shaved top/bottom padding */
+    gap: 0 !important; /* Removing gap to use precision margins instead */
+  }
+
+  .nav-logo {
+    order: 0;
+    margin: 0 !important;
+    /* Pushes logo down closer to title without expanding the box top */
+    padding-top: 8px; 
+    margin-bottom: -4px !important; /* Negative margin 'tucks' title upward */
   }
 
   .nav-title {
     position: static !important;
     transform: none !important;
-    line-height: 1;
+    order: 1;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.1;
   }
 
-  .nav-logo { order: 0; margin: 0 !important; }
+  .nav-title a { font-size: 1.6rem; }
 
   .nav-links { 
     order: 2; 
-    margin: 0 !important; 
+    margin: 0.5rem 0 0 0 !important; /* Space between title and links */
     justify-content: center;
+    gap: 4px !important;
   }
 
-  /* Footer: The Horizontal "Pinch" */
-  .footer {
-    padding: 1.2rem 0 !important;
-    margin-top: 1.5rem;
-  }
-
-  .footer-links {
-    flex-wrap: wrap; 
-    column-gap: 8px !important; /* Pinched horizontal spacing */
-    row-gap: 12px !important;
-    padding: 0 10px;
-  }
-
-  /* Wipeout slashes/separators */
-  .footer-links li::before,
-  .footer-links li::after {
-    content: none !important;
-    display: none !important;
-  }
-
-  .footer-links li {
-    margin: 0 !important;
-    padding: 0 !important;
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .footer-links a {
-    font-size: 0.95rem;
-  }
-
-  .footer-links-kudos img {
-    margin-left: 5px;
-  }
+  /* Footer Precision */
+  .footer { padding: 1.2rem 0 !important; margin-top: 1.5rem; }
+  .footer-links { flex-wrap: wrap; column-gap: 8px !important; row-gap: 12px !important; }
+  .footer-links li::before, .footer-links li::after { content: none !important; display: none !important; }
+  .footer-links li { margin: 0 !important; padding: 0 !important; display: inline-flex; align-items: center; }
+  .footer-links a { font-size: 0.95rem; }
 }
