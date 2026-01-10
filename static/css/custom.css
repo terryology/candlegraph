@@ -149,7 +149,7 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   
   /* The "Manual Override": Nudging the image up 3 pixels */
   /* If it's STILL too low, change -3px to -4px. If it's too high, change to -2px. */
-  transform: translateY(-3px) !important; 
+  transform: translateY(-4px) !important; 
   
   /* Resetting any possible browser-level vertical-align */
   vertical-align: top !important; 
