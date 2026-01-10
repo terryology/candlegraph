@@ -108,7 +108,7 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
 .footer {
   background-color: var(--pure-white) !important;
   border-top: 1px solid var(--border-soft) !important;
-  padding: 1.5rem 0 !important;
+  padding: 1.2rem 0 !important; /* Tightened vertical height */
   margin-top: 3rem;
   text-align: center;
 }
@@ -118,7 +118,7 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1.2rem; /* Balanced horizontal spacing */
+  gap: 1.2rem;
   padding: 0;
   margin: 0;
 }
@@ -128,27 +128,30 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   display: none !important; 
 }
 
-/* Perfecting the "Made with Hugo" centering */
+/* The "Precision Centering" Logic */
 .footer-links-kudos {
-  display: inline-flex !important;
-  align-items: center !important; /* This handles the container alignment */
-  justify-content: center;
-  gap: 6px;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important; /* Mathematical vertical center */
+  justify-content: center !important;
+  gap: 5px;
   color: var(--gray-muted) !important;
   font-size: 0.85rem;
   text-decoration: none;
-  line-height: 1 !important; /* Prevents text descent from pushing the box */
+  line-height: 1 !important; /* Removes invisible text padding */
+  height: 22px; /* Matches the image height exactly */
 }
 
 .footer-links-kudos img {
-  display: inline-block;
-  margin: 0;
-  /* The Secret Sauce: Middle alignment + a tiny 1px nudge up */
-  vertical-align: middle; 
-  transform: translateY(-1px); 
+  height: 16px !important; /* Slightly smaller to match the height of capital letters */
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  /* If it's still low, this -2px nudge is the final manual adjustment */
+  transform: translateY(-2px) !important; 
 }
 
-/* Reduced spacing between the link rows */
 .footer-links li:last-child {
   width: 100%;
   display: flex;
