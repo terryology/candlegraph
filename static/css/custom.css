@@ -17,7 +17,7 @@ body {
   margin: 0;
 }
 
-/* --- 2. HEADER (White Box & Grid) --- */
+/* --- 2. HEADER BOX --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
@@ -27,74 +27,77 @@ body {
 }
 
 .nav {
-  display: grid !important;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex !important;
+  justify-content: space-between; /* Pushes Logo Left and Links Right */
   align-items: center;
-  max-width: 1100px;
+  position: relative; /* Context for the absolute Title */
+  max-width: 1100px; /* Limits how far apart they can go on huge screens */
   margin: 0 auto;
-  padding: 0.8rem 1.5rem; /* Slightly tighter vertical padding */
+  padding: 0.6rem 1.2rem; /* Tightened vertical and horizontal padding */
 }
 
-/* 2.1 Title & Amber Glow Hover */
+/* 2.1 Logo (Left) */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  z-index: 5;
+}
+
+/* 2.2 Title (Absolute Center) */
 .nav-title {
-  justify-self: center;
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
   margin: 0 !important;
+  z-index: 10;
+  pointer-events: auto; /* Ensures links remain clickable */
 }
 
 .nav-title a {
   font-family: 'Lora', serif !important;
   font-weight: 700;
-  font-size: 1.8rem;
+  font-size: 1.7rem; /* Slightly smaller for better fit */
   color: var(--charcoal) !important;
   text-decoration: none !important;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .nav-title a:hover {
   color: var(--amber) !important;
-  /* Sophisticated text-glow effect */
-  text-shadow: 0 0 12px var(--amber-glow);
+  text-shadow: 0 0 10px var(--amber-glow);
 }
 
-/* 2.2 Nav Links (Tightened Spacing) */
+/* 2.3 Links (Right - Tightened) */
 .nav-links {
-  justify-self: end;
   display: flex;
   list-style: none;
-  gap: 15px; /* Reduced gap for a tighter, more cohesive look */
+  gap: 12px; /* Tight horizontal spacing between links */
   margin: 0;
   padding: 0;
   align-items: center;
+  z-index: 5;
 }
 
 .nav-links a {
   font-family: 'Lora', serif !important;
   color: var(--gray-muted) !important;
-  font-size: 0.9rem;
+  font-size: 0.85rem; /* Slightly smaller for a sophisticated look */
   text-decoration: none !important;
   transition: color 0.2s ease;
 }
 
-.nav-links a:hover {
-  color: var(--charcoal) !important;
-}
-
-/* 2.3 The Hub Link (Restored Formatting) */
+/* 2.4 The Hub Link */
 .terry-link {
   border: 1px solid rgba(217, 119, 6, 0.3) !important;
-  padding: 4px 10px !important;
+  padding: 3px 8px !important; /* Tighter padding for the button */
   border-radius: 4px !important;
   background: rgba(217, 119, 6, 0.05) !important;
   font-weight: 600 !important;
   color: var(--amber) !important;
 }
 
-.terry-link:hover {
-  background: rgba(217, 119, 6, 0.1) !important;
-  border-color: var(--amber) !important;
-}
-
-/* --- 3. FOOTER (Full Width) --- */
+/* --- 3. FOOTER & CARDS (Standardized) --- */
 .footer {
   background-color: var(--pure-white) !important;
   border-top: 1px solid var(--border-soft) !important;
@@ -103,21 +106,22 @@ body {
   margin-top: 4rem;
 }
 
-/* --- 4. POST CARDS --- */
 .archive-item, .post-entry, article {
   background-color: var(--pure-white) !important;
   border: 1px solid var(--border-soft) !important;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 1.2rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
 }
 
-/* --- 5. LOGO HOVER GLOW --- */
-.nav-logo svg {
-    transition: filter 0.3s ease;
-}
-
-.nav-logo:hover svg {
-    filter: drop-shadow(0 0 8px var(--amber-glow));
+/* --- 4. MOBILE (Stacked for readability) --- */
+@media (max-width: 700px) {
+  .nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .nav-title {
+    position: static !important;
+    transform: none !important;
+  }
 }
