@@ -1,4 +1,4 @@
-/* --- 1. CORE VARIABLES --- */
+/* --- 1. CORE VARIABLES & THEMES --- */
 :root {
   --antique-white: #FAF9F6;
   --pure-white: #FFFFFF;
@@ -7,10 +7,24 @@
   --amber-glow: rgba(217, 119, 6, 0.4);
   --gray-muted: #6B7280;
   --border-soft: #E5E7EB;
-  --transition-smooth: all 0.3s ease; /* Global transition variable */
+  --transition-smooth: all 0.3s ease;
 }
 
-/* Global Foundation */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --antique-white: #121212;
+    --pure-white: #1E1E1E;
+    --charcoal: #E5E7EB;
+    --gray-muted: #9CA3AF;
+    --border-soft: #333333;
+    --amber-glow: rgba(245, 158, 11, 0.6);
+  }
+  .nav-logo svg {
+    filter: invert(1) brightness(0.9);
+  }
+}
+
+/* --- 2. GLOBAL FOUNDATION --- */
 body {
   background-color: var(--antique-white);
   color: var(--charcoal);
@@ -19,58 +33,30 @@ body {
   line-height: 1.7;
   margin: 0;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.5s ease;
 }
 
-/* --- 2. TYPOGRAPHY & CARDS --- */
-/* Consolidated Header and Title Logic */
-h1, h2, h3, h4, 
-h1.article-title, 
-.post-title, 
-.post-title a, 
-.archive-item-link,
-.nav-title a {
+/* Grouped Typography Optimization */
+h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link {
   font-family: 'Lora', serif !important;
   font-weight: 700;
+  color: var(--charcoal);
   text-decoration: none !important;
 }
 
-/* Titles and Links color logic */
-h1, h2, h3, h4, .post-title a, .archive-item-link {
-  color: var(--charcoal);
-}
-
-.post-meta {
-  font-size: 0.90rem;
-  color: var(--amber);
-  margin-bottom: 0.5rem; /* Added slightly more breathing room */
-  display: block;
-}
-
-/* Technical Data: JSON/Code */
 code, pre, .data-output {
   font-family: 'Courier New', Courier, monospace !important;
   font-size: 0.95rem;
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(125, 125, 125, 0.1);
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
 }
 
-/* Card Styling */
-.archive-item, .post-entry, article {
-  background-color: var(--pure-white) !important;
-  border: 1px solid var(--border-soft) !important;
-  border-radius: 12px;
-  padding: 1.8rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.02); /* Subtle depth */
-}
-
-/* --- 3. HEADER: NAVIGATION --- */
+/* --- 3. HEADER & NAVIGATION --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
   width: 100%;
-  padding: 0;
   margin-bottom: 2.5rem;
 }
 
@@ -85,19 +71,23 @@ code, pre, .data-output {
   padding: 0 1.5rem;
 }
 
-/* Centralized Title Logic */
+.nav-logo svg {
+  transition: var(--transition-smooth);
+}
+
+.nav-logo:hover svg {
+  filter: drop-shadow(0 0 8px var(--amber-glow));
+}
+
 .nav-title {
   position: absolute !important;
   left: 50% !important;
   top: 50% !important;
   transform: translate(-50%, -50%) !important;
-  margin: 0 !important;
-  z-index: 10;
 }
 
 .nav-title a {
   font-size: 1.9rem;
-  color: var(--charcoal) !important;
   transition: var(--transition-smooth);
 }
 
@@ -106,15 +96,13 @@ code, pre, .data-output {
   text-shadow: 0 0 12px var(--amber-glow);
 }
 
-/* Sidebar Links */
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 18px;
-  margin: 0;
+  gap: 4px; /* Desktop high-density gap */
+  margin: 0 -4rem 0 0 !important; /* The precision hyphen-alignment nudge */
   padding: 0;
   align-items: center;
-  z-index: 5;
 }
 
 .nav-links a {
@@ -124,37 +112,26 @@ code, pre, .data-output {
   transition: color 0.2s ease;
 }
 
-.nav-links a:hover {
-  color: var(--charcoal) !important;
-}
+.nav-links a:hover { color: var(--charcoal) !important; }
 
-/* Terryology Hub Link Specifics */
 .terry-link {
-  border: 1px solid rgba(217, 119, 6, 0.3) !important;
+  border: 1px solid var(--amber) !important;
   padding: 5px 14px !important;
   border-radius: 4px !important;
-  background: rgba(217, 119, 6, 0.05) !important;
-  font-weight: 600 !important;
+  background: rgba(217, 119, 6, 0.1) !important;
   color: var(--amber) !important;
-  font-size: 1rem !important;
+  font-weight: 600 !important;
 }
 
-/* Logo Animation */
-.nav-logo {
-  display: flex;
-  align-items: center;
-  z-index: 5;
+/* --- 4. CONTENT & FOOTER --- */
+.archive-item, .post-entry, article {
+  background-color: var(--pure-white) !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 12px;
+  padding: 1.8rem;
+  margin-bottom: 1.5rem;
 }
 
-.nav-logo svg {
-  transition: filter 0.3s ease;
-}
-
-.nav-logo:hover svg {
-  filter: drop-shadow(0 0 8px var(--amber-glow));
-}
-
-/* --- 4. FOOTER --- */
 .footer {
   background-color: var(--pure-white) !important;
   border-top: 1px solid var(--border-soft) !important;
@@ -163,25 +140,70 @@ code, pre, .data-output {
   margin-top: 4rem;
 }
 
+.footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0;
+}
+
 /* --- 5. MOBILE OPTIMIZATIONS --- */
 @media (max-width: 850px) {
+  /* Header: Equidistant Stack */
   .nav {
     flex-direction: column;
-    min-height: auto;
-    padding: 1.2rem 1rem; /* Reduced padding for height efficiency */
-    gap: 0.8rem;
+    min-height: auto !important;
+    padding: 1rem !important;
+    gap: 0.6rem !important;
   }
+
   .nav-title {
     position: static !important;
     transform: none !important;
-    order: 1;
+    line-height: 1;
   }
-  .nav-logo { order: 0; }
+
+  .nav-logo { order: 0; margin: 0 !important; }
+
   .nav-links { 
     order: 2; 
-    gap: 12px; /* Tighten links for smaller screens */
+    margin: 0 !important; 
+    justify-content: center;
   }
-  .nav-title a {
-    font-size: 1.6rem; /* Slightly smaller for mobile scaling */
+
+  /* Footer: The Horizontal "Pinch" */
+  .footer {
+    padding: 1.2rem 0 !important;
+    margin-top: 1.5rem;
+  }
+
+  .footer-links {
+    flex-wrap: wrap; 
+    column-gap: 8px !important; /* Pinched horizontal spacing */
+    row-gap: 12px !important;
+    padding: 0 10px;
+  }
+
+  /* Wipeout slashes/separators */
+  .footer-links li::before,
+  .footer-links li::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .footer-links li {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .footer-links a {
+    font-size: 0.95rem;
+  }
+
+  .footer-links-kudos img {
+    margin-left: 5px;
   }
 }
