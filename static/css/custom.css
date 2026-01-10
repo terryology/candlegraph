@@ -49,7 +49,7 @@ code, pre, .data-output {
   border-radius: 4px;
 }
 
-/* --- 3. HEADER (Ultra-Compact 55px Desktop) --- */
+/* --- 3. HEADER (Ultra-Compact 55px) --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
@@ -83,13 +83,22 @@ code, pre, .data-output {
   z-index: 10;
 }
 
-.nav-title a { font-size: 1.55rem; letter-spacing: -0.02em; }
+.nav-title a { 
+  font-size: 2rem; 
+  letter-spacing: -0.02em; 
+  transition: var(--transition-smooth);
+}
+
+.nav-title a:hover {
+  color: var(--amber) !important;
+  text-shadow: 0 0 12px var(--amber-glow), 0 0 20px var(--amber-glow);
+}
 
 .nav-links {
   display: flex;
   list-style: none;
   gap: 15px;
-  margin: 0 -4rem 0 0 !important; /* Precision alignment nudge */
+  margin: 0 -4rem 0 0 !important;
   padding: 0;
   align-items: center;
   z-index: 5;
@@ -108,10 +117,10 @@ code, pre, .data-output {
   font-weight: 600 !important;
 }
 
-/* --- 4. INTRODUCTION SECTION (Refined) --- */
+/* --- 4. INTRODUCTION SECTION --- */
 .intro.article {
-  max-width: 750px; /* Optimal reading width */
-  margin: 0 auto 3rem auto;
+  max-width: 750px;
+  margin: 0 auto 3.5rem auto;
   text-align: center;
   background: transparent !important;
   border: none !important;
@@ -119,19 +128,8 @@ code, pre, .data-output {
   padding: 0 1.5rem;
 }
 
-.intro .article-title { 
-  font-size: 2.2rem; 
-  margin-bottom: 0.6rem; 
-  letter-spacing: -0.03em;
-  color: var(--charcoal);
-}
-
-.intro .article-content { 
-  color: var(--gray-muted); 
-  font-size: 1.2rem; 
-  line-height: 1.6; 
-  font-style: italic; /* Adds a "mission statement" feel */
-}
+.intro .article-title { font-size: 2.2rem; margin-bottom: 0.6rem; letter-spacing: -0.03em; }
+.intro .article-content { color: var(--gray-muted); font-size: 1.2rem; line-height: 1.6; font-style: italic; }
 
 /* --- 5. CONTENT & FOOTER --- */
 .archive-item, .post-entry, article {
@@ -140,6 +138,14 @@ code, pre, .data-output {
   border-radius: 12px;
   padding: 1.8rem;
   margin-bottom: 1.5rem;
+}
+
+.archive-item-meta {
+  color: var(--amber) !important;
+  font-family: 'Lora', serif !important; /* Matches site font */
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
 }
 
 .footer {
@@ -157,38 +163,24 @@ code, pre, .data-output {
   padding: 0;
 }
 
-/* --- 6. MOBILE OPTIMIZATIONS (Internal Shift Applied) --- */
+/* --- 6. MOBILE OPTIMIZATIONS --- */
 @media (max-width: 850px) {
   .header { margin-bottom: 0.8rem !important; }
-  
-  .nav { 
-    flex-direction: column; 
-    /* Bottom padding reduced to 0.2rem to offset links moving down */
-    padding: 0.2rem 1rem 0.1rem 1rem !important;
-    gap: 0 !important; 
-    min-height: auto !important; 
-  }
-
-  .nav-links { 
-    margin: 0.6rem 0 0 0 !important;
-    justify-content: center; 
-    gap: 6px !important; 
-    order: 2; 
-}
+  .nav { flex-direction: column; padding: 0.2rem 1rem 0.2rem 1rem !important; gap: 0 !important; min-height: auto !important; }
   
   .nav-logo { padding-top: 2px; margin-bottom: -6px !important; order: 0; }
   .nav-logo svg { transform: scale(0.85); }
   
   .nav-title { position: static !important; transform: none !important; line-height: 1.0; order: 1; }
-  .nav-title a { font-size: 1.4rem; }
+  .nav-title a { font-size: 1.6rem; } 
+  
+  .nav-links { margin: 0.4rem 0 0 0 !important; justify-content: center; gap: 6px !important; order: 2; }
   
   .intro.article { margin-top: 0 !important; padding-top: 0 !important; margin-bottom: 2rem; }
   .intro .article-title { font-size: 1.7rem; margin-top: 0 !important; line-height: 1.1; }
-  .intro .article-content { font-size: 1.05rem; margin-top: 0.4rem !important; }
+  .intro .article-content { font-size: 1.05rem; }
 
   .footer { padding: 1.2rem 0 !important; margin-top: 1.5rem; }
   .footer-links { flex-wrap: wrap; column-gap: 8px !important; row-gap: 12px !important; }
-  .footer-links li::before, .footer-links li::after { content: none !important; display: none !important; }
-  .footer-links li { margin: 0 !important; padding: 0 !important; display: inline-flex; align-items: center; }
   .footer-links a { font-size: 0.95rem; }
 }
