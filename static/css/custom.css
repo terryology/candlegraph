@@ -43,7 +43,15 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link {
   text-decoration: none !important;
 }
 
-/* --- 3. HEADER & NAVIGATION (Redesigned for Alignment) --- */
+code, pre, .data-output {
+  font-family: 'Courier New', Courier, monospace !important;
+  font-size: 0.95rem;
+  background: rgba(125, 125, 125, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* --- 3. HEADER & NAVIGATION --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
@@ -54,18 +62,12 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link {
 .nav {
   display: flex !important;
   justify-content: space-between;
-  align-items: center; /* This handles vertical centering for Logo and Links */
+  align-items: center; /* Vertically centers Logo and Links on Desktop */
   position: relative;
   max-width: 1100px;
   margin: 0 auto;
   min-height: 95px;
   padding: 0 1.5rem;
-}
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  z-index: 5;
 }
 
 .nav-logo svg {
@@ -77,7 +79,7 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link {
 }
 
 .nav-title {
-  /* This ensures it stays centered regardless of neighbor size */
+  /* Absolute track method for perfect vertical & horizontal centering */
   position: absolute !important;
   left: 50% !important;
   top: 0 !important;
@@ -85,7 +87,7 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link {
   transform: translateX(-50%) !important;
   margin: 0 !important;
   display: flex !important;
-  align-items: center !important; /* Forces vertical centering */
+  align-items: center !important; 
   z-index: 10;
 }
 
@@ -103,7 +105,7 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link {
   display: flex;
   list-style: none;
   gap: 4px;
-  margin: 0 -4rem 0 0 !important;
+  margin: 0 -4rem 0 0 !important; /* Precision alignment nudge */
   padding: 0;
   align-items: center;
   z-index: 5;
@@ -113,7 +115,10 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link {
   color: var(--gray-muted) !important;
   font-size: 1.05rem;
   font-weight: 500;
+  transition: color 0.2s ease;
 }
+
+.nav-links a:hover { color: var(--charcoal) !important; }
 
 .terry-link {
   border: 1px solid var(--amber) !important;
@@ -151,19 +156,22 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link {
 
 /* --- 5. MOBILE OPTIMIZATIONS --- */
 @media (max-width: 850px) {
+  .header {
+    margin-bottom: 1.5rem !important; /* Pulls cards higher on mobile */
+  }
+
   .nav {
     flex-direction: column;
     min-height: auto !important;
-    padding: 0.8rem 1rem !important; /* Shaved top/bottom padding */
-    gap: 0 !important; /* Removing gap to use precision margins instead */
+    padding: 0.4rem 1rem 1rem 1rem !important; /* Cut top padding in half */
+    gap: 0 !important;
   }
 
   .nav-logo {
     order: 0;
     margin: 0 !important;
-    /* Pushes logo down closer to title without expanding the box top */
-    padding-top: 8px; 
-    margin-bottom: -4px !important; /* Negative margin 'tucks' title upward */
+    padding-top: 4px; /* Hugs the ceiling */
+    margin-bottom: -4px !important; /* Tucks title closer to logo */
   }
 
   .nav-title {
@@ -179,15 +187,16 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link {
 
   .nav-links { 
     order: 2; 
-    margin: 0.5rem 0 0 0 !important; /* Space between title and links */
+    margin: 0.5rem 0 0 0 !important; 
     justify-content: center;
     gap: 4px !important;
   }
 
-  /* Footer Precision */
+  /* Footer: Pinched & Clean */
   .footer { padding: 1.2rem 0 !important; margin-top: 1.5rem; }
   .footer-links { flex-wrap: wrap; column-gap: 8px !important; row-gap: 12px !important; }
   .footer-links li::before, .footer-links li::after { content: none !important; display: none !important; }
   .footer-links li { margin: 0 !important; padding: 0 !important; display: inline-flex; align-items: center; }
   .footer-links a { font-size: 0.95rem; }
+  .footer-links-kudos img { margin-left: 5px; }
 }
