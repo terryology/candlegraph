@@ -51,12 +51,12 @@ code, pre, .data-output {
   border-radius: 4px;
 }
 
-/* --- 3. HEADER & NAVIGATION --- */
+/* --- 3. HEADER & NAVIGATION (High-Density Desktop) --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
   width: 100%;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem; /* Reduced to pull content up */
 }
 
 .nav {
@@ -66,12 +66,15 @@ code, pre, .data-output {
   position: relative;
   max-width: 1100px;
   margin: 0 auto;
-  min-height: 95px;
+  /* COMPACT HEIGHT: Reduced from 95px to 65px */
+  min-height: 65px; 
   padding: 0 1.5rem;
 }
 
 .nav-logo svg {
   transition: var(--transition-smooth);
+  height: 32px; /* Sized for the 65px bar */
+  width: auto;
 }
 
 .nav-logo:hover svg {
@@ -79,7 +82,7 @@ code, pre, .data-output {
 }
 
 .nav-title {
-  /* Absolute track method for perfect vertical centering on Desktop */
+  /* Absolute track for perfect vertical centering */
   position: absolute !important;
   left: 50% !important;
   top: 0 !important;
@@ -92,7 +95,7 @@ code, pre, .data-output {
 }
 
 .nav-title a {
-  font-size: 1.9rem;
+  font-size: 1.7rem; /* Proportional to the 65px bar */
   transition: var(--transition-smooth);
 }
 
@@ -104,8 +107,8 @@ code, pre, .data-output {
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 4px;
-  margin: 0 -4rem 0 0 !important; /* Precision alignment nudge */
+  gap: 12px;
+  margin: 0 -4rem 0 0 !important; /* Precision nudge */
   padding: 0;
   align-items: center;
   z-index: 5;
@@ -115,13 +118,14 @@ code, pre, .data-output {
   color: var(--gray-muted) !important;
   font-size: 1.05rem;
   font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 .nav-links a:hover { color: var(--charcoal) !important; }
 
 .terry-link {
   border: 1px solid var(--amber) !important;
-  padding: 5px 14px !important;
+  padding: 4px 12px !important; /* Slightly tighter for compact bar */
   border-radius: 4px !important;
   background: rgba(217, 119, 6, 0.1) !important;
   color: var(--amber) !important;
@@ -141,8 +145,8 @@ code, pre, .data-output {
   background-color: var(--pure-white) !important;
   border-top: 1px solid var(--border-soft) !important;
   width: 100% !important;
-  padding: 2.5rem 0;
-  margin-top: 4rem;
+  padding: 2.2rem 0;
+  margin-top: 3.5rem;
 }
 
 .footer-links {
@@ -162,20 +166,19 @@ code, pre, .data-output {
   .nav {
     flex-direction: column;
     min-height: auto !important;
-    /* Halved vertical padding for height efficiency */
-    padding: 0.2rem 1rem 0.5rem 1rem !important; 
+    padding: 0.2rem 1rem 0.4rem 1rem !important; 
     gap: 0 !important;
   }
 
   .nav-logo {
     order: 0;
     margin: 0 !important;
-    padding-top: 2px; /* Hugs the top edge */
-    margin-bottom: -6px !important; /* Tight tuck to Candlegraph */
+    padding-top: 2px;
+    margin-bottom: -6px !important; 
   }
 
   .nav-logo svg {
-    transform: scale(0.9); /* Downscaled for high-density height */
+    transform: scale(0.85); 
   }
 
   .nav-title {
@@ -184,16 +187,16 @@ code, pre, .data-output {
     order: 1;
     margin: 0 !important;
     padding: 0 !important;
-    line-height: 1.0; /* Minimizes vertical character footprint */
+    line-height: 1.0; 
   }
 
-  .nav-title a { font-size: 1.5rem; }
+  .nav-title a { font-size: 1.4rem; }
 
   .nav-links { 
     order: 2; 
-    margin: 0.2rem 0 0 0 !important; 
+    margin: 0.1rem 0 0 0 !important; 
     justify-content: center;
-    gap: 4px !important;
+    gap: 6px !important;
   }
 
   /* Footer: Pinched & Clean */
