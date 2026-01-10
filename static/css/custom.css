@@ -49,7 +49,7 @@ code, pre, .data-output {
   border-radius: 4px;
 }
 
-/* --- 3. HEADER (Ultra-Compact 55px) --- */
+/* --- 3. HEADER (Ultra-Compact 55px Desktop) --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
@@ -89,7 +89,7 @@ code, pre, .data-output {
   display: flex;
   list-style: none;
   gap: 15px;
-  margin: 0 -4rem 0 0 !important;
+  margin: 0 -4rem 0 0 !important; /* Precision alignment nudge */
   padding: 0;
   align-items: center;
   z-index: 5;
@@ -146,11 +146,17 @@ code, pre, .data-output {
   padding: 0;
 }
 
-/* --- 6. MOBILE OPTIMIZATIONS --- */
+/* --- 6. MOBILE OPTIMIZATIONS (Internal Shift Applied) --- */
 @media (max-width: 850px) {
-  /* Header Squeeze */
   .header { margin-bottom: 0.8rem !important; }
-  .nav { flex-direction: column; padding: 0.2rem 1rem 0.4rem 1rem !important; gap: 0 !important; min-height: auto !important; }
+  
+  .nav { 
+    flex-direction: column; 
+    /* Bottom padding reduced to 0.2rem to offset links moving down */
+    padding: 0.2rem 1rem 0.2rem 1rem !important; 
+    gap: 0 !important; 
+    min-height: auto !important; 
+  }
   
   .nav-logo { padding-top: 2px; margin-bottom: -6px !important; order: 0; }
   .nav-logo svg { transform: scale(0.85); }
@@ -158,14 +164,13 @@ code, pre, .data-output {
   .nav-title { position: static !important; transform: none !important; line-height: 1.0; order: 1; }
   .nav-title a { font-size: 1.4rem; }
   
-  .nav-links { margin: 0.1rem 0 0 0 !important; justify-content: center; gap: 6px !important; order: 2; }
+  /* Pushed links further down from title while box height stays the same */
+  .nav-links { margin: 0.4rem 0 0 0 !important; justify-content: center; gap: 6px !important; order: 2; }
   
-  /* Intro Squeeze */
   .intro.article { margin-top: 0 !important; padding-top: 0 !important; margin-bottom: 2rem; }
   .intro .article-title { font-size: 1.7rem; margin-top: 0 !important; line-height: 1.1; }
   .intro .article-content { font-size: 1.05rem; margin-top: 0.4rem !important; }
 
-  /* Footer Squeeze */
   .footer { padding: 1.2rem 0 !important; margin-top: 1.5rem; }
   .footer-links { flex-wrap: wrap; column-gap: 8px !important; row-gap: 12px !important; }
   .footer-links li::before, .footer-links li::after { content: none !important; display: none !important; }
