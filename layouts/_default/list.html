@@ -23,9 +23,14 @@
       {{ range .Pages }}
       <article class="archive-item">
         <a href="{{ .RelPermalink }}" class="archive-item-link">{{ .Title }}</a><br>
-        <div class="archive-item-meta">{{ partial "post_meta.html" . }}
-          {{ .Summary }}
-          <a href="{{ .Permalink }}">Read Post »</a>
+  
+        <div class="archive-item-meta">
+        {{ partial "post_meta.html" . }}
+        </div>
+
+        <div class="archive-item-summary">
+        {{ .Summary }}
+        <a href="{{ .Permalink }}" class="read-more">Read Post »</a>
         </div>  
       </article>
       {{ end }}

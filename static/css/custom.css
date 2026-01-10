@@ -31,7 +31,6 @@ body {
   line-height: 1.7;
   margin: 0;
   -webkit-font-smoothing: antialiased;
-  transition: background-color 0.5s ease;
 }
 
 h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .article-title {
@@ -39,14 +38,6 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   font-weight: 700;
   color: var(--charcoal);
   text-decoration: none !important;
-}
-
-code, pre, .data-output {
-  font-family: 'Courier New', Courier, monospace !important;
-  font-size: 0.95rem;
-  background: rgba(125, 125, 125, 0.1);
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
 }
 
 /* --- 3. HEADER (Ultra-Compact 55px) --- */
@@ -85,7 +76,6 @@ code, pre, .data-output {
 
 .nav-title a { 
   font-size: 2rem; 
-  letter-spacing: -0.02em; 
   transition: var(--transition-smooth);
 }
 
@@ -128,11 +118,11 @@ code, pre, .data-output {
   padding: 0 1.5rem;
 }
 
-.intro .article-title { font-size: 2.2rem; margin-bottom: 0.6rem; letter-spacing: -0.03em; }
+.intro .article-title { font-size: 2.2rem; margin-bottom: 0.6rem; }
 .intro .article-content { color: var(--gray-muted); font-size: 1.2rem; line-height: 1.6; font-style: italic; }
 
-/* --- 5. CONTENT & FOOTER --- */
-.archive-item, .post-entry, article {
+/* --- 5. CONTENT & CARDS --- */
+.archive-item {
   background-color: var(--pure-white) !important;
   border: 1px solid var(--border-soft) !important;
   border-radius: 12px;
@@ -142,10 +132,21 @@ code, pre, .data-output {
 
 .archive-item-meta {
   color: var(--amber) !important;
-  font-family: 'Lora', serif !important; /* Matches site font */
   font-size: 0.95rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
   font-weight: 500;
+}
+
+.archive-item-summary {
+  color: var(--charcoal);
+  font-size: 1.05rem;
+}
+
+.read-more {
+  color: var(--amber) !important;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 5px;
 }
 
 .footer {
@@ -155,32 +156,16 @@ code, pre, .data-output {
   margin-top: 4rem;
 }
 
-.footer-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 0;
-}
-
 /* --- 6. MOBILE OPTIMIZATIONS --- */
 @media (max-width: 850px) {
   .header { margin-bottom: 0.8rem !important; }
-  .nav { flex-direction: column; padding: 0.2rem 1rem 0.2rem 1rem !important; gap: 0 !important; min-height: auto !important; }
-  
-  .nav-logo { padding-top: 2px; margin-bottom: -6px !important; order: 0; }
+  .nav { flex-direction: column; padding: 0.2rem 1rem 0.2rem 1rem !important; min-height: auto !important; }
   .nav-logo svg { transform: scale(0.85); }
-  
-  .nav-title { position: static !important; transform: none !important; line-height: 1.0; order: 1; }
+  .nav-title { position: static !important; transform: none !important; }
   .nav-title a { font-size: 1.6rem; } 
-  
-  .nav-links { margin: 0.4rem 0 0 0 !important; justify-content: center; gap: 6px !important; order: 2; }
+  .nav-links { margin: 0.4rem 0 0 0 !important; gap: 6px !important; }
   
   .intro.article { margin-top: 0 !important; padding-top: 0 !important; margin-bottom: 2rem; }
-  .intro .article-title { font-size: 1.7rem; margin-top: 0 !important; line-height: 1.1; }
+  .intro .article-title { font-size: 1.7rem; line-height: 1.1; }
   .intro .article-content { font-size: 1.05rem; }
-
-  .footer { padding: 1.2rem 0 !important; margin-top: 1.5rem; }
-  .footer-links { flex-wrap: wrap; column-gap: 8px !important; row-gap: 12px !important; }
-  .footer-links a { font-size: 0.95rem; }
 }
