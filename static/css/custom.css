@@ -153,19 +153,23 @@ code, pre, .data-output {
   .nav { 
     flex-direction: column; 
     /* Bottom padding reduced to 0.2rem to offset links moving down */
-    padding: 0.2rem 1rem 0.2rem 1rem !important; 
+    padding: 0.2rem 1rem 0.1rem 1rem !important;
     gap: 0 !important; 
     min-height: auto !important; 
   }
+
+  .nav-links { 
+    margin: 0.5rem 0 0 0 !important;
+    justify-content: center; 
+    gap: 6px !important; 
+    order: 2; 
+}
   
   .nav-logo { padding-top: 2px; margin-bottom: -6px !important; order: 0; }
   .nav-logo svg { transform: scale(0.85); }
   
   .nav-title { position: static !important; transform: none !important; line-height: 1.0; order: 1; }
   .nav-title a { font-size: 1.4rem; }
-  
-  /* Pushed links further down from title while box height stays the same */
-  .nav-links { margin: 0.4rem 0 0 0 !important; justify-content: center; gap: 6px !important; order: 2; }
   
   .intro.article { margin-top: 0 !important; padding-top: 0 !important; margin-bottom: 2rem; }
   .intro .article-title { font-size: 1.7rem; margin-top: 0 !important; line-height: 1.1; }
