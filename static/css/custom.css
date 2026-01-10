@@ -19,9 +19,7 @@
     --border-soft: #333333;
     --amber-glow: rgba(245, 158, 11, 0.6);
   }
-  .nav-logo svg {
-    filter: invert(1) brightness(0.9);
-  }
+  .nav-logo svg { filter: invert(1) brightness(0.9); }
 }
 
 /* --- 2. GLOBAL FOUNDATION --- */
@@ -36,7 +34,7 @@ body {
   transition: background-color 0.5s ease;
 }
 
-h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link {
+h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .article-title {
   font-family: 'Lora', serif !important;
   font-weight: 700;
   color: var(--charcoal);
@@ -51,12 +49,12 @@ code, pre, .data-output {
   border-radius: 4px;
 }
 
-/* --- 3. HEADER & NAVIGATION (Ultra-Compact Desktop) --- */
+/* --- 3. HEADER (Ultra-Compact 55px) --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
   width: 100%;
-  margin-bottom: 1.8rem; /* Pulling cards even closer */
+  margin-bottom: 2.5rem; 
 }
 
 .nav {
@@ -66,20 +64,12 @@ code, pre, .data-output {
   position: relative;
   max-width: 1100px;
   margin: 0 auto;
-  /* ULTRA-COMPACT: Reduced from 65px to 55px */
   min-height: 55px; 
   padding: 0 1.5rem;
 }
 
-.nav-logo svg {
-  transition: var(--transition-smooth);
-  height: 28px; /* Sized down from 32px to breathe in the 55px bar */
-  width: auto;
-}
-
-.nav-logo:hover svg {
-  filter: drop-shadow(0 0 8px var(--amber-glow));
-}
+.nav-logo svg { height: 28px; width: auto; transition: var(--transition-smooth); }
+.nav-logo:hover svg { filter: drop-shadow(0 0 8px var(--amber-glow)); }
 
 .nav-title {
   position: absolute !important;
@@ -93,37 +83,46 @@ code, pre, .data-output {
   z-index: 10;
 }
 
-.nav-title a {
-  font-size: 1.55rem; /* Reduced from 1.7rem to fit the strip aesthetic */
-  transition: var(--transition-smooth);
-  letter-spacing: -0.02em; /* Tighter tracking for a technical feel */
-}
+.nav-title a { font-size: 1.55rem; letter-spacing: -0.02em; }
 
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 15px; /* Increased slightly to maintain horizontal presence */
+  gap: 15px;
   margin: 0 -4rem 0 0 !important;
   padding: 0;
   align-items: center;
   z-index: 5;
 }
 
-.nav-links a {
-  color: var(--gray-muted) !important;
-  font-size: 1rem; /* Slightly smaller to match the compact bar */
-}
+.nav-links a { color: var(--gray-muted) !important; font-size: 1rem; }
+.nav-links a:hover { color: var(--charcoal) !important; }
 
 .terry-link {
   border: 1px solid var(--amber) !important;
-  padding: 3px 10px !important; /* Thinner padding for the 55px height */
+  padding: 3px 10px !important;
   border-radius: 4px !important;
   background: rgba(217, 119, 6, 0.05) !important;
   color: var(--amber) !important;
   font-size: 0.95rem !important;
+  font-weight: 600 !important;
 }
 
-/* --- 4. CONTENT & FOOTER --- */
+/* --- 4. INTRODUCTION SECTION --- */
+.intro.article {
+  max-width: 800px;
+  margin: 0 auto 3.5rem auto;
+  text-align: center;
+  padding: 0 1.5rem;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.intro .article-title { font-size: 2.4rem; margin-bottom: 0.8rem; letter-spacing: -0.04em; }
+.intro .article-content { color: var(--gray-muted); font-size: 1.25rem; line-height: 1.6; max-width: 650px; margin: 0 auto; text-align: center; }
+
+/* --- 5. CONTENT & FOOTER --- */
 .archive-item, .post-entry, article {
   background-color: var(--pure-white) !important;
   border: 1px solid var(--border-soft) !important;
@@ -135,9 +134,8 @@ code, pre, .data-output {
 .footer {
   background-color: var(--pure-white) !important;
   border-top: 1px solid var(--border-soft) !important;
-  width: 100% !important;
   padding: 2.2rem 0;
-  margin-top: 3.5rem;
+  margin-top: 4rem;
 }
 
 .footer-links {
@@ -148,67 +146,29 @@ code, pre, .data-output {
   padding: 0;
 }
 
-/* Ensure the Home Page Intro doesn't have a box/border */
-.intro.article {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding-bottom: 0;
-}
-
-/* Center the text within the intro */
-.intro .article-content {
-  text-align: center;
-  margin: 0 auto;
-}
-
-/* --- 5. MOBILE OPTIMIZATIONS (ULTRA-COMPACT) --- */
+/* --- 6. MOBILE OPTIMIZATIONS --- */
 @media (max-width: 850px) {
-  .header {
-    margin-bottom: 1.2rem !important; 
-  }
-
-  .nav {
-    flex-direction: column;
-    min-height: auto !important;
-    padding: 0.2rem 1rem 0.4rem 1rem !important; 
-    gap: 0 !important;
-  }
-
-  .nav-logo {
-    order: 0;
-    margin: 0 !important;
-    padding-top: 2px;
-    margin-bottom: -6px !important; 
-  }
-
-  .nav-logo svg {
-    transform: scale(0.85); 
-  }
-
-  .nav-title {
-    position: static !important;
-    transform: none !important;
-    order: 1;
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 1.0; 
-  }
-
+  /* Header Squeeze */
+  .header { margin-bottom: 0.8rem !important; }
+  .nav { flex-direction: column; padding: 0.2rem 1rem 0.4rem 1rem !important; gap: 0 !important; min-height: auto !important; }
+  
+  .nav-logo { padding-top: 2px; margin-bottom: -6px !important; order: 0; }
+  .nav-logo svg { transform: scale(0.85); }
+  
+  .nav-title { position: static !important; transform: none !important; line-height: 1.0; order: 1; }
   .nav-title a { font-size: 1.4rem; }
+  
+  .nav-links { margin: 0.1rem 0 0 0 !important; justify-content: center; gap: 6px !important; order: 2; }
+  
+  /* Intro Squeeze */
+  .intro.article { margin-top: 0 !important; padding-top: 0 !important; margin-bottom: 2rem; }
+  .intro .article-title { font-size: 1.7rem; margin-top: 0 !important; line-height: 1.1; }
+  .intro .article-content { font-size: 1.05rem; margin-top: 0.4rem !important; }
 
-  .nav-links { 
-    order: 2; 
-    margin: 0.1rem 0 0 0 !important; 
-    justify-content: center;
-    gap: 6px !important;
-  }
-
-  /* Footer: Pinched & Clean */
+  /* Footer Squeeze */
   .footer { padding: 1.2rem 0 !important; margin-top: 1.5rem; }
   .footer-links { flex-wrap: wrap; column-gap: 8px !important; row-gap: 12px !important; }
   .footer-links li::before, .footer-links li::after { content: none !important; display: none !important; }
   .footer-links li { margin: 0 !important; padding: 0 !important; display: inline-flex; align-items: center; }
   .footer-links a { font-size: 0.95rem; }
-  .footer-links-kudos img { margin-left: 5px; }
 }
