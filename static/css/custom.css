@@ -38,21 +38,22 @@
     line-height: 1;
 }
 
-/* Style the Title Text */
 .nav-title a {
-    color: #2D2D2D !important; /* Your deep charcoal */
-    text-decoration: none !important; /* Remove the underline */
-    font-family: 'Inter', sans-serif; /* Clean technical font */
-    font-weight: 800; /* Extra bold for branding */
-    letter-spacing: -0.04em; /* Tighten it up for a modern look */
-    font-size: 1.6rem;
-    transition: all 0.3s ease;
+    /* Use a serif font for warmth and character */
+    font-family: 'Lora', serif !important; 
+    color: #2D2D2D !important;
+    text-decoration: none !important;
+    
+    /* Soften the weight: 700 is bold but not "heavy" */
+    font-weight: 700; 
+    font-size: 1.8rem;
+    text-transform: none !important; 
+    letter-spacing: normal !important;
+    transition: color 0.3s ease;
 }
 
-/* Subtle Hover Effect */
 .nav-title a:hover {
-    color: #D97706 !important; /* Fades to Amber on hover */
-    letter-spacing: 0.02em; /* Very subtle "expansion" on hover */
+    color: #D97706 !important; /* That soft amber glow */
 }
 
 /* 4. Fix the Links (Right) */
@@ -72,16 +73,15 @@
 }
 
 .nav-links a {
-    color: #6B7280 !important; /* Muted gray */
+    font-family: 'Lora', serif !important;
+    color: #6B7280 !important;
+    font-style: italic; /* Italics add a handwritten, human touch */
+    font-size: 1rem;
     text-decoration: none !important;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-transform: capitalize;
-    transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-    color: #2D2D2D !important; /* Darkens when you hover over them */
+    color: #2D2D2D !important;
 }
 
 /* Special styling for the 'Hub' link to Terryology */
