@@ -4,6 +4,7 @@
   --pure-white: #FFFFFF;
   --charcoal: #2D2D2D;
   --amber: #D97706;
+  --amber-glow: rgba(217, 119, 6, 0.4);
   --gray-muted: #6B7280;
   --border-soft: #E5E7EB;
 }
@@ -16,7 +17,7 @@ body {
   margin: 0;
 }
 
-/* --- 2. HEADER BOX (Restored White Background) --- */
+/* --- 2. HEADER (White Box & Grid) --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
@@ -27,19 +28,14 @@ body {
 
 .nav {
   display: grid !important;
-  grid-template-columns: 1fr auto 1fr; /* Three distinct lanes */
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 0.8rem 1.5rem; /* Slightly tighter vertical padding */
 }
 
-/* Lane 1: Logo (Left) */
-.nav-logo {
-  justify-self: start;
-}
-
-/* Lane 2: Title (Center - Zero risk of overlap) */
+/* 2.1 Title & Amber Glow Hover */
 .nav-title {
   justify-self: center;
   margin: 0 !important;
@@ -51,42 +47,60 @@ body {
   font-size: 1.8rem;
   color: var(--charcoal) !important;
   text-decoration: none !important;
-  white-space: nowrap;
+  transition: all 0.3s ease;
 }
 
-/* Lane 3: Links (Right) */
+.nav-title a:hover {
+  color: var(--amber) !important;
+  /* Sophisticated text-glow effect */
+  text-shadow: 0 0 12px var(--amber-glow);
+}
+
+/* 2.2 Nav Links (Tightened Spacing) */
 .nav-links {
   justify-self: end;
   display: flex;
   list-style: none;
-  gap: 20px;
+  gap: 15px; /* Reduced gap for a tighter, more cohesive look */
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .nav-links a {
   font-family: 'Lora', serif !important;
   color: var(--gray-muted) !important;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   text-decoration: none !important;
+  transition: color 0.2s ease;
 }
 
-/* --- 3. FOOTER (Full Width Fix) --- */
+.nav-links a:hover {
+  color: var(--charcoal) !important;
+}
+
+/* 2.3 The Hub Link (Restored Formatting) */
+.terry-link {
+  border: 1px solid rgba(217, 119, 6, 0.3) !important;
+  padding: 4px 10px !important;
+  border-radius: 4px !important;
+  background: rgba(217, 119, 6, 0.05) !important;
+  font-weight: 600 !important;
+  color: var(--amber) !important;
+}
+
+.terry-link:hover {
+  background: rgba(217, 119, 6, 0.1) !important;
+  border-color: var(--amber) !important;
+}
+
+/* --- 3. FOOTER (Full Width) --- */
 .footer {
   background-color: var(--pure-white) !important;
   border-top: 1px solid var(--border-soft) !important;
   width: 100% !important;
   padding: 2rem 0;
   margin-top: 4rem;
-  clear: both;
-}
-
-/* Centers the content inside the full-width footer */
-.footer-content, .footer nav {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  text-align: center;
 }
 
 /* --- 4. POST CARDS --- */
@@ -94,24 +108,16 @@ body {
   background-color: var(--pure-white) !important;
   border: 1px solid var(--border-soft) !important;
   border-radius: 12px;
-  padding: 1.8rem;
-  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.2rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-/* --- 5. MOBILE (Responsive Stack) --- */
-@media (max-width: 850px) {
-  .nav {
-    grid-template-columns: 1fr; /* Stack into 1 column */
-    gap: 1rem;
-    padding: 1.5rem;
-  }
-  
-  .nav-logo, .nav-title, .nav-links {
-    justify-self: center;
-  }
-  
-  .nav-links {
-    gap: 15px;
-  }
+/* --- 5. LOGO HOVER GLOW --- */
+.nav-logo svg {
+    transition: filter 0.3s ease;
+}
+
+.nav-logo:hover svg {
+    filter: drop-shadow(0 0 8px var(--amber-glow));
 }
