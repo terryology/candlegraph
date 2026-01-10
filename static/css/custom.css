@@ -1,4 +1,4 @@
-/* --- 1. CORE VARIABLES --- */
+/* --- 1. CORE VARIABLES & THEME FOUNDATION --- */
 :root {
   --antique-white: #FAF9F6;
   --pure-white: #FFFFFF;
@@ -15,25 +15,27 @@ body {
   font-family: 'Lora', serif !important;
   line-height: 1.6;
   margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* --- 2. HEADER BOX --- */
+/* --- 2. HEADER: THE STATELY WHITE BAR --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
   width: 100%;
   padding: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .nav {
   display: flex !important;
-  justify-content: space-between; /* Pushes Logo Left and Links Right */
+  justify-content: space-between;
   align-items: center;
-  position: relative; /* Context for the absolute Title */
-  max-width: 1100px; /* Limits how far apart they can go on huge screens */
+  position: relative; /* Context for Title centering */
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0.6rem 1.2rem; /* Tightened vertical and horizontal padding */
+  min-height: 90px; /* Restored professional height */
+  padding: 0 1.5rem;
 }
 
 /* 2.1 Logo (Left) */
@@ -43,36 +45,45 @@ body {
   z-index: 5;
 }
 
-/* 2.2 Title (Absolute Center) */
+.nav-logo svg {
+  transition: filter 0.3s ease;
+}
+
+.nav-logo:hover svg {
+  filter: drop-shadow(0 0 8px var(--amber-glow));
+}
+
+/* 2.2 Title (Perfectly Centered) */
 .nav-title {
   position: absolute !important;
   left: 50% !important;
-  transform: translateX(-50%) !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
   margin: 0 !important;
   z-index: 10;
-  pointer-events: auto; /* Ensures links remain clickable */
 }
 
 .nav-title a {
   font-family: 'Lora', serif !important;
   font-weight: 700;
-  font-size: 1.7rem; /* Slightly smaller for better fit */
+  font-size: 1.9rem;
   color: var(--charcoal) !important;
   text-decoration: none !important;
   transition: all 0.3s ease;
   white-space: nowrap;
+  line-height: 1;
 }
 
 .nav-title a:hover {
   color: var(--amber) !important;
-  text-shadow: 0 0 10px var(--amber-glow);
+  text-shadow: 0 0 12px var(--amber-glow);
 }
 
-/* 2.3 Links (Right - Tightened) */
+/* 2.3 Links (Right & Tight) */
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 12px; /* Tight horizontal spacing between links */
+  gap: 15px; /* Tightened horizontal spacing */
   margin: 0;
   padding: 0;
   align-items: center;
@@ -82,46 +93,81 @@ body {
 .nav-links a {
   font-family: 'Lora', serif !important;
   color: var(--gray-muted) !important;
-  font-size: 0.85rem; /* Slightly smaller for a sophisticated look */
+  font-size: 0.9rem;
+  font-weight: 500;
   text-decoration: none !important;
   transition: color 0.2s ease;
 }
 
-/* 2.4 The Hub Link */
+.nav-links a:hover {
+  color: var(--charcoal) !important;
+}
+
+/* 2.4 The Hub Button Styling */
 .terry-link {
   border: 1px solid rgba(217, 119, 6, 0.3) !important;
-  padding: 3px 8px !important; /* Tighter padding for the button */
+  padding: 4px 10px !important;
   border-radius: 4px !important;
   background: rgba(217, 119, 6, 0.05) !important;
   font-weight: 600 !important;
   color: var(--amber) !important;
 }
 
-/* --- 3. FOOTER & CARDS (Standardized) --- */
+/* --- 3. FOOTER: FULL WIDTH --- */
 .footer {
   background-color: var(--pure-white) !important;
   border-top: 1px solid var(--border-soft) !important;
   width: 100% !important;
-  padding: 2rem 0;
+  padding: 2.5rem 0;
   margin-top: 4rem;
 }
 
+/* --- 4. POST CARDS & CONTENT --- */
 .archive-item, .post-entry, article {
   background-color: var(--pure-white) !important;
   border: 1px solid var(--border-soft) !important;
-  border-radius: 8px;
-  padding: 1.2rem;
-  margin-bottom: 1rem;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-/* --- 4. MOBILE (Stacked for readability) --- */
-@media (max-width: 700px) {
+.post-title a {
+  color: var(--charcoal) !important;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.post-meta {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--gray-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* --- 5. MOBILE OPTIMIZATIONS (Height & Stack) --- */
+@media (max-width: 800px) {
   .nav {
     flex-direction: column;
-    gap: 10px;
+    min-height: auto;
+    padding: 1.5rem 1rem;
+    gap: 1rem;
   }
+
   .nav-title {
     position: static !important;
     transform: none !important;
+    order: 1;
+  }
+
+  .nav-logo { order: 0; }
+  .nav-links { 
+    order: 2; 
+    gap: 12px;
+  }
+
+  .nav-title a {
+    font-size: 1.6rem;
   }
 }
