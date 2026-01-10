@@ -148,6 +148,20 @@ code, pre, .data-output {
   padding: 0;
 }
 
+/* Ensure the Home Page Intro doesn't have a box/border */
+.intro.article {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding-bottom: 0;
+}
+
+/* Center the text within the intro */
+.intro .article-content {
+  text-align: center;
+  margin: 0 auto;
+}
+
 /* --- 5. MOBILE OPTIMIZATIONS (ULTRA-COMPACT) --- */
 @media (max-width: 850px) {
   .header {
