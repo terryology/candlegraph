@@ -1,170 +1,162 @@
-/* --- LITHIUM RESET --- */
+/* --- 1. CORE VARIABLES & RESET --- */
+:root {
+  --antique-white: #FAF9F6;
+  --pure-white: #FFFFFF;
+  --charcoal: #2D2D2D;
+  --amber: #D97706;
+  --gray-muted: #6B7280;
+  --border-soft: #E5E7EB;
+}
 
-/* 1. Force the header and nav to behave as a single line */
+body {
+  background-color: var(--antique-white);
+  color: var(--charcoal);
+  font-family: 'Lora', serif !important;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- 2. SOPHISTICATED NAVIGATION (Flexbox) --- */
 .header {
-    padding: 0; 
-    border: none;
+  background: transparent !important;
+  border: none !important;
+  padding: 0;
 }
 
 .nav {
-    display: flex !important; /* Force flexbox */
-    justify-content: space-between;
-    align-items: center;
-    position: relative; /* Context for the absolute title */
-    min-height: 80px; /* Controls the height of the bar */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; 
+  min-height: 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
-/* 2. Fix the Logo (Left) */
 .nav-logo {
-    flex: 1; 
-    display: flex;
-    justify-content: flex-start;
-    position: static; /* Ensures it doesn't try to center itself */
-    margin: 0;
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
 }
 
-/* 3. Fix the Title (Center) */
 .nav-title {
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    margin: 0 !important;
-    padding: 0;
-    z-index: 10;
-    line-height: 1;
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  margin: 0 !important;
+  z-index: 10;
 }
 
 .nav-title a {
-    /* Use a serif font for warmth and character */
-    font-family: 'Lora', serif !important; 
-    color: #2D2D2D !important;
-    text-decoration: none !important;
-    
-    /* Soften the weight: 700 is bold but not "heavy" */
-    font-weight: 700; 
-    font-size: 1.8rem;
-    text-transform: none !important; 
-    letter-spacing: normal !important;
-    transition: color 0.3s ease;
+  font-family: 'Lora', serif !important;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--charcoal) !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
 .nav-title a:hover {
-    color: #D97706 !important; /* That soft amber glow */
+  color: var(--amber) !important;
 }
 
-/* 4. Fix the Links (Right) */
 .nav-links {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    gap: 20px;
-}
-
-.nav-links li {
-    display: inline-block;
-    margin: 0;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
-    font-family: 'Lora', serif !important;
-    color: #6B7280 !important;
-    font-style: normal !important;
-    font-weight: 500;
-    font-size: 0.95rem;
-    text-decoration: none !important;
-    transition: color 0.2s ease;
+  font-family: 'Lora', serif !important;
+  color: var(--gray-muted) !important;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none !important;
+  transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-    color: #D97706 !important; /* Amber hover to match the flame */
+  color: var(--charcoal) !important;
 }
 
-/* Special styling for the 'Hub' link to Terryology */
+/* Terryology Hub Link */
 .terry-link {
-    border: 1px solid rgba(217, 119, 6, 0.3);
-    padding: 4px 10px;
-    border-radius: 4px;
-    background: rgba(217, 119, 6, 0.03);
+  border: 1px solid rgba(217, 119, 6, 0.3);
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: rgba(217, 119, 6, 0.03);
 }
 
-/* Apply Lora to the entire site */
-body, p, li {
-    font-family: 'Lora', serif !important;
-    line-height: 1.6;
-    color: #2D2D2D;
-    background-color: #FAF9F6; /* Antique White background */
+/* --- 3. CONTENT & POST CARDS --- */
+.archive, .list, .wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
-/* Style all headings for a cohesive "published" look */
-h1, h2, h3, h4 {
-    font-family: 'Lora', serif !important;
-    font-weight: 700;
-    color: #1A1A1A;
-    margin-top: 1.5rem;
+.archive-item, .post-entry, article {
+  background-color: var(--pure-white) !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 12px;
+  padding: 1.8rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-/* Technical text/code should still look distinct */
-code, pre {
-    font-family: 'Courier New', Courier, monospace !important;
-    background: #F3F4F6;
-    padding: 0.2rem 0.4rem;
-    border-radius: 3px;
-}
-
-/* --- STRIP THEME GRAYS --- */
-
-/* Remove background from the navigation bar */
-.nav, .header {
-    background: none !important;
-    background-color: transparent !important;
-    border-bottom: none !important; /* Removes the thin gray line if it's there */
-}
-
-/* Remove background from post list items/preview boxes on the main page */
-.archive-item, 
-.list-item, 
-article, 
-.post-entry {
-    background: none !important;
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-/* Specific to Lithium: The 'nav' often has a subtle background defined on the 'li' or 'ul' */
-.nav-links, .nav-links li {
-    background: transparent !important;
-}
-
-/* Ensure the main page list looks clean */
-.posts-list, .archive {
-    background: transparent !important;
+.archive-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--amber) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
 }
 
 .post-title a {
-    color: #2D2D2D !important;
-    text-decoration: none;
+  color: var(--charcoal) !important;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.4rem;
 }
 
 .post-meta {
-    color: #999;
-    font-size: 0.85rem;
-    font-style: italic; /* Matches our 'Warm' vibe */
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--gray-muted);
+  font-size: 0.85rem;
+  font-style: italic;
 }
 
-@media (max-width: 600px) {
-    .nav-title a {
-        font-size: 1.2rem; /* Shrinks the title slightly on mobile */
-    }
-    
-    .nav {
-        min-height: 60px; /* Reduces header height to save vertical space */
-    }
+/* --- 4. MOBILE OPTIMIZATIONS --- */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  .nav-title {
+    position: static !important;
+    transform: none !important;
+    margin: 1rem 0 !important;
+    order: 1;
+  }
+
+  .nav-logo { order: 0; }
+  .nav-links { 
+    order: 2;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .nav-title a { font-size: 1.5rem; }
 }
