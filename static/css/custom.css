@@ -57,14 +57,12 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
 
 .nav-links { display: flex; list-style: none; gap: 15px; margin: 0 -4rem 0 0 !important; align-items: center; }
 .nav-links a { color: var(--gray-muted) !important; font-size: 1rem; transition: var(--transition-smooth); }
-.nav-links a:hover { color: var(--charcoal) !important; }
 
 .terry-link {
   border: 1px solid var(--amber) !important; padding: 3px 10px !important; border-radius: 4px !important;
   background: rgba(217, 119, 6, 0.05) !important; color: var(--amber) !important;
   font-size: 0.95rem !important; font-weight: 600 !important;
 }
-.terry-link:hover { background: var(--amber) !important; color: var(--pure-white) !important; }
 
 /* --- 4. MAIN PAGE INTRO & CARDS --- */
 .intro.article {
@@ -109,9 +107,9 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
 /* --- 7. FOOTER & CLEANUP --- */
 .footer {
   background-color: var(--pure-white) !important; border-top: 1px solid var(--border-soft) !important;
-  padding: 2.5rem 0; margin-top: 4rem; text-align: center;
+  padding: 1.5rem 0 !important; margin-top: 3rem; text-align: center;
 }
-.footer-links { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; padding: 0; margin: 0; }
+.footer-links { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; padding: 0; margin: 0; }
 .footer-links li::before, .footer-links li::after { content: "" !important; display: none !important; }
-.footer-links-kudos { display: flex; align-items: center; gap: 8px; color: var(--gray-muted) !important; font-size: 0.85rem; }
-.footer-links li:last-child { width: 100%; display: flex; justify-content: center; margin-top: 1rem; }
+.footer-links-kudos { display: inline-flex !important; align-items: center !important; gap: 6px; color: var(--gray-muted) !important; font-size: 0.85rem; text-decoration: none; }
+.footer-links li:last-child { width: 100%; display: flex; justify-content: center; margin-top: 0.4rem !important; }
