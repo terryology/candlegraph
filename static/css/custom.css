@@ -51,12 +51,12 @@ code, pre, .data-output {
   border-radius: 4px;
 }
 
-/* --- 3. HEADER & NAVIGATION (High-Density Desktop) --- */
+/* --- 3. HEADER & NAVIGATION (Ultra-Compact Desktop) --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
   width: 100%;
-  margin-bottom: 2rem; /* Reduced to pull content up */
+  margin-bottom: 1.8rem; /* Pulling cards even closer */
 }
 
 .nav {
@@ -66,14 +66,14 @@ code, pre, .data-output {
   position: relative;
   max-width: 1100px;
   margin: 0 auto;
-  /* COMPACT HEIGHT: Reduced from 95px to 65px */
-  min-height: 65px; 
+  /* ULTRA-COMPACT: Reduced from 65px to 55px */
+  min-height: 55px; 
   padding: 0 1.5rem;
 }
 
 .nav-logo svg {
   transition: var(--transition-smooth);
-  height: 32px; /* Sized for the 65px bar */
+  height: 28px; /* Sized down from 32px to breathe in the 55px bar */
   width: auto;
 }
 
@@ -82,7 +82,6 @@ code, pre, .data-output {
 }
 
 .nav-title {
-  /* Absolute track for perfect vertical centering */
   position: absolute !important;
   left: 50% !important;
   top: 0 !important;
@@ -95,20 +94,16 @@ code, pre, .data-output {
 }
 
 .nav-title a {
-  font-size: 1.7rem; /* Proportional to the 65px bar */
+  font-size: 1.55rem; /* Reduced from 1.7rem to fit the strip aesthetic */
   transition: var(--transition-smooth);
-}
-
-.nav-title a:hover {
-  color: var(--amber) !important;
-  text-shadow: 0 0 12px var(--amber-glow);
+  letter-spacing: -0.02em; /* Tighter tracking for a technical feel */
 }
 
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 12px;
-  margin: 0 -4rem 0 0 !important; /* Precision nudge */
+  gap: 15px; /* Increased slightly to maintain horizontal presence */
+  margin: 0 -4rem 0 0 !important;
   padding: 0;
   align-items: center;
   z-index: 5;
@@ -116,20 +111,16 @@ code, pre, .data-output {
 
 .nav-links a {
   color: var(--gray-muted) !important;
-  font-size: 1.05rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
+  font-size: 1rem; /* Slightly smaller to match the compact bar */
 }
-
-.nav-links a:hover { color: var(--charcoal) !important; }
 
 .terry-link {
   border: 1px solid var(--amber) !important;
-  padding: 4px 12px !important; /* Slightly tighter for compact bar */
+  padding: 3px 10px !important; /* Thinner padding for the 55px height */
   border-radius: 4px !important;
-  background: rgba(217, 119, 6, 0.1) !important;
+  background: rgba(217, 119, 6, 0.05) !important;
   color: var(--amber) !important;
-  font-weight: 600 !important;
+  font-size: 0.95rem !important;
 }
 
 /* --- 4. CONTENT & FOOTER --- */
