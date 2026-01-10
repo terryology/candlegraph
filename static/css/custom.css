@@ -75,13 +75,15 @@
 .nav-links a {
     font-family: 'Lora', serif !important;
     color: #6B7280 !important;
-    font-style: italic; /* Italics add a handwritten, human touch */
-    font-size: 1rem;
+    font-style: normal !important;
+    font-weight: 500;
+    font-size: 0.95rem;
     text-decoration: none !important;
+    transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-    color: #2D2D2D !important;
+    color: #D97706 !important; /* Amber hover to match the flame */
 }
 
 /* Special styling for the 'Hub' link to Terryology */
@@ -90,6 +92,30 @@
     padding: 4px 10px;
     border-radius: 4px;
     background: rgba(217, 119, 6, 0.03);
+}
+
+/* Apply Lora to the entire site */
+body, p, li {
+    font-family: 'Lora', serif !important;
+    line-height: 1.6;
+    color: #2D2D2D;
+    background-color: #FAF9F6; /* Antique White background */
+}
+
+/* Style all headings for a cohesive "published" look */
+h1, h2, h3, h4 {
+    font-family: 'Lora', serif !important;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin-top: 1.5rem;
+}
+
+/* Technical text/code should still look distinct */
+code, pre {
+    font-family: 'Courier New', Courier, monospace !important;
+    background: #F3F4F6;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
 }
 
 @media (max-width: 600px) {
