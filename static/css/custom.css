@@ -108,7 +108,7 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
 .footer {
   background-color: var(--pure-white) !important;
   border-top: 1px solid var(--border-soft) !important;
-  padding: 1.2rem 0 !important; /* Tightened vertical height */
+  padding: 1.2rem 0 !important;
   margin-top: 3rem;
   text-align: center;
 }
@@ -128,28 +128,31 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   display: none !important; 
 }
 
-/* The "Precision Centering" Logic */
+/* Precision Alignment for the Kudos Link */
 .footer-links-kudos {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important; /* Mathematical vertical center */
+  display: inline-flex !important;
+  align-items: center !important;
   justify-content: center !important;
-  gap: 5px;
+  position: relative !important;
   color: var(--gray-muted) !important;
   font-size: 0.85rem;
   text-decoration: none;
-  line-height: 1 !important; /* Removes invisible text padding */
-  height: 22px; /* Matches the image height exactly */
+  line-height: 1 !important;
+  height: 24px; /* Fixed height to create a stable container */
 }
 
 .footer-links-kudos img {
-  height: 16px !important; /* Slightly smaller to match the height of capital letters */
+  height: 18px !important; /* Forces a standard size */
   width: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  display: block !important;
-  /* If it's still low, this -2px nudge is the final manual adjustment */
-  transform: translateY(-2px) !important; 
+  margin-left: 6px !important; /* Distance from text */
+  display: inline-block !important;
+  
+  /* The "Manual Override": Nudging the image up 3 pixels */
+  /* If it's STILL too low, change -3px to -4px. If it's too high, change to -2px. */
+  transform: translateY(-3px) !important; 
+  
+  /* Resetting any possible browser-level vertical-align */
+  vertical-align: top !important; 
 }
 
 .footer-links li:last-child {
