@@ -191,6 +191,23 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   margin-top: 4rem;
 }
 
+/* This targets the main article container on individual post pages */
+.content .article {
+  background-color: var(--pure-white) !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 12px;
+  padding: 3rem; /* Generous breathing room for desktop */
+  max-width: 800px;
+  margin: 0 auto 4rem auto;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02); /* Very faint shadow for depth */
+}
+
+/* Specific spacing for the post title inside the card */
+.article-header {
+  margin-bottom: 2rem;
+  text-align: center; /* Center the title/meta for a 'formal report' feel */
+}
+
 /* --- 6. MOBILE OPTIMIZATIONS --- */
 @media (max-width: 850px) {
   .header { margin-bottom: 0.8rem !important; }
@@ -205,5 +222,10 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   .intro .article-content { font-size: 1.05rem; }
   .article-title {
     font-size: 1.8rem !important; /* Scale down for mobile screens */
+  }
+  .content .article {
+    padding: 1.5rem; /* Tighter padding for mobile density */
+    margin: 0 1rem 2rem 1rem;
+    border-radius: 8px;
   }
 }
