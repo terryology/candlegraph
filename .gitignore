@@ -1,4 +1,8 @@
+# OS Excludes
 .DS_Store
+Thumbs.db
+
+# R Studio Excludes
 .Rproj.user
 .RData
 .Rprofile
@@ -8,3 +12,16 @@ candlegraph_hugo.Rproj
 R/build.R
 R/build2.R
 .Rhistory
+
+# Hugo Excludes
+public/
+.hugo_build.lock
+resources/_gen/
+
+# Local Development Excludes
+static/css/test.css
+static/css/experimental.css
+
+# Obsidian Excludes
+Templates/
+.obsidian/
