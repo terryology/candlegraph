@@ -59,15 +59,10 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
 .nav-links a { color: var(--gray-muted) !important; font-size: 1rem; transition: var(--transition-smooth); }
 .nav-links a:hover { color: var(--charcoal) !important; }
 
-/* Restored Hub Link Style */
 .terry-link {
-  border: 1px solid var(--amber) !important;
-  padding: 3px 10px !important;
-  border-radius: 4px !important;
-  background: rgba(217, 119, 6, 0.05) !important;
-  color: var(--amber) !important;
-  font-size: 0.95rem !important;
-  font-weight: 600 !important;
+  border: 1px solid var(--amber) !important; padding: 3px 10px !important; border-radius: 4px !important;
+  background: rgba(217, 119, 6, 0.05) !important; color: var(--amber) !important;
+  font-size: 0.95rem !important; font-weight: 600 !important;
 }
 .terry-link:hover { background: var(--amber) !important; color: var(--pure-white) !important; }
 
@@ -80,46 +75,45 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
 .intro .article-content { color: var(--gray-muted); font-size: 1.2rem; font-style: italic; }
 
 .archive-item {
-  background-color: var(--pure-white) !important;
-  border: 1px solid var(--border-soft) !important;
+  background-color: var(--pure-white) !important; border: 1px solid var(--border-soft) !important;
   border-radius: 12px; padding: 1.8rem; margin-bottom: 1.5rem;
 }
 .archive-item-meta { color: var(--amber) !important; font-size: 0.95rem; margin-bottom: 0.6rem; font-weight: 500; }
 .archive-item-summary { color: var(--charcoal); font-size: 1.05rem; }
 .read-more { color: var(--amber) !important; font-weight: 600; margin-left: 5px; }
 
-/* --- 5. INDIVIDUAL POST PAGE (Boxed Style) --- */
+/* --- 5. INDIVIDUAL POST PAGE --- */
 .content .article:not(.intro) {
-  background-color: var(--pure-white) !important;
-  border: 1px solid var(--border-soft) !important;
+  background-color: var(--pure-white) !important; border: 1px solid var(--border-soft) !important;
   border-radius: 12px; padding: 3rem; max-width: 800px; margin: 0 auto 4rem auto;
 }
 .article-title { font-size: 2.3rem !important; margin-bottom: 1rem; }
 .article-meta { color: var(--amber); font-size: 1rem; margin-bottom: 1.5rem; }
 
-/* --- 6. MOBILE OPTIMIZATIONS (Punched & Tightened) --- */
+/* --- 6. MOBILE OPTIMIZATIONS --- */
 @media (max-width: 850px) {
   .header { margin-bottom: 0.8rem !important; }
   .nav { flex-direction: column; padding: 0.3rem 1rem 0.5rem 1rem !important; min-height: auto !important; }
-  
   .nav-logo { margin-bottom: -8px !important; }
   .nav-logo svg { transform: scale(0.80); }
-  
   .nav-title { position: static !important; transform: none !important; padding: 0 !important; margin-top: -4px !important; }
   .nav-title a { font-size: 1.7rem; line-height: 1.1; } 
-  
   .article-meta { display: block; text-align: center; font-size: 0.8rem; margin: 0.1rem 0 0.3rem 0 !important; }
-
   .nav-links { margin: 0.4rem 0 0 0 !important; gap: 12px !important; justify-content: center; width: 100%; }
-  .nav-links a { font-size: 0.9rem; } /* Slightly smaller links for mobile flow */
+  
+  .footer-links li:not(:last-child)::after { content: none !important; } /* Hide slashes on mobile for better wrapping */
+  .footer-links { gap: 1rem; }
   
   .intro.article { margin-bottom: 2rem; }
   .content .article:not(.intro) { padding: 1.5rem; margin: 0 1rem 2rem 1rem; }
   .article-title { font-size: 1.8rem !important; }
 }
 
+/* --- 7. FOOTER & CLEANUP --- */
 .footer {
-  background-color: var(--pure-white) !important;
-  border-top: 1px solid var(--border-soft) !important;
-  padding: 2.2rem 0; margin-top: 4rem;
+  background-color: var(--pure-white) !important; border-top: 1px solid var(--border-soft) !important;
+  padding: 2.5rem 0; margin-top: 4rem; text-align: center;
 }
+.footer-links { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0; }
+.footer-links li:not(:last-child)::after { content: "/"; margin-left: 0.5rem; color: var(--border-soft); }
+.footer p { margin-top: 1.5rem; font-size: 0.85rem; color: var(--gray-muted); display: block; }
