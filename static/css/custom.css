@@ -62,7 +62,7 @@ code, pre, .data-output {
 .nav {
   display: flex !important;
   justify-content: space-between;
-  align-items: center; /* Vertically centers Logo and Links on Desktop */
+  align-items: center; 
   position: relative;
   max-width: 1100px;
   margin: 0 auto;
@@ -79,7 +79,7 @@ code, pre, .data-output {
 }
 
 .nav-title {
-  /* Absolute track method for perfect vertical & horizontal centering */
+  /* Absolute track method for perfect vertical centering on Desktop */
   position: absolute !important;
   left: 50% !important;
   top: 0 !important;
@@ -115,7 +115,6 @@ code, pre, .data-output {
   color: var(--gray-muted) !important;
   font-size: 1.05rem;
   font-weight: 500;
-  transition: color 0.2s ease;
 }
 
 .nav-links a:hover { color: var(--charcoal) !important; }
@@ -154,24 +153,29 @@ code, pre, .data-output {
   padding: 0;
 }
 
-/* --- 5. MOBILE OPTIMIZATIONS --- */
+/* --- 5. MOBILE OPTIMIZATIONS (ULTRA-COMPACT) --- */
 @media (max-width: 850px) {
   .header {
-    margin-bottom: 1.5rem !important; /* Pulls cards higher on mobile */
+    margin-bottom: 1.2rem !important; 
   }
 
   .nav {
     flex-direction: column;
     min-height: auto !important;
-    padding: 0.4rem 1rem 1rem 1rem !important; /* Cut top padding in half */
+    /* Halved vertical padding for height efficiency */
+    padding: 0.2rem 1rem 0.5rem 1rem !important; 
     gap: 0 !important;
   }
 
   .nav-logo {
     order: 0;
     margin: 0 !important;
-    padding-top: 4px; /* Hugs the ceiling */
-    margin-bottom: -4px !important; /* Tucks title closer to logo */
+    padding-top: 2px; /* Hugs the top edge */
+    margin-bottom: -6px !important; /* Tight tuck to Candlegraph */
+  }
+
+  .nav-logo svg {
+    transform: scale(0.9); /* Downscaled for high-density height */
   }
 
   .nav-title {
@@ -180,14 +184,14 @@ code, pre, .data-output {
     order: 1;
     margin: 0 !important;
     padding: 0 !important;
-    line-height: 1.1;
+    line-height: 1.0; /* Minimizes vertical character footprint */
   }
 
-  .nav-title a { font-size: 1.6rem; }
+  .nav-title a { font-size: 1.5rem; }
 
   .nav-links { 
     order: 2; 
-    margin: 0.5rem 0 0 0 !important; 
+    margin: 0.2rem 0 0 0 !important; 
     justify-content: center;
     gap: 4px !important;
   }
