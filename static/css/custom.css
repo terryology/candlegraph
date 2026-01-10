@@ -12,12 +12,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --antique-white: #121212;
-    --pure-white: #1E1E1E;
-    --charcoal: #E5E7EB;
-    --gray-muted: #9CA3AF;
-    --border-soft: #333333;
-    --amber-glow: rgba(245, 158, 11, 0.6);
+    --antique-white: #121212; --pure-white: #1E1E1E; --charcoal: #E5E7EB;
+    --gray-muted: #9CA3AF; --border-soft: #333333; --amber-glow: rgba(245, 158, 11, 0.6);
   }
   .nav-logo svg { filter: invert(1) brightness(0.9); }
 }
@@ -35,197 +31,71 @@ body {
 
 h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .article-title {
   font-family: 'Lora', serif !important;
-  font-weight: 700;
-  color: var(--charcoal);
-  text-decoration: none !important;
+  font-weight: 700; color: var(--charcoal); text-decoration: none !important;
 }
 
-/* --- 3. HEADER (Ultra-Compact 55px) --- */
+/* --- 3. HEADER (55px Ultra-Compact) --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
-  width: 100%;
   margin-bottom: 2.5rem; 
 }
-
 .nav {
-  display: flex !important;
-  justify-content: space-between;
-  align-items: center; 
-  position: relative;
-  max-width: 1100px;
-  margin: 0 auto;
-  min-height: 55px; 
-  padding: 0 1.5rem;
+  display: flex !important; justify-content: space-between; align-items: center; 
+  position: relative; max-width: 1100px; margin: 0 auto; min-height: 55px; padding: 0 1.5rem;
 }
-
-.nav-logo svg { height: 28px; width: auto; transition: var(--transition-smooth); }
+.nav-logo svg { height: 28px; transition: var(--transition-smooth); }
 .nav-logo:hover svg { filter: drop-shadow(0 0 8px var(--amber-glow)); }
 
 .nav-title {
-  position: absolute !important;
-  left: 50% !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  transform: translateX(-50%) !important;
-  margin: 0 !important;
-  display: flex !important;
-  align-items: center !important; 
-  z-index: 10;
+  position: absolute !important; left: 50% !important; transform: translateX(-50%) !important;
+  z-index: 10; margin: 0 !important;
 }
+.nav-title a { font-size: 2rem; transition: var(--transition-smooth); }
+.nav-title a:hover { color: var(--amber) !important; text-shadow: 0 0 12px var(--amber-glow); }
 
-.nav-title a { 
-  font-size: 2rem; 
-  transition: var(--transition-smooth);
-}
-
-.nav-title a:hover {
-  color: var(--amber) !important;
-  text-shadow: 0 0 12px var(--amber-glow), 0 0 20px var(--amber-glow);
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 15px;
-  margin: 0 -4rem 0 0 !important;
-  padding: 0;
-  align-items: center;
-  z-index: 5;
-}
-
+.nav-links { display: flex; list-style: none; gap: 15px; margin: 0 -4rem 0 0 !important; align-items: center; }
 .nav-links a { color: var(--gray-muted) !important; font-size: 1rem; }
 .nav-links a:hover { color: var(--charcoal) !important; }
 
-.terry-link {
-  border: 1px solid var(--amber) !important;
-  padding: 3px 10px !important;
-  border-radius: 4px !important;
-  background: rgba(217, 119, 6, 0.05) !important;
-  color: var(--amber) !important;
-  font-size: 0.95rem !important;
-  font-weight: 600 !important;
-}
-
-/* --- 4. INTRODUCTION SECTION --- */
+/* --- 4. MAIN PAGE INTRO (Open Style) --- */
 .intro.article {
-  max-width: 750px;
-  margin: 0 auto 3.5rem auto;
-  text-align: center;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 1.5rem;
+  max-width: 750px; margin: 0 auto 3.5rem auto; text-align: center;
+  background: transparent !important; border: none !important; box-shadow: none !important;
 }
-
 .intro .article-title { font-size: 2.2rem; margin-bottom: 0.6rem; }
-.intro .article-content { color: var(--gray-muted); font-size: 1.2rem; line-height: 1.6; font-style: italic; }
+.intro .article-content { color: var(--gray-muted); font-size: 1.2rem; font-style: italic; }
 
-/* --- 5. CONTENT & CARDS --- */
+/* --- 5. DASHBOARD CARDS & META --- */
 .archive-item {
   background-color: var(--pure-white) !important;
   border: 1px solid var(--border-soft) !important;
-  border-radius: 12px;
-  padding: 1.8rem;
-  margin-bottom: 1.5rem;
+  border-radius: 12px; padding: 1.8rem; margin-bottom: 1.5rem;
 }
+.archive-item-meta { color: var(--amber) !important; font-size: 0.95rem; margin-bottom: 0.6rem; font-weight: 500; }
+.archive-item-summary { color: var(--charcoal); font-size: 1.05rem; }
+.read-more { color: var(--amber) !important; font-weight: 600; margin-left: 5px; }
 
-.archive-item-meta {
-  color: var(--amber) !important;
-  font-size: 0.95rem;
-  margin-bottom: 0.6rem;
-  font-weight: 500;
-}
-
-.archive-item-summary {
-  color: var(--charcoal);
-  font-size: 1.05rem;
-}
-
-.read-more {
-  color: var(--amber) !important;
-  font-weight: 600;
-  text-decoration: none;
-  margin-left: 5px;
-}
-
-/* Scale the main post title */
-.article-title {
-  font-size: 2.3rem !important; /* Slightly larger than Site Title (2rem) */
-  line-height: 1.2;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  letter-spacing: -0.03em;
-  color: var(--charcoal);
-}
-
-/* Adjust the meta-data on the post page */
-.article-meta {
-  color: var(--amber);
-  font-family: 'Lora', serif !important;
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid var(--border-soft);
-  padding-bottom: 1rem;
-}
-
-/* Scale down the body text slightly for high-density readability */
-.article-content {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: var(--charcoal);
-}
-
-/* Ensure images don't blow out the layout on mobile */
-.article-content img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin: 1.5rem 0;
-}
-
-.footer {
-  background-color: var(--pure-white) !important;
-  border-top: 1px solid var(--border-soft) !important;
-  padding: 2.2rem 0;
-  margin-top: 4rem;
-}
-
-/* This targets the main article container on individual post pages */
-.content .article {
+/* --- 6. INDIVIDUAL POST PAGE (Boxed Style) --- */
+.content .article:not(.intro) {
   background-color: var(--pure-white) !important;
   border: 1px solid var(--border-soft) !important;
-  border-radius: 12px;
-  padding: 3rem; /* Generous breathing room for desktop */
-  max-width: 800px;
-  margin: 0 auto 4rem auto;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.02); /* Very faint shadow for depth */
+  border-radius: 12px; padding: 3rem; max-width: 800px; margin: 0 auto 4rem auto;
 }
+.article-title { font-size: 2.3rem !important; margin-bottom: 1rem; }
+.article-meta { color: var(--amber); margin-bottom: 1.5rem; }
 
-/* Specific spacing for the post title inside the card */
-.article-header {
-  margin-bottom: 2rem;
-  text-align: center; /* Center the title/meta for a 'formal report' feel */
-}
-
-/* --- 6. MOBILE OPTIMIZATIONS --- */
+/* --- 7. MOBILE OPTIMIZATIONS --- */
 @media (max-width: 850px) {
   .header { margin-bottom: 0.8rem !important; }
   .nav { flex-direction: column; padding: 0.2rem 1rem 0.2rem 1rem !important; min-height: auto !important; }
-  .nav-logo svg { transform: scale(0.85); }
-  .nav-title { position: static !important; transform: none !important; }
   .nav-title a { font-size: 1.6rem; } 
-  .nav-links { margin: 0.4rem 0 0 0 !important; gap: 6px !important; }
+  .nav-links { margin: 0.4rem 0 0 0 !important; gap: 8px !important; }
   
-  .intro.article { margin-top: 0 !important; padding-top: 0 !important; margin-bottom: 2rem; }
-  .intro .article-title { font-size: 1.7rem; line-height: 1.1; }
-  .intro .article-content { font-size: 1.05rem; }
-  .article-title {
-    font-size: 1.8rem !important; /* Scale down for mobile screens */
-  }
-  .content .article {
-    padding: 1.5rem; /* Tighter padding for mobile density */
-    margin: 0 1rem 2rem 1rem;
-    border-radius: 8px;
-  }
+  .intro.article { margin-bottom: 2rem; }
+  .intro .article-title { font-size: 1.7rem; }
+  
+  .content .article:not(.intro) { padding: 1.5rem; margin: 0 1rem 2rem 1rem; }
+  .article-title { font-size: 1.8rem !important; }
+  .article-meta { display: block; margin-top: 0.2rem; font-size: 0.9rem; }
 }
