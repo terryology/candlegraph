@@ -118,6 +118,47 @@ code, pre {
     border-radius: 3px;
 }
 
+/* --- STRIP THEME GRAYS --- */
+
+/* Remove background from the navigation bar */
+.nav, .header {
+    background: none !important;
+    background-color: transparent !important;
+    border-bottom: none !important; /* Removes the thin gray line if it's there */
+}
+
+/* Remove background from post list items/preview boxes on the main page */
+.archive-item, 
+.list-item, 
+article, 
+.post-entry {
+    background: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Specific to Lithium: The 'nav' often has a subtle background defined on the 'li' or 'ul' */
+.nav-links, .nav-links li {
+    background: transparent !important;
+}
+
+/* Ensure the main page list looks clean */
+.posts-list, .archive {
+    background: transparent !important;
+}
+
+.post-title a {
+    color: #2D2D2D !important;
+    text-decoration: none;
+}
+
+.post-meta {
+    color: #999;
+    font-size: 0.85rem;
+    font-style: italic; /* Matches our 'Warm' vibe */
+}
+
 @media (max-width: 600px) {
     .nav-title a {
         font-size: 1.2rem; /* Shrinks the title slightly on mobile */
