@@ -7,6 +7,7 @@
   --amber-glow: rgba(217, 119, 6, 0.4);
   --gray-muted: #6B7280;
   --border-soft: #E5E7EB;
+  --transition-smooth: all 0.3s ease; /* Global transition variable */
 }
 
 /* Global Foundation */
@@ -20,16 +21,29 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* --- 2. THE TYPOGRAPHY OVERRIDES (Lithium Fixes) --- */
+/* --- 2. TYPOGRAPHY & CARDS --- */
+/* Consolidated Header and Title Logic */
 h1, h2, h3, h4, 
 h1.article-title, 
 .post-title, 
 .post-title a, 
-.archive-item-link {
+.archive-item-link,
+.nav-title a {
   font-family: 'Lora', serif !important;
   font-weight: 700;
-  color: var(--charcoal);
   text-decoration: none !important;
+}
+
+/* Titles and Links color logic */
+h1, h2, h3, h4, .post-title a, .archive-item-link {
+  color: var(--charcoal);
+}
+
+.post-meta {
+  font-size: 0.90rem;
+  color: var(--amber);
+  margin-bottom: 0.5rem; /* Added slightly more breathing room */
+  display: block;
 }
 
 /* Technical Data: JSON/Code */
@@ -41,12 +55,17 @@ code, pre, .data-output {
   border-radius: 4px;
 }
 
-.post-meta {
-  font-size: 0.90rem;
-  color: var(--amber);
+/* Card Styling */
+.archive-item, .post-entry, article {
+  background-color: var(--pure-white) !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 12px;
+  padding: 1.8rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02); /* Subtle depth */
 }
 
-/* --- 3. HEADER: THE STATELY WHITE BAR --- */
+/* --- 3. HEADER: NAVIGATION --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
@@ -66,6 +85,61 @@ code, pre, .data-output {
   padding: 0 1.5rem;
 }
 
+/* Centralized Title Logic */
+.nav-title {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  margin: 0 !important;
+  z-index: 10;
+}
+
+.nav-title a {
+  font-size: 1.9rem;
+  color: var(--charcoal) !important;
+  transition: var(--transition-smooth);
+}
+
+.nav-title a:hover {
+  color: var(--amber) !important;
+  text-shadow: 0 0 12px var(--amber-glow);
+}
+
+/* Sidebar Links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  z-index: 5;
+}
+
+.nav-links a {
+  color: var(--gray-muted) !important;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--charcoal) !important;
+}
+
+/* Terryology Hub Link Specifics */
+.terry-link {
+  border: 1px solid rgba(217, 119, 6, 0.3) !important;
+  padding: 5px 14px !important;
+  border-radius: 4px !important;
+  background: rgba(217, 119, 6, 0.05) !important;
+  font-weight: 600 !important;
+  color: var(--amber) !important;
+  font-size: 1rem !important;
+}
+
+/* Logo Animation */
 .nav-logo {
   display: flex;
   align-items: center;
@@ -80,66 +154,7 @@ code, pre, .data-output {
   filter: drop-shadow(0 0 8px var(--amber-glow));
 }
 
-.nav-title {
-  position: absolute !important;
-  left: 50% !important;
-  top: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  margin: 0 !important;
-  z-index: 10;
-}
-
-.nav-title a {
-  font-family: 'Lora', serif !important;
-  font-weight: 700;
-  font-size: 1.9rem;
-  color: var(--charcoal) !important;
-  text-decoration: none !important;
-  transition: all 0.3s ease;
-}
-
-.nav-title a:hover {
-  color: var(--amber) !important;
-  text-shadow: 0 0 12px var(--amber-glow);
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 18px;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-  z-index: 5;
-}
-
-.nav-links a {
-  font-family: 'Lora', serif !important;
-  color: var(--gray-muted) !important;
-  font-size: 1.05rem;
-  font-weight: 500;
-  text-decoration: none !important;
-}
-
-.terry-link {
-  border: 1px solid rgba(217, 119, 6, 0.3) !important;
-  padding: 5px 14px !important;
-  border-radius: 4px !important;
-  background: rgba(217, 119, 6, 0.05) !important;
-  font-weight: 600 !important;
-  color: var(--amber) !important;
-  font-size: 1rem !important;
-}
-
-/* --- 4. CARDS & FOOTER --- */
-.archive-item, .post-entry, article {
-  background-color: var(--pure-white) !important;
-  border: 1px solid var(--border-soft) !important;
-  border-radius: 12px;
-  padding: 1.8rem;
-  margin-bottom: 1.5rem;
-}
-
+/* --- 4. FOOTER --- */
 .footer {
   background-color: var(--pure-white) !important;
   border-top: 1px solid var(--border-soft) !important;
@@ -148,13 +163,13 @@ code, pre, .data-output {
   margin-top: 4rem;
 }
 
-/* --- 5. MOBILE --- */
+/* --- 5. MOBILE OPTIMIZATIONS --- */
 @media (max-width: 850px) {
   .nav {
     flex-direction: column;
     min-height: auto;
-    padding: 1.5rem 1rem;
-    gap: 1rem;
+    padding: 1.2rem 1rem; /* Reduced padding for height efficiency */
+    gap: 0.8rem;
   }
   .nav-title {
     position: static !important;
@@ -162,5 +177,11 @@ code, pre, .data-output {
     order: 1;
   }
   .nav-logo { order: 0; }
-  .nav-links { order: 2; }
+  .nav-links { 
+    order: 2; 
+    gap: 12px; /* Tighten links for smaller screens */
+  }
+  .nav-title a {
+    font-size: 1.6rem; /* Slightly smaller for mobile scaling */
+  }
 }
