@@ -1,1 +1,1 @@
-I'm adding my intro text here.
+Welcome to Candlegraph, the intersection of scented candles and data analysis. Beyond product reviews, I'm also hoping to increase my data visualization skills along the way. Please share in my experience. 

@@ -108,19 +108,30 @@ code, pre, .data-output {
   font-weight: 600 !important;
 }
 
-/* --- 4. INTRODUCTION SECTION --- */
+/* --- 4. INTRODUCTION SECTION (Refined) --- */
 .intro.article {
-  max-width: 800px;
-  margin: 0 auto 3.5rem auto;
+  max-width: 750px; /* Optimal reading width */
+  margin: 0 auto 3rem auto;
   text-align: center;
-  padding: 0 1.5rem;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  padding: 0 1.5rem;
 }
 
-.intro .article-title { font-size: 2.4rem; margin-bottom: 0.8rem; letter-spacing: -0.04em; }
-.intro .article-content { color: var(--gray-muted); font-size: 1.25rem; line-height: 1.6; max-width: 650px; margin: 0 auto; text-align: center; }
+.intro .article-title { 
+  font-size: 2.2rem; 
+  margin-bottom: 0.6rem; 
+  letter-spacing: -0.03em;
+  color: var(--charcoal);
+}
+
+.intro .article-content { 
+  color: var(--gray-muted); 
+  font-size: 1.2rem; 
+  line-height: 1.6; 
+  font-style: italic; /* Adds a "mission statement" feel */
+}
 
 /* --- 5. CONTENT & FOOTER --- */
 .archive-item, .post-entry, article {
