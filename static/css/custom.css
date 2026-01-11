@@ -19,8 +19,6 @@
   --amber-glow: rgba(245, 158, 11, 0.6);
 }
 
-.dark-mode .nav-logo svg { filter: invert(1) brightness(0.9); }
-
 /* --- 2. GLOBAL FOUNDATION --- */
 body {
   background-color: var(--antique-white);
@@ -33,7 +31,14 @@ body {
   transition: background-color 0.3s ease;
 }
 
-/* --- 3. HEADER (Height Optimized) --- */
+h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .article-title {
+  font-family: 'Lora', serif !important;
+  font-weight: 700;
+  color: var(--charcoal);
+  text-decoration: none !important;
+}
+
+/* --- 3. HEADER & NAVIGATION --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
@@ -41,59 +46,69 @@ body {
 }
 
 .nav {
-  display: flex !important; 
-  justify-content: space-between; 
-  align-items: center; 
-  max-width: 1100px; 
-  margin: 0 auto; 
-  height: 60px; /* Fixed height to prevent "fat" header */
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 70px; /* Slightly taller for better vertical balance */
   padding: 0 1.5rem;
   position: relative;
 }
 
+.nav-logo svg { height: 28px; width: auto; transition: var(--transition-smooth); }
+.nav-logo:hover svg { filter: drop-shadow(0 0 8px var(--amber-glow)); }
+.dark-mode .nav-logo svg { filter: invert(1) brightness(0.9); }
+
 .nav-title {
-  position: absolute !important; 
-  left: 50% !important; 
-  transform: translateX(-50%) !important;
-  margin: 0 !important; 
+  position: absolute !important;
+  left: 50% !important;
+  transform: translate(-50%, -2px) !important; /* Nudged up slightly */
+  margin: 0 !important;
   z-index: 10;
-  white-space: nowrap;
 }
 
-.nav-title a { font-size: 1.8rem; font-weight: 700; color: var(--charcoal); text-decoration: none; }
+.nav-title a { 
+  font-size: 2.1rem; /* Restored size */
+  transition: var(--transition-smooth); 
+}
 
-.nav-links { 
-  display: flex; 
-  list-style: none; 
-  gap: 12px; /* Tight horizontal spacing */
-  margin-left: auto !important; /* Pushes to right */
-  align-items: center; 
+.nav-title a:hover { 
+  color: var(--amber) !important; 
+  text-shadow: 0 0 12px var(--amber-glow); 
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 12px;
+  margin-left: auto !important;
+  align-items: center;
   padding: 0;
 }
 
-.nav-links a { 
-  color: var(--gray-muted) !important; 
-  font-size: 1rem; /* Restored size */
-  text-decoration: none;
+.nav-links a {
+  color: var(--gray-muted) !important;
+  font-size: 1rem;
+  transition: var(--transition-smooth);
 }
 
 .terry-link {
-  border: 1px solid var(--amber) !important; 
-  padding: 2px 8px !important; 
+  border: 1px solid var(--amber) !important;
+  padding: 3px 10px !important;
   border-radius: 4px;
   color: var(--amber) !important;
   font-weight: 600;
+  background: rgba(217, 119, 6, 0.05);
 }
 
-/* --- 4. THE CANDLE (Restored Animation) --- */
-.nav-item { display: flex; align-items: center; }
-
+/* --- 4. THE CANDLE --- */
 .candle-toggle {
   background: none; border: none; padding: 0; cursor: pointer;
   width: 30px; height: 30px;
   display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
   position: relative; outline: none;
-  transform: translateY(-5px); /* Nudged up */
+  transform: translateY(-6px); /* Nudged up to match text baseline */
 }
 
 .candle-body {
@@ -115,12 +130,7 @@ body {
   filter: blur(0.3px);
 }
 
-/* Flicker & Glow Logic */
-.dark-mode .candle-body { 
-  background: var(--antique-white); 
-  box-shadow: 0 0 8px var(--amber-glow); 
-}
-
+.dark-mode .candle-body { background: var(--antique-white); box-shadow: 0 0 8px var(--amber-glow); }
 .dark-mode .flame {
   opacity: 1; transform: scale(1.1);
   box-shadow: 0 0 10px var(--amber), 0 0 20px var(--amber-glow);
@@ -132,15 +142,54 @@ body {
   50% { transform: scale(1) rotate(1.5deg); opacity: 1; }
 }
 
-/* --- 5. CONTENT & CARDS --- */
-.content .article:not(.intro) {
-  background-color: var(--pure-white) !important; 
-  border: 1px solid var(--border-soft) !important;
-  border-radius: 12px; padding: 2rem; 
-  max-width: 800px; margin: 2rem auto;
+/* --- 5. CARDS & POSTS --- */
+.intro.article {
+  max-width: 750px;
+  margin: 0 auto 3.5rem auto;
+  text-align: center;
 }
 
-.dark-mode .article-content, .dark-mode .article-content p { color: var(--charcoal) !important; }
+.intro .article-content {
+  font-style: italic !important; /* Restored Italics */
+  color: var(--gray-muted);
+  font-size: 1.2rem;
+}
+
+/* Post Preview Boxes (Archive Items) */
+.archive-item {
+  background-color: var(--pure-white) !important; 
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 12px;
+  padding: 1.8rem;
+  margin-bottom: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+/* Individual Post Container */
+.content .article:not(.intro) {
+  background-color: var(--pure-white) !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 12px;
+  padding: 3rem;
+  max-width: 800px;
+  margin: 0 auto 4rem auto;
+}
+
+/* Metadata Formatting */
+.archive-item-meta, .article-meta {
+  color: var(--amber) !important;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+}
+
+/* Ensure Readability in Dark Mode */
+.dark-mode .article-content, 
+.dark-mode .article-content p, 
+.dark-mode .archive-item-summary,
+.dark-mode .article-title {
+  color: var(--charcoal) !important;
+}
 
 /* --- 6. MOBILE --- */
 @media (max-width: 850px) {
