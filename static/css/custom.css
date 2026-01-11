@@ -82,15 +82,15 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   align-items: center;
   padding: 0;
   margin: 0;
-  gap: 12px; /* Default gap */
+  gap: 12px; /* Default gap for mobile */
 }
 
-/* DESKTOP ONLY: Increase space between Candlegraph/About and tighten cluster */
+/* DESKTOP ONLY: Aggressive spacing for the 'Instrument Cluster' look */
 @media (min-width: 851px) {
   .nav-links {
     margin-left: auto !important; 
-    gap: 10px;          /* Tightened horizontal spacing between links */
-    padding-left: 60px; /* The "moat" between Title and About */
+    gap: 8px;           /* TIGHTENED: Even closer link spacing for precision look */
+    padding-left: 100px; /* INCREASED: Pushes 'About' further away from 'Candlegraph' */
   }
 }
 
@@ -100,7 +100,7 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   transition: var(--transition-smooth);
 }
 
-/* Terryology Hub Link (No extra hover state) */
+/* Terryology Hub Link */
 .terry-link {
   border: 1px solid var(--amber) !important;
   padding: 3px 10px !important;
