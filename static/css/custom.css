@@ -87,10 +87,15 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
 
 /* DESKTOP ONLY: Aggressive spacing for the 'Instrument Cluster' look */
 @media (min-width: 851px) {
-  .nav-links {
-    margin-left: auto !important; 
-    gap: 8px;           /* TIGHTENED: Even closer link spacing for precision look */
-    padding-left: 100px; /* INCREASED: Pushes 'About' further away from 'Candlegraph' */
+  .nav-links a {
+    /* Your inspector fix to pull links closer together */
+    margin-left: -10px !important; 
+    
+    color: var(--gray-muted) !important;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    display: inline-block;
   }
 }
 
