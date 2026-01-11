@@ -86,9 +86,23 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
 .nav-links { 
   display: flex; 
   list-style: none; 
-  gap: 15px; 
+  gap: 20px; 
   margin: 0 -4rem 0 0 !important; 
   align-items: center; 
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  margin-left: 10px; /* Space away from the Terry Hub link */
+}
+
+.candle-toggle {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  outline: none;
 }
 
 .nav-links a { color: var(--gray-muted) !important; font-size: 1rem; transition: var(--transition-smooth); }

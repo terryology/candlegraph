@@ -20,5 +20,29 @@
       <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
     {{ end }}
     <li><a href="https://terryology.com" class="terry-link">Hub</a></li>
-  </ul>
+    
+    <li class="nav-item">
+      <button id="theme-toggle" class="candle-toggle" aria-label="Toggle Dark Mode">
+        <div class="wick">
+          <div class="flame"></div>
+        </div>
+        <div class="candle-body"></div>
+      </button>
+    </li>
+    </ul>
 </nav>
+
+<script>
+  const body = document.documentElement;
+  const toggle = document.getElementById('theme-toggle');
+
+  toggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    
+    if (body.classList.contains('dark-mode')) {
+      localStorage.setItem('theme', 'dark');
+    } else {
+      localStorage.setItem('theme', 'light');
+    }
+  });
+</script>
