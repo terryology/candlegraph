@@ -7,29 +7,28 @@
   --amber-glow: rgba(217, 119, 6, 0.4);
   --gray-muted: #6B7280;
   --border-soft: #E5E7EB;
-  --transition-smooth: all 0.3s ease;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --antique-white: #121212; 
-    --pure-white: #1E1E1E; 
-    --charcoal: #F3F4F6; /* Brighter for readability on dark bgs */
-    --gray-muted: #9CA3AF; 
-    --border-soft: #333333; 
-    --amber-glow: rgba(245, 158, 11, 0.6);
-  }
-  
-  .nav-logo svg { filter: invert(1) brightness(0.9); }
-  
-  /* FIX: Ensure post content inherits the dark-mode text color */
-  .article-content, 
-  .article-content p, 
-  .post-content, 
-  .post-content p,
-  .archive-item-summary {
-    color: var(--charcoal) !important;
-  }
+/* Toggled Dark Mode - Triggered by JS */
+.dark-mode {
+  --antique-white: #121212; 
+  --pure-white: #1E1E1E; 
+  --charcoal: #F3F4F6;
+  --gray-muted: #9CA3AF; 
+  --border-soft: #333333; 
+  --amber-glow: rgba(245, 158, 11, 0.6);
+}
+
+.dark-mode .nav-logo svg { filter: invert(1) brightness(0.9); }
+
+/* Ensure post content visibility in Dark Mode */
+.dark-mode .article-content, 
+.dark-mode .article-content p, 
+.dark-mode .post-content, 
+.dark-mode .post-content p,
+.dark-mode .archive-item-summary {
+  color: var(--charcoal) !important;
 }
 
 /* --- 2. GLOBAL FOUNDATION --- */
@@ -41,6 +40,7 @@ body {
   line-height: 1.7;
   margin: 0;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease;
 }
 
 h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .article-title {
@@ -50,7 +50,7 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   text-decoration: none !important;
 }
 
-/* --- 3. HEADER (Ultra-Compact) --- */
+/* --- 3. HEADER & NAVIGATION --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
@@ -91,20 +91,6 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   align-items: center; 
 }
 
-.nav-item {
-  display: flex;
-  align-items: center;
-  margin-left: 10px; /* Space away from the Terry Hub link */
-}
-
-.candle-toggle {
-  padding: 0;
-  margin: 0;
-  background: none;
-  border: none;
-  outline: none;
-}
-
 .nav-links a { color: var(--gray-muted) !important; font-size: 1rem; transition: var(--transition-smooth); }
 
 .terry-link {
@@ -117,7 +103,76 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   font-weight: 600 !important;
 }
 
-/* --- 4. CARDS & POSTS --- */
+/* --- 4. ORGANIC CANDLE TOGGLE --- */
+.nav-item {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.candle-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 30px;
+  height: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  outline: none;
+}
+
+.candle-body {
+  width: 12px;
+  height: 16px;
+  background: var(--gray-muted);
+  border-radius: 2px;
+  transition: var(--transition-smooth);
+}
+
+.wick {
+  width: 2px;
+  height: 5px;
+  background: #444;
+  position: relative;
+}
+
+.flame {
+  width: 8px;
+  height: 12px;
+  background: var(--amber);
+  border-radius: 50% 50% 35% 35%;
+  position: absolute;
+  top: -12px;
+  left: -3px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: var(--transition-smooth);
+  filter: blur(0.3px);
+}
+
+/* Candle Active State */
+.dark-mode .candle-body {
+  background: var(--antique-white);
+  box-shadow: 0 0 8px var(--amber-glow);
+}
+
+.dark-mode .flame {
+  opacity: 1;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px var(--amber), 0 0 20px var(--amber-glow);
+  animation: flicker 2s infinite ease-in-out;
+}
+
+@keyframes flicker {
+  0%, 100% { transform: scale(1.1) rotate(-1deg); opacity: 0.9; }
+  50% { transform: scale(1.0) rotate(1.5deg); opacity: 1; }
+}
+
+/* --- 5. CARDS & POSTS --- */
 .intro.article {
   max-width: 750px; 
   margin: 0 auto 3.5rem auto; 
@@ -125,9 +180,6 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   background: transparent !important; 
   border: none !important;
 }
-
-.intro .article-title { font-size: 2.2rem; margin-bottom: 0.6rem; }
-.intro .article-content { color: var(--gray-muted); font-size: 1.2rem; font-style: italic; }
 
 .archive-item {
   background-color: var(--pure-white) !important; 
@@ -137,11 +189,6 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   margin-bottom: 1.5rem;
 }
 
-.archive-item-meta { color: var(--amber) !important; font-size: 0.95rem; margin-bottom: 0.6rem; font-weight: 500; }
-.archive-item-summary { color: var(--charcoal); font-size: 1.05rem; }
-.read-more { color: var(--amber) !important; font-weight: 600; margin-left: 5px; }
-
-/* Styles for the Individual Post Content Container */
 .content .article:not(.intro) {
   background-color: var(--pure-white) !important; 
   border: 1px solid var(--border-soft) !important;
@@ -151,15 +198,9 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   margin: 0 auto 4rem auto;
 }
 
-.article-title { font-size: 2.3rem !important; margin-bottom: 1rem; }
-.article-meta { color: var(--amber); font-size: 1rem; margin-bottom: 1.5rem; }
+.article-content { line-height: 1.8; }
 
-.article-content {
-    color: var(--charcoal);
-    line-height: 1.8;
-}
-
-/* --- 5. FOOTER & ALIGNMENT --- */
+/* --- 6. FOOTER & ALIGNMENT --- */
 .footer {
   background-color: var(--pure-white) !important; 
   border-top: 1px solid var(--border-soft) !important;
@@ -168,58 +209,12 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   text-align: center;
 }
 
-.footer-links { 
-  list-style: none; 
-  display: flex; 
-  justify-content: center; 
-  flex-wrap: wrap; 
-  gap: 1.2rem; 
-  padding: 0; 
-  margin: 0; 
-}
+.footer-links { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 1.2rem; padding: 0; margin: 0; }
 
-.footer-links li::before, .footer-links li::after { content: "" !important; display: none !important; }
-
-.footer-links-kudos {
-  display: inline-flex !important; 
-  align-items: center !important; 
-  justify-content: center !important;
-  position: relative !important; 
-  color: var(--gray-muted) !important; 
-  font-size: 0.85rem;
-  text-decoration: none; 
-  line-height: 1 !important; 
-  height: 24px;
-}
-
-.footer-links-kudos img {
-  height: 18px !important; 
-  width: auto !important; 
-  margin-left: 6px !important;
-  display: inline-block !important; 
-  transform: translateY(-5px) !important; 
-  vertical-align: top !important; 
-}
-
-.footer-links li:last-child { 
-  width: 100%; 
-  display: flex; 
-  justify-content: center; 
-  margin-top: 0.3rem !important; 
-}
-
-/* --- 6. MOBILE OPTIMIZATIONS --- */
+/* --- 7. MOBILE OPTIMIZATIONS --- */
 @media (max-width: 850px) {
-  .header { margin-bottom: 0.8rem !important; }
-  .nav { flex-direction: column; padding: 0.3rem 1rem 0.5rem 1rem !important; min-height: auto !important; }
-  .nav-logo { margin-bottom: -8px !important; }
-  .nav-logo svg { transform: scale(0.80); }
-  .nav-title { position: static !important; transform: none !important; padding: 0 !important; margin-top: -4px !important; }
-  .nav-title a { font-size: 1.7rem; line-height: 1.1; } 
-  .article-meta { display: block; text-align: center; font-size: 0.8rem; margin: 0.1rem 0 0.3rem 0 !important; }
-  .nav-links { margin: 0.4rem 0 0 0 !important; gap: 12px !important; justify-content: center; width: 100%; }
-  
-  .intro.article { margin-bottom: 2rem; }
-  .content .article:not(.intro) { padding: 1.5rem; margin: 0 1rem 2rem 1rem; }
-  .article-title { font-size: 1.8rem !important; }
+  .nav { flex-direction: column; padding: 0.5rem !important; }
+  .nav-title { position: static !important; transform: none !important; }
+  .nav-links { margin: 0.5rem 0 0 0 !important; justify-content: center; width: 100%; gap: 15px; }
+  .content .article:not(.intro) { padding: 1.5rem; margin: 1rem; }
 }
