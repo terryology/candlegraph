@@ -19,40 +19,6 @@
   --amber-glow: rgba(245, 158, 11, 0.6);
 }
 
-/* --- GLOBAL LINK STYLING --- */
-a {
-  color: var(--charcoal); /* Uses our variable (Dark in Light mode / Light in Dark mode) */
-  text-decoration: none;
-  transition: var(--transition-smooth);
-  border-bottom: 1px solid transparent; /* Prepare for a sophisticated hover underline */
-}
-
-/* Hover State */
-a:hover {
-  color: var(--amber) !important;
-  border-bottom: 1px solid var(--amber-glow);
-}
-
-/* Visited State - Instead of Purple, we keep it consistent but slightly more muted */
-a:visited {
-  color: var(--charcoal); 
-  opacity: 0.85;
-}
-
-/* Fix for links inside the main article content specifically */
-.article-content a, 
-.post-content a {
-  color: var(--amber);
-  border-bottom: 1px solid var(--amber-glow);
-}
-
-.article-content a:hover, 
-.post-content a:hover {
-  background-color: var(--amber-glow); /* Subtle "highlighter" effect on hover */
-  color: var(--charcoal);
-  border-bottom: 1px solid var(--amber);
-}
-
 /* --- 2. GLOBAL FOUNDATION --- */
 body {
   background-color: var(--antique-white);
@@ -70,6 +36,36 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   font-weight: 700;
   color: var(--charcoal);
   text-decoration: none !important;
+}
+
+/* Global Link Behavior */
+a {
+  color: var(--charcoal);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  border-bottom: 1px solid transparent;
+}
+
+a:hover {
+  color: var(--amber) !important;
+  border-bottom: 1px solid var(--amber-glow);
+}
+
+a:visited {
+  color: var(--charcoal); 
+  opacity: 0.85;
+}
+
+/* Article/Post Specific Links */
+.article-content a, .post-content a {
+  color: var(--amber);
+  border-bottom: 1px solid var(--amber-glow);
+}
+
+.article-content a:hover, .post-content a:hover {
+  background-color: var(--amber-glow);
+  color: var(--charcoal);
+  border-bottom: 1px solid var(--amber);
 }
 
 /* --- 3. HEADER & NAVIGATION --- */
@@ -98,48 +94,32 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   z-index: 10;
 }
 
-.nav-title a { 
-  font-size: 2.1rem;
-  font-family: 'Lora', serif !important;
-  transition: var(--transition-smooth); 
-}
+.nav-title a { font-size: 2.1rem; }
 
 .nav-title a:hover { 
   color: var(--amber) !important; 
   text-shadow: 0 0 12px var(--amber-glow); 
 }
 
-/* Base nav-links */
 .nav-links {
   display: flex;
   list-style: none;
   align-items: center;
   padding: 0;
-  margin: 0;
-  gap: 12px; /* Default gap for mobile */
-}
-
-/* DESKTOP ONLY: Aggressive spacing for the 'Instrument Cluster' look */
-@media (min-width: 851px) {
-  .nav-links a {
-    /* Your inspector fix to pull links closer together */
-    margin-left: -10px !important; 
-    
-    color: var(--gray-muted) !important;
-    font-size: 0.95rem;
-    text-decoration: none;
-    transition: var(--transition-smooth);
-    display: inline-block;
-  }
+  margin: 0 0 0 auto !important; 
+  gap: 12px;
 }
 
 .nav-links a {
   color: var(--gray-muted) !important;
   font-size: 0.95rem;
-  transition: var(--transition-smooth);
+  border-bottom: none; /* No underline in nav links */
 }
 
-/* Terryology Hub Link */
+@media (min-width: 851px) {
+  .nav-links a { margin-left: -10px !important; display: inline-block; }
+}
+
 .terry-link {
   border: 1px solid var(--amber) !important;
   padding: 3px 10px !important;
@@ -155,7 +135,7 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   width: 30px; height: 30px;
   display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
   position: relative; outline: none;
-  transform: translateY(-6px); /* Nudged up to match text baseline */
+  transform: translateY(-6px);
 }
 
 .candle-body {
@@ -190,39 +170,19 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
 }
 
 /* --- 5. CARDS & POSTS --- */
-.intro.article {
-  max-width: 750px;
-  margin: 0 auto 3.5rem auto;
-  text-align: center;
-}
+.intro.article { max-width: 750px; margin: 0 auto 3.5rem auto; text-align: center; }
+.intro .article-content { font-style: italic !important; color: var(--gray-muted); font-size: 1.2rem; }
 
-.intro .article-content {
-  font-style: italic !important; /* Restored Italics */
-  color: var(--gray-muted);
-  font-size: 1.2rem;
-}
-
-/* Post Preview Boxes (Archive Items) */
-.archive-item {
+.archive-item, .content .article:not(.intro) {
   background-color: var(--pure-white) !important; 
   border: 1px solid var(--border-soft) !important;
   border-radius: 12px;
-  padding: 1.8rem;
-  margin-bottom: 1.5rem;
   transition: background-color 0.3s ease;
 }
 
-/* Individual Post Container */
-.content .article:not(.intro) {
-  background-color: var(--pure-white) !important;
-  border: 1px solid var(--border-soft) !important;
-  border-radius: 12px;
-  padding: 3rem;
-  max-width: 800px;
-  margin: 0 auto 4rem auto;
-}
+.archive-item { padding: 1.8rem; margin-bottom: 1.5rem; }
+.content .article:not(.intro) { padding: 3rem; max-width: 800px; margin: 0 auto 4rem auto; }
 
-/* Metadata Formatting */
 .archive-item-meta, .article-meta {
   color: var(--amber) !important;
   font-size: 0.95rem;
@@ -230,7 +190,6 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   margin-bottom: 0.6rem;
 }
 
-/* Ensure Readability in Dark Mode */
 .dark-mode .article-content, 
 .dark-mode .article-content p, 
 .dark-mode .archive-item-summary,
@@ -238,77 +197,34 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   color: var(--charcoal) !important;
 }
 
-/* --- 5. FOOTER (Dark Mode Compatible) --- */
+/* --- 6. FOOTER --- */
 .footer {
-  /* Use variables instead of hardcoded white to allow the flip */
   background-color: var(--pure-white) !important; 
   border-top: 1px solid var(--border-soft) !important;
-  padding: 1.2rem 0 !important; 
-  margin-top: 3rem; 
+  padding: 1.2rem 0 !important; margin-top: 3rem; 
   text-align: center;
   transition: var(--transition-smooth);
 }
 
-.footer-links { 
-  list-style: none; 
-  display: flex; 
-  justify-content: center; 
-  flex-wrap: wrap; 
-  gap: 1.2rem; 
-  padding: 0; 
-  margin: 0; 
-}
+.footer-links { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 1.2rem; padding: 0; margin: 0; }
+.footer p, .footer-links a { color: var(--gray-muted) !important; font-size: 0.85rem; }
+.footer-links a:hover { color: var(--amber) !important; border: none; }
 
-/* Ensure footer text and links use the theme colors */
-.footer p, 
-.footer-links a {
-  color: var(--gray-muted) !important;
-  font-size: 0.85rem;
-  text-decoration: none;
-  transition: var(--transition-smooth);
-}
-
-.footer-links a:hover {
-  color: var(--amber) !important;
-}
-
-/* KUDOS ICONS: Ensure they are readable in Dark Mode */
 .footer-links-kudos img {
-  height: 18px !important; 
-  width: auto !important; 
-  margin-left: 6px !important;
-  display: inline-block !important; 
-  transform: translateY(-2px) !important; 
-  transition: var(--transition-smooth);
+  height: 18px !important; width: auto !important; 
+  margin-left: 6px !important; display: inline-block !important; 
+  transform: translateY(-2px) !important; transition: var(--transition-smooth);
 }
 
-/* If your icons are dark, they need to invert in dark mode */
-.dark-mode .footer-links-kudos img {
-  filter: invert(0.8) brightness(1.2);
-}
+.dark-mode .footer-links-kudos img { filter: invert(0.8) brightness(1.2); }
 
-/* --- 6. MOBILE --- */
+/* --- 7. MOBILE --- */
 @media (max-width: 850px) {
   .nav { height: auto; padding: 1rem !important; flex-direction: column; gap: 10px; }
   .nav-title { position: static !important; transform: none !important; }
   .nav-links { margin: 0 !important; width: 100%; justify-content: center; }
-  /* 1. Nudge Metadata down slightly */
-  .archive-item-meta, 
-  .article-meta {
-    margin-top: 4px !important; /* Adjust 4px to 2px if you want it even subtler */
-    display: block; /* Ensures the margin pushes the title correctly */
-  }
-
-  /* 2. Remove Footer Slashes/Separators */
-  /* This targets the common 'slash' separators used in Hugo lists */
-  .footer-links li::after,
-  .footer-links li::before {
-    content: "" !important;
-    display: none !important;
-  }
   
-  /* Ensure the links themselves don't have hardcoded slashes in the text */
-  .footer-links {
-    gap: 0.8rem; /* Tighter gap for mobile links since slashes are gone */
-  }
+  .archive-item-meta, .article-meta { margin-top: 4px !important; display: block; }
+  .footer-links li::after, .footer-links li::before { content: "" !important; display: none !important; }
+  .footer-links { gap: 0.8rem; }
 }
