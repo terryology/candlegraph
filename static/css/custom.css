@@ -87,6 +87,28 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
 .article-title { font-size: 2.3rem !important; margin-bottom: 1rem; }
 .article-meta { color: var(--amber); font-size: 1rem; margin-bottom: 1.5rem; }
 
+/* Candlegraph Individual Post Readability Fix */
+
+/* Targets the main body of the individual post page */
+.post-content, 
+article .content, 
+.single-post-container {
+    color: #e0e0e0 !important; /* A soft, high-contrast off-white */
+    line-height: 1.6;
+}
+
+/* Ensure headings aren't also 'lost' in the dark */
+.post-content h1, 
+.post-content h2, 
+.post-content h3 {
+    color: #ffffff !important;
+}
+
+/* If the text is inside a specific paragraph tag */
+.post-content p {
+    color: #e0e0e0 !important;
+}
+
 /* --- 5. FOOTER & ALIGNMENT --- */
 .footer {
   background-color: var(--pure-white) !important; border-top: 1px solid var(--border-soft) !important;
