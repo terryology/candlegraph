@@ -204,6 +204,55 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   color: var(--charcoal) !important;
 }
 
+/* --- 5. FOOTER (Dark Mode Compatible) --- */
+.footer {
+  /* Use variables instead of hardcoded white to allow the flip */
+  background-color: var(--pure-white) !important; 
+  border-top: 1px solid var(--border-soft) !important;
+  padding: 1.2rem 0 !important; 
+  margin-top: 3rem; 
+  text-align: center;
+  transition: var(--transition-smooth);
+}
+
+.footer-links { 
+  list-style: none; 
+  display: flex; 
+  justify-content: center; 
+  flex-wrap: wrap; 
+  gap: 1.2rem; 
+  padding: 0; 
+  margin: 0; 
+}
+
+/* Ensure footer text and links use the theme colors */
+.footer p, 
+.footer-links a {
+  color: var(--gray-muted) !important;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.footer-links a:hover {
+  color: var(--amber) !important;
+}
+
+/* KUDOS ICONS: Ensure they are readable in Dark Mode */
+.footer-links-kudos img {
+  height: 18px !important; 
+  width: auto !important; 
+  margin-left: 6px !important;
+  display: inline-block !important; 
+  transform: translateY(-2px) !important; 
+  transition: var(--transition-smooth);
+}
+
+/* If your icons are dark, they need to invert in dark mode */
+.dark-mode .footer-links-kudos img {
+  filter: invert(0.8) brightness(1.2);
+}
+
 /* --- 6. MOBILE --- */
 @media (max-width: 850px) {
   .nav { height: auto; padding: 1rem !important; flex-direction: column; gap: 10px; }
