@@ -19,6 +19,40 @@
   --amber-glow: rgba(245, 158, 11, 0.6);
 }
 
+/* --- GLOBAL LINK STYLING --- */
+a {
+  color: var(--charcoal); /* Uses our variable (Dark in Light mode / Light in Dark mode) */
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  border-bottom: 1px solid transparent; /* Prepare for a sophisticated hover underline */
+}
+
+/* Hover State */
+a:hover {
+  color: var(--amber) !important;
+  border-bottom: 1px solid var(--amber-glow);
+}
+
+/* Visited State - Instead of Purple, we keep it consistent but slightly more muted */
+a:visited {
+  color: var(--charcoal); 
+  opacity: 0.85;
+}
+
+/* Fix for links inside the main article content specifically */
+.article-content a, 
+.post-content a {
+  color: var(--amber);
+  border-bottom: 1px solid var(--amber-glow);
+}
+
+.article-content a:hover, 
+.post-content a:hover {
+  background-color: var(--amber-glow); /* Subtle "highlighter" effect on hover */
+  color: var(--charcoal);
+  border-bottom: 1px solid var(--amber);
+}
+
 /* --- 2. GLOBAL FOUNDATION --- */
 body {
   background-color: var(--antique-white);
