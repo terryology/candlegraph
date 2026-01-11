@@ -10,7 +10,6 @@
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Toggled Dark Mode - Triggered by JS */
 .dark-mode {
   --antique-white: #121212; 
   --pure-white: #1E1E1E; 
@@ -21,15 +20,6 @@
 }
 
 .dark-mode .nav-logo svg { filter: invert(1) brightness(0.9); }
-
-/* Ensure post content visibility in Dark Mode */
-.dark-mode .article-content, 
-.dark-mode .article-content p, 
-.dark-mode .post-content, 
-.dark-mode .post-content p,
-.dark-mode .archive-item-summary {
-  color: var(--charcoal) !important;
-}
 
 /* --- 2. GLOBAL FOUNDATION --- */
 body {
@@ -43,18 +33,10 @@ body {
   transition: background-color 0.3s ease;
 }
 
-h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .article-title {
-  font-family: 'Lora', serif !important;
-  font-weight: 700; 
-  color: var(--charcoal); 
-  text-decoration: none !important;
-}
-
-/* --- 3. HEADER & NAVIGATION --- */
+/* --- 3. HEADER (Height Optimized) --- */
 .header {
   background-color: var(--pure-white) !important;
   border-bottom: 1px solid var(--border-soft) !important;
-  margin-bottom: 2.5rem; 
   width: 100%;
 }
 
@@ -64,122 +46,105 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   align-items: center; 
   max-width: 1100px; 
   margin: 0 auto; 
-  min-height: 55px; 
+  height: 60px; /* Fixed height to prevent "fat" header */
   padding: 0 1.5rem;
+  position: relative;
 }
 
-/* Push everything in the nav-links to the far right */
+.nav-title {
+  position: absolute !important; 
+  left: 50% !important; 
+  transform: translateX(-50%) !important;
+  margin: 0 !important; 
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.nav-title a { font-size: 1.8rem; font-weight: 700; color: var(--charcoal); text-decoration: none; }
+
 .nav-links { 
   display: flex; 
   list-style: none; 
-  gap: 15px; /* Tightened horizontal spacing (was 20px) */
-  margin-left: auto !important; /* Pushes links to the right */
-  margin-right: 0 !important;
+  gap: 12px; /* Tight horizontal spacing */
+  margin-left: auto !important; /* Pushes to right */
   align-items: center; 
+  padding: 0;
 }
 
 .nav-links a { 
   color: var(--gray-muted) !important; 
-  font-size: 0.95rem; /* Slightly smaller for a cleaner look */
-  transition: var(--transition-smooth); 
+  font-size: 1rem; /* Restored size */
+  text-decoration: none;
 }
 
-/* --- 4. ORGANIC CANDLE TOGGLE --- */
-.nav-item {
-  display: flex;
-  align-items: center;
-  margin-left: 8px; /* Tightened space from the Hub link */
+.terry-link {
+  border: 1px solid var(--amber) !important; 
+  padding: 2px 8px !important; 
+  border-radius: 4px;
+  color: var(--amber) !important;
+  font-weight: 600;
 }
+
+/* --- 4. THE CANDLE (Restored Animation) --- */
+.nav-item { display: flex; align-items: center; }
 
 .candle-toggle {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  width: 30px;
-  height: 35px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  position: relative;
-  outline: none;
-  /* NUDGE UP: Adjust the -4px to move it higher or lower */
-  transform: translateY(-4px); 
+  background: none; border: none; padding: 0; cursor: pointer;
+  width: 30px; height: 30px;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  position: relative; outline: none;
+  transform: translateY(-5px); /* Nudged up */
 }
 
 .candle-body {
-  width: 11px; /* Slightly slimmer for sophistication */
-  height: 15px;
+  width: 11px; height: 14px;
   background: var(--gray-muted);
   border-radius: 2px;
   transition: var(--transition-smooth);
 }
 
-.wick {
-  width: 1.5px;
-  height: 4px;
-  background: #444;
-  position: relative;
-}
+.wick { width: 1.5px; height: 4px; background: #444; position: relative; }
 
 .flame {
-  width: 8px;
-  height: 12px;
+  width: 8px; height: 12px;
   background: var(--amber);
   border-radius: 50% 50% 35% 35%;
-  position: absolute;
-  top: -11px;
-  left: -3.2px;
-  opacity: 0;
-  transform: scale(0.5);
+  position: absolute; top: -11px; left: -3.2px;
+  opacity: 0; transform: scale(0.5);
   transition: var(--transition-smooth);
   filter: blur(0.3px);
 }
 
-/* --- 5. CARDS & POSTS --- */
-.intro.article {
-  max-width: 750px; 
-  margin: 0 auto 3.5rem auto; 
-  text-align: center;
-  background: transparent !important; 
-  border: none !important;
+/* Flicker & Glow Logic */
+.dark-mode .candle-body { 
+  background: var(--antique-white); 
+  box-shadow: 0 0 8px var(--amber-glow); 
 }
 
-.archive-item {
-  background-color: var(--pure-white) !important; 
-  border: 1px solid var(--border-soft) !important;
-  border-radius: 12px; 
-  padding: 1.8rem; 
-  margin-bottom: 1.5rem;
+.dark-mode .flame {
+  opacity: 1; transform: scale(1.1);
+  box-shadow: 0 0 10px var(--amber), 0 0 20px var(--amber-glow);
+  animation: flicker 2s infinite ease-in-out;
 }
 
+@keyframes flicker {
+  0%, 100% { transform: scale(1.1) rotate(-1deg); opacity: 0.9; }
+  50% { transform: scale(1) rotate(1.5deg); opacity: 1; }
+}
+
+/* --- 5. CONTENT & CARDS --- */
 .content .article:not(.intro) {
   background-color: var(--pure-white) !important; 
   border: 1px solid var(--border-soft) !important;
-  border-radius: 12px; 
-  padding: 3rem; 
-  max-width: 800px; 
-  margin: 0 auto 4rem auto;
+  border-radius: 12px; padding: 2rem; 
+  max-width: 800px; margin: 2rem auto;
 }
 
-.article-content { line-height: 1.8; }
+.dark-mode .article-content, .dark-mode .article-content p { color: var(--charcoal) !important; }
 
-/* --- 6. FOOTER & ALIGNMENT --- */
-.footer {
-  background-color: var(--pure-white) !important; 
-  border-top: 1px solid var(--border-soft) !important;
-  padding: 1.2rem 0 !important; 
-  margin-top: 3rem; 
-  text-align: center;
-}
-
-.footer-links { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 1.2rem; padding: 0; margin: 0; }
-
-/* --- 7. MOBILE OPTIMIZATIONS --- */
+/* --- 6. MOBILE --- */
 @media (max-width: 850px) {
-  .nav { flex-direction: column; padding: 0.5rem !important; }
+  .nav { height: auto; padding: 1rem !important; flex-direction: column; gap: 10px; }
   .nav-title { position: static !important; transform: none !important; }
-  .nav-links { margin: 0.5rem 0 0 0 !important; justify-content: center; width: 100%; gap: 15px; }
-  .content .article:not(.intro) { padding: 1.5rem; margin: 1rem; }
+  .nav-links { margin: 0 !important; width: 100%; justify-content: center; }
 }
