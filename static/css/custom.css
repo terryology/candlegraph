@@ -62,52 +62,33 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   display: flex !important; 
   justify-content: space-between; 
   align-items: center; 
-  position: relative; 
   max-width: 1100px; 
   margin: 0 auto; 
   min-height: 55px; 
   padding: 0 1.5rem;
 }
 
-.nav-logo svg { height: 28px; width: auto; transition: var(--transition-smooth); }
-.nav-logo:hover svg { filter: drop-shadow(0 0 8px var(--amber-glow)); }
-
-.nav-title {
-  position: absolute !important; 
-  left: 50% !important; 
-  transform: translateX(-50%) !important;
-  margin: 0 !important; 
-  z-index: 10;
-}
-
-.nav-title a { font-size: 2rem; transition: var(--transition-smooth); }
-.nav-title a:hover { color: var(--amber) !important; text-shadow: 0 0 12px var(--amber-glow); }
-
+/* Push everything in the nav-links to the far right */
 .nav-links { 
   display: flex; 
   list-style: none; 
-  gap: 20px; 
-  margin: 0 -4rem 0 0 !important; 
+  gap: 15px; /* Tightened horizontal spacing (was 20px) */
+  margin-left: auto !important; /* Pushes links to the right */
+  margin-right: 0 !important;
   align-items: center; 
 }
 
-.nav-links a { color: var(--gray-muted) !important; font-size: 1rem; transition: var(--transition-smooth); }
-
-.terry-link {
-  border: 1px solid var(--amber) !important; 
-  padding: 3px 10px !important; 
-  border-radius: 4px !important;
-  background: rgba(217, 119, 6, 0.05) !important; 
-  color: var(--amber) !important;
-  font-size: 0.95rem !important; 
-  font-weight: 600 !important;
+.nav-links a { 
+  color: var(--gray-muted) !important; 
+  font-size: 0.95rem; /* Slightly smaller for a cleaner look */
+  transition: var(--transition-smooth); 
 }
 
 /* --- 4. ORGANIC CANDLE TOGGLE --- */
 .nav-item {
   display: flex;
   align-items: center;
-  margin-left: 10px;
+  margin-left: 8px; /* Tightened space from the Hub link */
 }
 
 .candle-toggle {
@@ -123,19 +104,21 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   justify-content: flex-end;
   position: relative;
   outline: none;
+  /* NUDGE UP: Adjust the -4px to move it higher or lower */
+  transform: translateY(-4px); 
 }
 
 .candle-body {
-  width: 12px;
-  height: 16px;
+  width: 11px; /* Slightly slimmer for sophistication */
+  height: 15px;
   background: var(--gray-muted);
   border-radius: 2px;
   transition: var(--transition-smooth);
 }
 
 .wick {
-  width: 2px;
-  height: 5px;
+  width: 1.5px;
+  height: 4px;
   background: #444;
   position: relative;
 }
@@ -146,30 +129,12 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   background: var(--amber);
   border-radius: 50% 50% 35% 35%;
   position: absolute;
-  top: -12px;
-  left: -3px;
+  top: -11px;
+  left: -3.2px;
   opacity: 0;
   transform: scale(0.5);
   transition: var(--transition-smooth);
   filter: blur(0.3px);
-}
-
-/* Candle Active State */
-.dark-mode .candle-body {
-  background: var(--antique-white);
-  box-shadow: 0 0 8px var(--amber-glow);
-}
-
-.dark-mode .flame {
-  opacity: 1;
-  transform: scale(1.1);
-  box-shadow: 0 0 10px var(--amber), 0 0 20px var(--amber-glow);
-  animation: flicker 2s infinite ease-in-out;
-}
-
-@keyframes flicker {
-  0%, 100% { transform: scale(1.1) rotate(-1deg); opacity: 0.9; }
-  50% { transform: scale(1.0) rotate(1.5deg); opacity: 1; }
 }
 
 /* --- 5. CARDS & POSTS --- */
