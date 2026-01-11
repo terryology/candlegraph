@@ -292,4 +292,23 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   .nav { height: auto; padding: 1rem !important; flex-direction: column; gap: 10px; }
   .nav-title { position: static !important; transform: none !important; }
   .nav-links { margin: 0 !important; width: 100%; justify-content: center; }
+  /* 1. Nudge Metadata down slightly */
+  .archive-item-meta, 
+  .article-meta {
+    margin-top: 4px !important; /* Adjust 4px to 2px if you want it even subtler */
+    display: block; /* Ensures the margin pushes the title correctly */
+  }
+
+  /* 2. Remove Footer Slashes/Separators */
+  /* This targets the common 'slash' separators used in Hugo lists */
+  .footer-links li::after,
+  .footer-links li::before {
+    content: "" !important;
+    display: none !important;
+  }
+  
+  /* Ensure the links themselves don't have hardcoded slashes in the text */
+  .footer-links {
+    gap: 0.8rem; /* Tighter gap for mobile links since slashes are gone */
+  }
 }
