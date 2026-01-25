@@ -1,27 +1,21 @@
-# OS Excludes
+# --- System / OS ---
 .DS_Store
 Thumbs.db
 
-# R Studio Excludes
+# --- R / Data Science ---
 .Rproj.user/
-.RData
-.Rprofile
 .Rhistory
-.candlegraph_hugo_Rproj
-candlegraph_hugo.Rproj
-R/build.R
-R/build2.R
+.RData
 .httr-oauth
+**/*.log
 
-# Hugo Excludes
+# --- Hugo / Web ---
 public/
 .hugo_build.lock
 resources/_gen/
-
-# Local Development Excludes
 static/css/test.css
 static/css/experimental.css
 
-# Obsidian Excludes
+# --- Obsidian / Notes ---
 Templates/
 .obsidian/
