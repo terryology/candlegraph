@@ -8,6 +8,7 @@ Thumbs.db
 .RData
 .httr-oauth
 **/*.log
+/.secrets
 
 # --- Hugo / Web ---
 public/
@@ -19,4 +20,3 @@ static/css/experimental.css
 # --- Obsidian / Notes ---
 Templates/
 .obsidian/
-/.secrets
