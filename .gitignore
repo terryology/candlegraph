@@ -8,7 +8,10 @@ Thumbs.db
 .RData
 .httr-oauth
 **/*.log
-/.secrets
+
+# --- Auth Tokens ---
+.httr-oauth
+.secrets/
 
 # --- Hugo / Web ---
 public/
