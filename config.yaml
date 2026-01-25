@@ -56,3 +56,4 @@ outputFormats:
     mediaType: "application/json"
     baseName: "feed"
     isPlainText: true
+    
