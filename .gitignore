@@ -19,3 +19,4 @@ static/css/experimental.css
 # --- Obsidian / Notes ---
 Templates/
 .obsidian/
+/.secrets
