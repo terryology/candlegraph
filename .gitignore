@@ -3,15 +3,15 @@
 Thumbs.db
 
 # R Studio Excludes
-.Rproj.user
+.Rproj.user/
 .RData
 .Rprofile
-.Rhistorty
+.Rhistory
 .candlegraph_hugo_Rproj
 candlegraph_hugo.Rproj
 R/build.R
 R/build2.R
-.Rhistory
+.httr-oauth
 
 # Hugo Excludes
 public/
