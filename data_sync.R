@@ -1,5 +1,6 @@
 library(googlesheets4)
 library(tidyverse)
+library(here)
 
 # 1. AUTHENTICATION
 # Since your sheet is 'Public' (anyone with link can view), we can read it without
