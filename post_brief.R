@@ -1,57 +1,31 @@
-# ==========================================
-# CANDLEGRAPH: POST-BURN BRIEFING SCRIPT v1.1
-# ==========================================
-source("data_sync.R") 
-
 get_brief <- function(target_brand) {
   
-  # 1. Filter the rankings for the specific brand
-  brief_data <- brand_rankings %>%
-    filter(brand_name == target_brand)
+  if (!exists("brand_rankings")) source("data_sync.R")
   
-  # Safety check if brand doesn't exist
-  if(nrow(brief_data) == 0) {
-    return(message("Brand not found. Check spelling or Google Sheet data."))
-  }
+  # Find brand (case-insensitive)
+  b <- brand_rankings %>% 
+    filter(tolower(brand_name) == tolower(target_brand))
   
-  # 2. Print technical summary to Console
-  cat("\n--- DATA AUDIT: ", toupper(target_brand), " ---\n")
-  cat("Sample Size: ", brief_data$n_candles, " candle(s) tested\n")
-  cat("Data Quality: ", as.character(brief_data$evidence), "\n")
+  if (nrow(b) == 0) stop("Brand not found.")
   
-  # 3. Format for the Hugo Shortcode (Copy/Paste this)
-  cat("\n--- HUGO SHORTCODE ---\n")
-  cat(sprintf(
-    '{{< brand-specs brand="%s" sav="%.1f" pae="%.1f" tier="%s" >}}',
-    brief_data$brand_name,
-    brief_data$sav_index,
-    brief_data$pae_index,
-    tolower(brief_data$pae_index) # Logic placeholder for tier
-  ))
-  
-  # Manual Tier Helper
-  tier_suggestion <- case_when(
-    brief_data$sav_index >= 100 & brief_data$pae_index >= 100 ~ "Grail",
-    brief_data$sav_index >= 100 & brief_data$pae_index < 100  ~ "Overachiever",
-    brief_data$sav_index < 100  & brief_data$pae_index >= 100 ~ "Workhorse",
-    TRUE                                                     ~ "Dud"
+  # Quadrant Logic
+  current_tier <- case_when(
+    b$pae_index >= 100 & b$sav_index >= 100 ~ "Grail",
+    b$pae_index < 100  & b$sav_index >= 100 ~ "Powerhouse",
+    b$pae_index >= 100 & b$sav_index < 100  ~ "Workhorse",
+    TRUE                                    ~ "Dud"
   )
   
-  cat("\n\nRecommended Tier: ", tier_suggestion)
-  cat("\n----------------------\n")
+  # Output: Top Specs
+  cat("\n--- HUGO SPECS ---\n")
+  cat(sprintf('{{< brand-specs brand="%s" sav="%.1f" pae="%.1f" tier="%s" >}}',
+              b$brand_name, b$sav_index, b$pae_index, current_tier))
+  
+  # Output: Bottom Audit
+  cat("\n\n--- HUGO FOOTNOTE ---\n")
+  cat(sprintf('{{< vault-audit brand="%s" id="AUDIT-%s" sessions="%d" hours="%.1f" confidence="%s" >}}',
+              b$brand_name, toupper(substr(b$brand_name, 1, 3)),
+              b$n_candles, b$total_hrs, ifelse(b$is_verified, "Empirical", "Anecdotal")))
+  
+  if (b$n_candles < 3) cat("\n\nNote: 20% Confidence Tax applied (N < 3).\n")
 }
-
-# 4. Format for the Technical Footnote
-# We'll calculate total sessions and hours from the raw data
-brand_raw <- processed_data %>% filter(brand_name == target_brand)
-
-cat("\n--- HUGO FOOTNOTE ---\n")
-cat(sprintf(
-  '{{< vault-audit brand="%s" id="%s" sessions="%d" hours="%.1f" confidence="%s" >}}',
-  target_brand,
-  "Global-ID", # You can swap this for a specific candle ID if you prefer
-  brief_data$n_candles, # Using n_candles as a proxy for test volume
-  sum(brand_raw$actual_total_hours, na.rm = TRUE),
-  as.character(brief_data$evidence)
-))
-cat("\n----------------------\n")
