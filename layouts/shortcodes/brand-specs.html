@@ -1,0 +1,19 @@
+<div class="mini-vault">
+    <div class="mini-header">
+        <span class="pulse"></span> {{ .Get "brand" | upper }} PERFORMANCE
+    </div>
+    <div class="mini-grid">
+        <div class="mini-item">
+            <span class="mini-label">SAV Index</span>
+            <span class="mini-value">{{ .Get "sav" }}</span>
+        </div>
+        <div class="mini-item">
+            <span class="mini-label">PAE Index</span>
+            <span class="mini-value">{{ .Get "pae" }}</span>
+        </div>
+        <div class="mini-item">
+            <span class="mini-label">Tier</span>
+            <span class="mini-value tier-{{ .Get "tier" | lower }}">{{ .Get "tier" | upper }}</span>
+        </div>
+    </div>
+</div>
