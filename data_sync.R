@@ -49,3 +49,7 @@ brand_rankings <- df_master %>%
   )
 
 message("Sync Complete: Rankings calculated and PAE/SAV indices generated.")
+
+# This prints the current baselines for you to copy into your Methodology page
+message(sprintf("Current Global Baselines: Efficiency = %.2f | Scent = %.2f", 
+                global_avg_eff, global_avg_scent))

@@ -371,3 +371,17 @@ a:visited {
 @media (max-width: 600px) {
   .audit-grid { flex-direction: column; gap: 0.8rem; }
 }
+
+.quadrant-legend {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 2rem 0;
+}
+.legend-box {
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid var(--border-soft);
+}
+.legend-box.grail { border-left: 5px solid #2a9d8f; background: #f0f9f8; }
+.legend-box.dud { border-left: 5px solid #e76f51; background: #fef4f2; }
