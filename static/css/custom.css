@@ -1,101 +1,232 @@
-/* --- 8. THE DATA VAULT (CANDLEGRAPH ENGINE) --- */
-.terryology-vault {
-  background: var(--pure-white);
-  border: 1px solid var(--border-soft);
-  border-radius: 8px;
-  margin: 2.5rem 0;
+/* --- 1. CORE VARIABLES & THEMES --- */
+:root {
+  --antique-white: #FAF9F6;
+  --pure-white: #FFFFFF;
+  --charcoal: #2D2D2D;
+  --amber: #D97706;
+  --amber-glow: rgba(217, 119, 6, 0.4);
+  --gray-muted: #6B7280;
+  --border-soft: #E5E7EB;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark-mode {
+  --antique-white: #121212; 
+  --pure-white: #1E1E1E; 
+  --charcoal: #F3F4F6;
+  --gray-muted: #9CA3AF; 
+  --border-soft: #333333; 
+  --amber-glow: rgba(245, 158, 11, 0.6);
+}
+
+/* --- 2. GLOBAL FOUNDATION --- */
+body {
+  background-color: var(--antique-white);
+  color: var(--charcoal);
+  font-family: 'Lora', serif !important;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease;
+}
+
+h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .article-title {
+  font-family: 'Lora', serif !important;
+  font-weight: 700;
+  color: var(--charcoal);
+  text-decoration: none !important;
+}
+
+/* Global Link Behavior */
+a {
+  color: var(--charcoal);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  border-bottom: 1px solid transparent;
+}
+
+a:hover {
+  color: var(--amber) !important;
+  border-bottom: 1px solid var(--amber-glow);
+}
+
+a:visited {
+  color: var(--charcoal); 
+  opacity: 0.85;
+}
+
+/* Article/Post Specific Links */
+.article-content a, .post-content a {
+  color: var(--amber);
+  border-bottom: 1px solid var(--amber-glow);
+}
+
+.article-content a:hover, .post-content a:hover {
+  background-color: var(--amber-glow);
+  color: var(--charcoal);
+  border-bottom: 1px solid var(--amber);
+}
+
+/* --- 3. HEADER & NAVIGATION --- */
+.header {
+  background-color: var(--pure-white) !important;
+  border-bottom: 1px solid var(--border-soft) !important;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.nav {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 70px; 
+  padding: 0 1.5rem;
   position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.nav-title {
+  position: absolute !important;
+  left: 50% !important;
+  transform: translate(-50%, -2px) !important;
+  margin: 0 !important;
+  z-index: 10;
+}
+
+.nav-title a { font-size: 2.1rem; }
+
+.nav-title a:hover { 
+  color: var(--amber) !important; 
+  text-shadow: 0 0 12px var(--amber-glow); 
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  padding: 0;
+  margin: 0 0 0 auto !important; 
+  gap: 12px;
+}
+
+.nav-links a {
+  color: var(--gray-muted) !important;
+  font-size: 0.95rem;
+  border-bottom: none; /* No underline in nav links */
+}
+
+@media (min-width: 851px) {
+  .nav-links a { margin-left: -10px !important; display: inline-block; }
+}
+
+.terry-link {
+  border: 1px solid var(--amber) !important;
+  padding: 3px 10px !important;
+  border-radius: 4px;
+  color: var(--amber) !important;
+  font-weight: 600;
+  background: rgba(217, 119, 6, 0.05);
+}
+
+/* --- 4. THE CANDLE --- */
+.candle-toggle {
+  background: none; border: none; padding: 0; cursor: pointer;
+  width: 30px; height: 30px;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  position: relative; outline: none;
+  transform: translateY(-6px);
+}
+
+.candle-body {
+  width: 11px; height: 14px;
+  background: var(--gray-muted);
+  border-radius: 2px;
   transition: var(--transition-smooth);
 }
 
-/* Color Accent Bar using your Amber variable */
-.vault-accent {
-  height: 4px;
-  background: linear-gradient(90deg, #2D5A27 0%, var(--amber) 100%);
+.wick { width: 1.5px; height: 4px; background: #444; position: relative; }
+
+.flame {
+  width: 8px; height: 12px;
+  background: var(--amber);
+  border-radius: 50% 50% 35% 35%;
+  position: absolute; top: -11px; left: -3.2px;
+  opacity: 0; transform: scale(0.5);
+  transition: var(--transition-smooth);
+  filter: blur(0.3px);
 }
 
-.vault-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 20px;
-  background: rgba(0, 0, 0, 0.02);
-  border-bottom: 1px solid var(--border-soft);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  font-weight: 600;
+.dark-mode .candle-body { background: var(--antique-white); box-shadow: 0 0 8px var(--amber-glow); }
+.dark-mode .flame {
+  opacity: 1; transform: scale(1.1);
+  box-shadow: 0 0 10px var(--amber), 0 0 20px var(--amber-glow);
+  animation: flicker 2s infinite ease-in-out;
 }
 
-.vault-status {
-  color: #2D5A27; /* Archival Green preserved for technical meaning */
-  display: flex;
-  align-items: center;
+@keyframes flicker {
+  0%, 100% { transform: scale(1.1) rotate(-1deg); opacity: 0.9; }
+  50% { transform: scale(1) rotate(1.5deg); opacity: 1; }
 }
 
-/* Dark mode override for Status Green to ensure visibility */
-.dark-mode .vault-status { color: #4ade80; }
+/* --- 5. CARDS & POSTS --- */
+.intro.article { max-width: 750px; margin: 0 auto 3.5rem auto; text-align: center; }
+.intro .article-content { font-style: italic !important; color: var(--gray-muted); font-size: 1.2rem; }
 
-.pulse {
-  height: 8px;
-  width: 8px;
-  background: currentColor;
-  border-radius: 50%;
-  margin-right: 10px;
-  animation: pulse-glow 2s infinite ease-in-out;
+.archive-item, .content .article:not(.intro) {
+  background-color: var(--pure-white) !important; 
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
 }
 
-@keyframes pulse-glow {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.2); }
+.archive-item { padding: 1.8rem; margin-bottom: 1.5rem; }
+.content .article:not(.intro) { padding: 3rem; max-width: 800px; margin: 0 auto 4rem auto; }
+
+.archive-item-meta, .article-meta {
+  color: var(--amber) !important;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
 }
 
-.vault-meta { color: var(--gray-muted); }
-
-.vault-body {
-  padding: 20px;
-  background: var(--pure-white);
-  overflow-x: auto; /* Prevents mobile breakage */
+.dark-mode .article-content, 
+.dark-mode .article-content p, 
+.dark-mode .archive-item-summary,
+.dark-mode .article-title {
+  color: var(--charcoal) !important;
 }
 
-/* Responsive Image Handling within Vault */
-.vault-body img, .vault-body svg {
-  display: block;
-  max-width: 100% !important;
-  height: auto !important;
-  margin: 0 auto;
-}
-
-/* Data Table Styling (DT Library) */
-.vault-body .dataTables_wrapper {
-  font-family: 'Lora', serif;
-  font-size: 0.9rem;
-  color: var(--charcoal);
-}
-
-.vault-footer {
-  background: rgba(0, 0, 0, 0.02);
-  padding: 12px 20px;
-  font-size: 0.7rem;
-  color: var(--gray-muted);
+/* --- 6. FOOTER --- */
+.footer {
+  background-color: var(--pure-white) !important; 
+  border-top: 1px solid var(--border-soft) !important;
+  padding: 1.2rem 0 !important; margin-top: 3rem; 
   text-align: center;
-  border-top: 1px solid var(--border-soft);
+  transition: var(--transition-smooth);
 }
 
-/* Dark Mode Logic for Vault Elements */
-.dark-mode .terryology-vault {
-  background: var(--pure-white); /* Already set to #1E1E1E in your vars */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+.footer-links { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 1.2rem; padding: 0; margin: 0; }
+.footer p, .footer-links a { color: var(--gray-muted) !important; font-size: 0.85rem; }
+.footer-links a:hover { color: var(--amber) !important; border: none; }
+
+.footer-links-kudos img {
+  height: 18px !important; width: auto !important; 
+  margin-left: 6px !important; display: inline-block !important; 
+  transform: translateY(-2px) !important; transition: var(--transition-smooth);
 }
 
-.dark-mode .vault-header, 
-.dark-mode .vault-footer {
-  background: rgba(255, 255, 255, 0.03);
-}
+.dark-mode .footer-links-kudos img { filter: invert(0.8) brightness(1.2); }
 
-/* Ensure data tables don't vanish in dark mode */
-.dark-mode .dataTable thead th {
-  color: var(--charcoal);
-  border-bottom: 1px solid var(--border-soft);
+/* --- 7. MOBILE --- */
+@media (max-width: 850px) {
+  .nav { height: auto; padding: 1rem !important; flex-direction: column; gap: 10px; }
+  .nav-title { position: static !important; transform: none !important; }
+  .nav-links { margin: 0 !important; width: 100%; justify-content: center; }
+  
+  .archive-item-meta, .article-meta { margin-top: 4px !important; display: block; }
+  .footer-links li::after, .footer-links li::before { content: "" !important; display: none !important; }
+  .footer-links { gap: 0.8rem; }
 }
