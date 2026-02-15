@@ -230,3 +230,46 @@ a:visited {
   .footer-links li::after, .footer-links li::before { content: "" !important; display: none !important; }
   .footer-links { gap: 0.8rem; }
 }
+
+/* --- 8. DATA VAULT (APPENDED) --- */
+.terryology-vault {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  margin: 2.5rem 0;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.vault-accent {
+  height: 4px;
+  background: linear-gradient(90deg, #2D5A27, #D97706);
+}
+
+.vault-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #F9FAFB;
+  border-bottom: 1px solid #E5E7EB;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  font-weight: bold;
+}
+
+.vault-status { color: #2D5A27; display: flex; align-items: center; }
+
+.pulse {
+  height: 8px; width: 8px; background: #2D5A27; border-radius: 50%;
+  margin-right: 10px; animation: vault-blink 2s infinite;
+}
+
+@keyframes vault-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.vault-body { padding: 20px; overflow-x: auto; }
+.vault-body img, .vault-body svg { width: 100% !important; height: auto !important; }
+
+.vault-footer {
+  background: #F9FAFB; padding: 10px 20px; font-size: 0.7rem;
+  color: #6B7280; text-align: center; border-top: 1px solid #E5E7EB;
+}
