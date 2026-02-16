@@ -1,28 +1,42 @@
 /* --- 1. CORE VARIABLES & THEMES --- */
 :root {
-  --antique-white: #FAF9F6;
-  --pure-white: #FFFFFF;
-  --charcoal: #2D2D2D;
-  --amber: #D97706;
-  --amber-glow: rgba(217, 119, 6, 0.4);
-  --gray-muted: #6B7280;
-  --border-soft: #E5E7EB;
+  /* Instead of naming by appearance (antique-white, charcoal) */
+  /* Name by PURPOSE (bg-primary, text-primary) */
+  
+  --bg-primary: #FAF9F6;      /* Main page background */
+  --bg-secondary: #FFFFFF;    /* Cards, header, footer */
+  --bg-tertiary: #F9FAFB;     /* Vault headers, subtle backgrounds */
+  --text-primary: #2D2D2D;    /* Main text color */
+  --text-muted: #6B7280;      /* Secondary text */
+  --border: #E5E7EB;
+  --accent: #D97706;
+  --accent-glow: rgba(217, 119, 6, 0.4);
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* NEW: Spacing scale */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 1rem;      /* 16px */
+  --space-md: 1.5rem;    /* 24px */
+  --space-lg: 2rem;      /* 32px */
+  --space-xl: 3rem;      /* 48px */
+  --space-2xl: 4rem;     /* 64px */
 }
 
 .dark-mode {
-  --antique-white: #121212; 
-  --pure-white: #1E1E1E; 
-  --charcoal: #F3F4F6;
-  --gray-muted: #9CA3AF; 
-  --border-soft: #333333; 
-  --amber-glow: rgba(245, 158, 11, 0.6);
+  --bg-primary: #121212;      /* Dark page background */
+  --bg-secondary: #1E1E1E;    /* Dark cards */
+  --bg-tertiary: #252525;     /* Dark vault headers */
+  --text-primary: #F3F4F6;    /* Light text */
+  --text-muted: #9CA3AF;
+  --border: #333333;
+  --accent-glow: rgba(245, 158, 11, 0.6);
+  /* --accent stays the same */
 }
 
 /* --- 2. GLOBAL FOUNDATION --- */
 body {
-  background-color: var(--antique-white);
-  color: var(--charcoal);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   font-family: 'Lora', serif !important;
   font-size: 1.1rem;
   line-height: 1.7;
@@ -34,44 +48,43 @@ body {
 h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .article-title {
   font-family: 'Lora', serif !important;
   font-weight: 700;
-  color: var(--charcoal);
-  text-decoration: none !important;
+  color: var(--text-primary);
+  text-decoration: none; /* REMOVED !important */
 }
 
 /* Global Link Behavior */
 a {
-  color: var(--charcoal);
+  color: var(--text-primary);
   text-decoration: none;
   transition: var(--transition-smooth);
   border-bottom: 1px solid transparent;
 }
 
 a:hover {
-  color: var(--amber) !important;
-  border-bottom: 1px solid var(--amber-glow);
+  color: var(--accent); /* REMOVED !important */
+  border-bottom: 1px solid var(--accent-glow);
 }
 
 a:visited {
-  color: var(--charcoal); 
-  opacity: 0.85;
+  color: var(--text-primary);
 }
 
 /* Article/Post Specific Links */
 .article-content a, .post-content a {
-  color: var(--amber);
-  border-bottom: 1px solid var(--amber-glow);
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent-glow);
 }
 
 .article-content a:hover, .post-content a:hover {
-  background-color: var(--amber-glow);
-  color: var(--charcoal);
-  border-bottom: 1px solid var(--amber);
+  background-color: var(--accent-glow);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--accent);
 }
 
 /* --- 3. HEADER & NAVIGATION --- */
 .header {
-  background-color: var(--pure-white) !important;
-  border-bottom: 1px solid var(--border-soft) !important;
+  background-color: var(--bg-secondary) !important;
+  border-bottom: 1px solid var(--border) !important;
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -99,8 +112,8 @@ a:visited {
 .nav-title a { font-size: 2.1rem; }
 
 .nav-title a:hover { 
-  color: var(--amber) !important; 
-  text-shadow: 0 0 12px var(--amber-glow); 
+  color: var(--accent); /* REMOVED !important */
+  text-shadow: 0 0 12px var(--accent-glow); 
 }
 
 .nav-links {
@@ -113,7 +126,7 @@ a:visited {
 }
 
 .nav-links a {
-  color: var(--gray-muted) !important;
+  color: var(--text-muted); /* REMOVED !important */
   font-size: 0.95rem;
   border-bottom: none; /* No underline in nav links */
 }
@@ -123,10 +136,10 @@ a:visited {
 }
 
 .terry-link {
-  border: 1px solid var(--amber) !important;
+  border: 1px solid var(--accent); /* REMOVED !important */
   padding: 3px 10px !important;
   border-radius: 4px;
-  color: var(--amber) !important;
+  color: var(--accent); /* REMOVED !important */
   font-weight: 600;
   background: rgba(217, 119, 6, 0.05);
 }
@@ -142,7 +155,7 @@ a:visited {
 
 .candle-body {
   width: 11px; height: 14px;
-  background: var(--gray-muted);
+  background: var(--text-muted);
   border-radius: 2px;
   transition: var(--transition-smooth);
 }
@@ -151,7 +164,7 @@ a:visited {
 
 .flame {
   width: 8px; height: 12px;
-  background: var(--amber);
+  background: var(--accent);
   border-radius: 50% 50% 35% 35%;
   position: absolute; top: -11px; left: -3.2px;
   opacity: 0; transform: scale(0.5);
@@ -159,10 +172,10 @@ a:visited {
   filter: blur(0.3px);
 }
 
-.dark-mode .candle-body { background: var(--antique-white); box-shadow: 0 0 8px var(--amber-glow); }
+.dark-mode .candle-body { background: var(--bg-primary); box-shadow: 0 0 8px var(--accent-glow); }
 .dark-mode .flame {
   opacity: 1; transform: scale(1.1);
-  box-shadow: 0 0 10px var(--amber), 0 0 20px var(--amber-glow);
+  box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent-glow);
   animation: flicker 2s infinite ease-in-out;
 }
 
@@ -171,13 +184,28 @@ a:visited {
   50% { transform: scale(1) rotate(1.5deg); opacity: 1; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .dark-mode .flame {
+    animation: none; /* Stop the flicker animation */
+  }
+  
+  /* Also reduce all transitions globally */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* --- 5. CARDS & POSTS --- */
 .intro.article { max-width: 750px; margin: 0 auto 3.5rem auto; text-align: center; }
-.intro .article-content { font-style: italic !important; color: var(--gray-muted); font-size: 1.2rem; }
+.intro .article-content { font-style: italic; color: var(--text-muted); font-size: 1.2rem; } /* REMOVED !important */
 
 .archive-item, .content .article:not(.intro) {
-  background-color: var(--pure-white) !important; 
-  border: 1px solid var(--border-soft) !important;
+  background-color: var(--bg-secondary) !important; 
+  border: 1px solid var(--border) !important;
   border-radius: 12px;
   transition: background-color 0.3s ease;
 }
@@ -186,7 +214,7 @@ a:visited {
 .content .article:not(.intro) { padding: 3rem; max-width: 800px; margin: 0 auto 4rem auto; }
 
 .archive-item-meta, .article-meta {
-  color: var(--amber) !important;
+  color: var(--accent); /* REMOVED !important */
   font-size: 0.95rem;
   font-weight: 500;
   margin-bottom: 0.6rem;
@@ -196,21 +224,21 @@ a:visited {
 .dark-mode .article-content p, 
 .dark-mode .archive-item-summary,
 .dark-mode .article-title {
-  color: var(--charcoal) !important;
+  color: var(--text-primary); /* REMOVED !important */
 }
 
 /* --- 6. FOOTER --- */
 .footer {
-  background-color: var(--pure-white) !important; 
-  border-top: 1px solid var(--border-soft) !important;
+  background-color: var(--bg-secondary) !important; 
+  border-top: 1px solid var(--border) !important;
   padding: 1.2rem 0 !important; margin-top: 3rem; 
   text-align: center;
   transition: var(--transition-smooth);
 }
 
 .footer-links { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 1.2rem; padding: 0; margin: 0; }
-.footer p, .footer-links a { color: var(--gray-muted) !important; font-size: 0.85rem; }
-.footer-links a:hover { color: var(--amber) !important; border: none; }
+.footer p, .footer-links a { color: var(--text-muted); font-size: 0.85rem; } /* REMOVED !important */
+.footer-links a:hover { color: var(--accent); border: none; } /* REMOVED !important */
 
 .footer-links-kudos img {
   height: 18px !important; width: auto !important; 
@@ -233,8 +261,8 @@ a:visited {
 
 /* --- 8. DATA VAULT (APPENDED) --- */
 .terryology-vault {
-  background: #FFFFFF;
-  border: 1px solid #E5E7EB;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
   border-radius: 8px;
   margin: 2.5rem 0;
   overflow: hidden;
@@ -250,8 +278,8 @@ a:visited {
   display: flex;
   justify-content: space-between;
   padding: 12px 20px;
-  background: #F9FAFB;
-  border-bottom: 1px solid #E5E7EB;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border);
   font-size: 0.75rem;
   letter-spacing: 0.05em;
   font-weight: bold;
@@ -270,25 +298,29 @@ a:visited {
 .vault-body img, .vault-body svg { width: 100% !important; height: auto !important; }
 
 .vault-footer {
-  background: #F9FAFB; padding: 10px 20px; font-size: 0.7rem;
-  color: #6B7280; text-align: center; border-top: 1px solid #E5E7EB;
+  background: var(--bg-tertiary);
+  padding: 10px 20px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: center;
+  border-top: 1px solid var(--border);
 }
 
 /* --- 9. MINI-VAULT SPECS --- */
 .mini-vault {
-  background: var(--pure-white);
-  border: 1px solid var(--border-soft);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
   border-radius: 6px;
   margin: 1.5rem 0;
   max-width: 400px; /* Keeps it tight in the review intro */
 }
 
 .mini-header {
-  background: #F9FAFB;
+  background: var(--bg-tertiary);
   padding: 8px 12px;
   font-size: 0.7rem;
   font-weight: bold;
-  border-bottom: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
 }
@@ -301,7 +333,7 @@ a:visited {
 
 .mini-item {
   padding: 12px 5px;
-  border-right: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border);
 }
 
 .mini-item:last-child { border-right: none; }
@@ -309,7 +341,7 @@ a:visited {
 .mini-label {
   display: block;
   font-size: 0.6rem;
-  color: var(--gray-muted);
+  color: var(--text-muted);
   text-transform: uppercase;
   margin-bottom: 4px;
 }
@@ -318,18 +350,18 @@ a:visited {
   font-family: 'Lora', serif;
   font-weight: bold;
   font-size: 1.1rem;
-  color: var(--charcoal);
+  color: var(--text-primary);
 }
 
 /* Color coding for the Tier value */
 .tier-grail { color: #2D5A27; }
 .tier-workhorse { color: #967E5D; }
-.tier-overachiever { color: var(--amber); }
+.tier-overachiever { color: var(--accent); }
 .tier-dud { color: #d63031; }
 
 /* --- 10. TECHNICAL FOOTNOTE / AUDIT --- */
 .vault-audit {
-  border-top: 1px solid var(--border-soft);
+  border-top: 1px solid var(--border);
   margin-top: 3rem;
   padding-top: 1.5rem;
   font-family: 'serif';
@@ -338,7 +370,7 @@ a:visited {
 .audit-line {
   font-size: 0.7rem;
   letter-spacing: 0.05em;
-  color: var(--gray-muted);
+  color: var(--text-muted);
   margin-bottom: 1rem;
 }
 
@@ -352,19 +384,19 @@ a:visited {
   display: block;
   font-size: 0.6rem;
   text-transform: uppercase;
-  color: var(--gray-muted);
+  color: var(--text-muted);
 }
 
 .audit-data {
   font-weight: bold;
   font-size: 0.9rem;
-  color: var(--charcoal);
+  color: var(--text-primary);
 }
 
 .audit-disclaimer {
   font-size: 0.6rem;
   font-style: italic;
-  color: var(--gray-muted);
+  color: var(--text-muted);
 }
 
 /* Ensure mobile stacking */
@@ -381,7 +413,7 @@ a:visited {
 .legend-box {
     padding: 15px;
     border-radius: 4px;
-    border: 1px solid var(--border-soft);
+    border: 1px solid var(--border);
 }
 .legend-box.grail { border-left: 5px solid #2a9d8f; background: #f0f9f8; }
 .legend-box.dud { border-left: 5px solid #e76f51; background: #fef4f2; }
