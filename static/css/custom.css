@@ -50,6 +50,19 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   text-decoration: none;
 }
 
+/* Post title and archive link hover states */
+.post-title a:hover,
+.post-title a:focus-visible,
+.archive-item-link:hover,
+.archive-item-link:focus-visible,
+.article-title a:hover,
+.article-title a:focus-visible,
+.read-more:hover,
+.read-more:focus-visible {
+  color: var(--accent) !important;
+  border-bottom: 1px solid var(--accent-glow);
+}
+
 /* Global Link Behavior */
 a {
   color: var(--text-primary);
@@ -130,7 +143,7 @@ select:focus-visible {
   align-items: center;
   max-width: 1100px;
   margin: 0 auto;
-  height: 70px; 
+  height: 75px; /* Increased from 70px to prevent border clipping */
   padding: 0 1.5rem;
   position: relative;
 }
@@ -160,10 +173,15 @@ select:focus-visible {
   gap: 12px;
 }
 
+.nav-links li {
+  line-height: normal; /* Override theme's line-height to prevent border clipping */
+}
+
 .nav-links a {
   color: var(--text-muted);
   font-size: 0.95rem;
   border-bottom: none;
+  padding-bottom: 2px; /* Prevents border cutoff on hover */
 }
 
 @media (min-width: 851px) {
@@ -172,11 +190,13 @@ select:focus-visible {
 
 .terry-link {
   border: 1px solid var(--accent);
-  padding: 3px 10px !important;
+  padding: 4px 10px !important; /* Increased top/bottom padding from 3px */
   border-radius: 4px;
   color: var(--accent);
   font-weight: 600;
   background: rgba(217, 119, 6, 0.05);
+  display: inline-block;
+  vertical-align: middle; /* Helps with alignment */
 }
 
 /* --- 5. THE CANDLE --- */
