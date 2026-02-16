@@ -135,6 +135,7 @@ select:focus-visible {
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
+  overflow: visible !important; /* Prevent clipping */
 }
 
 .nav {
@@ -146,6 +147,7 @@ select:focus-visible {
   height: 75px; /* Increased from 70px to prevent border clipping */
   padding: 0 1.5rem;
   position: relative;
+  overflow: visible !important; /* Prevent clipping */
 }
 
 .nav-title {
@@ -174,7 +176,8 @@ select:focus-visible {
 }
 
 .nav-links li {
-  line-height: normal; /* Override theme's line-height to prevent border clipping */
+  line-height: 1 !important; /* Force reset line-height */
+  padding: 4px 0; /* Add vertical padding to give border space */
 }
 
 .nav-links a {
