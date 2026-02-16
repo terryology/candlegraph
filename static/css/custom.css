@@ -192,14 +192,20 @@ select:focus-visible {
 }
 
 .terry-link {
-  border: 1px solid var(--accent);
-  padding: 4px 10px !important; /* Increased top/bottom padding from 3px */
-  border-radius: 4px;
-  color: var(--accent);
-  font-weight: 600;
-  background: rgba(217, 119, 6, 0.05);
-  display: inline-block;
-  vertical-align: middle; /* Helps with alignment */
+  color: var(--accent) !important; /* Force amber color always */
+  font-weight: 700;
+  padding: 0 !important;
+  background: none;
+  border: none;
+  border-bottom: none;
+  vertical-align: baseline; /* Align with other nav links */
+}
+
+.terry-link:hover,
+.terry-link:focus-visible {
+  color: var(--accent) !important; /* Stay amber on hover */
+  border-bottom: none; /* No underline on hover */
+  opacity: 0.8; /* Subtle hover effect */
 }
 
 /* --- 5. THE CANDLE --- */
