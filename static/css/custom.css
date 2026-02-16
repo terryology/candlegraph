@@ -1,8 +1,6 @@
 /* --- 1. CORE VARIABLES & THEMES --- */
 :root {
-  /* Instead of naming by appearance (antique-white, charcoal) */
-  /* Name by PURPOSE (bg-primary, text-primary) */
-  
+  /* Semantic color variables - named by purpose, not appearance */
   --bg-primary: #FAF9F6;      /* Main page background */
   --bg-secondary: #FFFFFF;    /* Cards, header, footer */
   --bg-tertiary: #F9FAFB;     /* Vault headers, subtle backgrounds */
@@ -13,7 +11,7 @@
   --accent-glow: rgba(217, 119, 6, 0.4);
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* NEW: Spacing scale */
+  /* Spacing scale for consistency */
   --space-xs: 0.5rem;    /* 8px */
   --space-sm: 1rem;      /* 16px */
   --space-md: 1.5rem;    /* 24px */
@@ -49,7 +47,7 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   font-family: 'Lora', serif !important;
   font-weight: 700;
   color: var(--text-primary);
-  text-decoration: none; /* REMOVED !important */
+  text-decoration: none;
 }
 
 /* Global Link Behavior */
@@ -60,8 +58,9 @@ a {
   border-bottom: 1px solid transparent;
 }
 
-a:hover {
-  color: var(--accent); /* REMOVED !important */
+a:hover,
+a:focus-visible {
+  color: var(--accent);
   border-bottom: 1px solid var(--accent-glow);
 }
 
@@ -75,13 +74,48 @@ a:visited {
   border-bottom: 1px solid var(--accent-glow);
 }
 
-.article-content a:hover, .post-content a:hover {
+.article-content a:hover, 
+.article-content a:focus-visible,
+.post-content a:hover,
+.post-content a:focus-visible {
   background-color: var(--accent-glow);
   color: var(--text-primary);
   border-bottom: 1px solid var(--accent);
 }
 
-/* --- 3. HEADER & NAVIGATION --- */
+/* --- 3. ACCESSIBILITY - FOCUS STATES --- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.candle-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .dark-mode .flame {
+    animation: none;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- 4. HEADER & NAVIGATION --- */
 .header {
   background-color: var(--bg-secondary) !important;
   border-bottom: 1px solid var(--border) !important;
@@ -111,8 +145,9 @@ a:visited {
 
 .nav-title a { font-size: 2.1rem; }
 
-.nav-title a:hover { 
-  color: var(--accent); /* REMOVED !important */
+.nav-title a:hover,
+.nav-title a:focus-visible { 
+  color: var(--accent);
   text-shadow: 0 0 12px var(--accent-glow); 
 }
 
@@ -126,9 +161,9 @@ a:visited {
 }
 
 .nav-links a {
-  color: var(--text-muted); /* REMOVED !important */
+  color: var(--text-muted);
   font-size: 0.95rem;
-  border-bottom: none; /* No underline in nav links */
+  border-bottom: none;
 }
 
 @media (min-width: 851px) {
@@ -136,45 +171,67 @@ a:visited {
 }
 
 .terry-link {
-  border: 1px solid var(--accent); /* REMOVED !important */
+  border: 1px solid var(--accent);
   padding: 3px 10px !important;
   border-radius: 4px;
-  color: var(--accent); /* REMOVED !important */
+  color: var(--accent);
   font-weight: 600;
   background: rgba(217, 119, 6, 0.05);
 }
 
-/* --- 4. THE CANDLE --- */
+/* --- 5. THE CANDLE --- */
 .candle-toggle {
-  background: none; border: none; padding: 0; cursor: pointer;
-  width: 30px; height: 30px;
-  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
-  position: relative; outline: none;
+  background: none; 
+  border: none; 
+  padding: 0; 
+  cursor: pointer;
+  width: 30px; 
+  height: 30px;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: flex-end;
+  position: relative;
   transform: translateY(-6px);
 }
 
 .candle-body {
-  width: 11px; height: 14px;
+  width: 11px; 
+  height: 14px;
   background: var(--text-muted);
   border-radius: 2px;
   transition: var(--transition-smooth);
 }
 
-.wick { width: 1.5px; height: 4px; background: #444; position: relative; }
+.wick { 
+  width: 1.5px; 
+  height: 4px; 
+  background: #444; 
+  position: relative; 
+}
 
 .flame {
-  width: 8px; height: 12px;
+  width: 8px; 
+  height: 12px;
   background: var(--accent);
   border-radius: 50% 50% 35% 35%;
-  position: absolute; top: -11px; left: -3.2px;
-  opacity: 0; transform: scale(0.5);
+  position: absolute; 
+  top: -11px; 
+  left: -3.2px;
+  opacity: 0; 
+  transform: scale(0.5);
   transition: var(--transition-smooth);
   filter: blur(0.3px);
 }
 
-.dark-mode .candle-body { background: var(--bg-primary); box-shadow: 0 0 8px var(--accent-glow); }
+.dark-mode .candle-body { 
+  background: var(--bg-primary); 
+  box-shadow: 0 0 8px var(--accent-glow); 
+}
+
 .dark-mode .flame {
-  opacity: 1; transform: scale(1.1);
+  opacity: 1; 
+  transform: scale(1.1);
   box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent-glow);
   animation: flicker 2s infinite ease-in-out;
 }
@@ -184,24 +241,18 @@ a:visited {
   50% { transform: scale(1) rotate(1.5deg); opacity: 1; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .dark-mode .flame {
-    animation: none; /* Stop the flicker animation */
-  }
-  
-  /* Also reduce all transitions globally */
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+/* --- 6. CARDS & POSTS --- */
+.intro.article { 
+  max-width: 750px; 
+  margin: 0 auto 3.5rem auto; 
+  text-align: center; 
 }
 
-/* --- 5. CARDS & POSTS --- */
-.intro.article { max-width: 750px; margin: 0 auto 3.5rem auto; text-align: center; }
-.intro .article-content { font-style: italic; color: var(--text-muted); font-size: 1.2rem; } /* REMOVED !important */
+.intro .article-content { 
+  font-style: italic; 
+  color: var(--text-muted); 
+  font-size: 1.2rem; 
+}
 
 .archive-item, .content .article:not(.intro) {
   background-color: var(--bg-secondary) !important; 
@@ -210,11 +261,19 @@ a:visited {
   transition: background-color 0.3s ease;
 }
 
-.archive-item { padding: 1.8rem; margin-bottom: 1.5rem; }
-.content .article:not(.intro) { padding: 3rem; max-width: 800px; margin: 0 auto 4rem auto; }
+.archive-item { 
+  padding: 1.8rem; 
+  margin-bottom: 1.5rem; 
+}
+
+.content .article:not(.intro) { 
+  padding: 3rem; 
+  max-width: 800px; 
+  margin: 0 auto 4rem auto; 
+}
 
 .archive-item-meta, .article-meta {
-  color: var(--accent); /* REMOVED !important */
+  color: var(--accent);
   font-size: 0.95rem;
   font-weight: 500;
   margin-bottom: 0.6rem;
@@ -224,42 +283,89 @@ a:visited {
 .dark-mode .article-content p, 
 .dark-mode .archive-item-summary,
 .dark-mode .article-title {
-  color: var(--text-primary); /* REMOVED !important */
+  color: var(--text-primary);
 }
 
-/* --- 6. FOOTER --- */
+/* --- 7. FOOTER --- */
 .footer {
   background-color: var(--bg-secondary) !important; 
   border-top: 1px solid var(--border) !important;
-  padding: 1.2rem 0 !important; margin-top: 3rem; 
+  padding: 1.2rem 0 !important; 
+  margin-top: 3rem; 
   text-align: center;
   transition: var(--transition-smooth);
 }
 
-.footer-links { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 1.2rem; padding: 0; margin: 0; }
-.footer p, .footer-links a { color: var(--text-muted); font-size: 0.85rem; } /* REMOVED !important */
-.footer-links a:hover { color: var(--accent); border: none; } /* REMOVED !important */
+.footer-links { 
+  list-style: none; 
+  display: flex; 
+  justify-content: center; 
+  flex-wrap: wrap; 
+  gap: 1.2rem; 
+  padding: 0; 
+  margin: 0; 
+}
+
+.footer p, .footer-links a { 
+  color: var(--text-muted); 
+  font-size: 0.85rem; 
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible { 
+  color: var(--accent); 
+  border: none; 
+}
 
 .footer-links-kudos img {
-  height: 18px !important; width: auto !important; 
-  margin-left: 6px !important; display: inline-block !important; 
-  transform: translateY(-2px) !important; transition: var(--transition-smooth);
+  height: 18px !important; 
+  width: auto !important; 
+  margin-left: 6px !important; 
+  display: inline-block !important; 
+  transform: translateY(-2px) !important; 
+  transition: var(--transition-smooth);
 }
 
-.dark-mode .footer-links-kudos img { filter: invert(0.8) brightness(1.2); }
+.dark-mode .footer-links-kudos img { 
+  filter: invert(0.8) brightness(1.2); 
+}
 
-/* --- 7. MOBILE --- */
+/* --- 8. MOBILE --- */
 @media (max-width: 850px) {
-  .nav { height: auto; padding: 1rem !important; flex-direction: column; gap: 10px; }
-  .nav-title { position: static !important; transform: none !important; }
-  .nav-links { margin: 0 !important; width: 100%; justify-content: center; }
+  .nav { 
+    height: auto; 
+    padding: 1rem !important; 
+    flex-direction: column; 
+    gap: 10px; 
+  }
   
-  .archive-item-meta, .article-meta { margin-top: 4px !important; display: block; }
-  .footer-links li::after, .footer-links li::before { content: "" !important; display: none !important; }
-  .footer-links { gap: 0.8rem; }
+  .nav-title { 
+    position: static !important; 
+    transform: none !important; 
+  }
+  
+  .nav-links { 
+    margin: 0 !important; 
+    width: 100%; 
+    justify-content: center; 
+  }
+  
+  .archive-item-meta, .article-meta { 
+    margin-top: 4px !important; 
+    display: block; 
+  }
+  
+  .footer-links li::after, .footer-links li::before { 
+    content: "" !important; 
+    display: none !important; 
+  }
+  
+  .footer-links { 
+    gap: 0.8rem; 
+  }
 }
 
-/* --- 8. DATA VAULT (APPENDED) --- */
+/* --- 9. DATA VAULT --- */
 .terryology-vault {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
@@ -285,17 +391,35 @@ a:visited {
   font-weight: bold;
 }
 
-.vault-status { color: #2D5A27; display: flex; align-items: center; }
-
-.pulse {
-  height: 8px; width: 8px; background: #2D5A27; border-radius: 50%;
-  margin-right: 10px; animation: vault-blink 2s infinite;
+.vault-status { 
+  color: #2D5A27; 
+  display: flex; 
+  align-items: center; 
 }
 
-@keyframes vault-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.pulse {
+  height: 8px; 
+  width: 8px; 
+  background: #2D5A27; 
+  border-radius: 50%;
+  margin-right: 10px; 
+  animation: vault-blink 2s infinite;
+}
 
-.vault-body { padding: 20px; overflow-x: auto; }
-.vault-body img, .vault-body svg { width: 100% !important; height: auto !important; }
+@keyframes vault-blink { 
+  0%, 100% { opacity: 1; } 
+  50% { opacity: 0.4; } 
+}
+
+.vault-body { 
+  padding: 20px; 
+  overflow-x: auto; 
+}
+
+.vault-body img, .vault-body svg { 
+  width: 100% !important; 
+  height: auto !important; 
+}
 
 .vault-footer {
   background: var(--bg-tertiary);
@@ -306,13 +430,13 @@ a:visited {
   border-top: 1px solid var(--border);
 }
 
-/* --- 9. MINI-VAULT SPECS --- */
+/* --- 10. MINI-VAULT SPECS --- */
 .mini-vault {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
   border-radius: 6px;
   margin: 1.5rem 0;
-  max-width: 400px; /* Keeps it tight in the review intro */
+  max-width: 400px;
 }
 
 .mini-header {
@@ -336,7 +460,9 @@ a:visited {
   border-right: 1px solid var(--border);
 }
 
-.mini-item:last-child { border-right: none; }
+.mini-item:last-child { 
+  border-right: none; 
+}
 
 .mini-label {
   display: block;
@@ -353,13 +479,13 @@ a:visited {
   color: var(--text-primary);
 }
 
-/* Color coding for the Tier value */
+/* Tier color coding - semantic colors that remain consistent across themes */
 .tier-grail { color: #2D5A27; }
 .tier-workhorse { color: #967E5D; }
 .tier-overachiever { color: var(--accent); }
 .tier-dud { color: #d63031; }
 
-/* --- 10. TECHNICAL FOOTNOTE / AUDIT --- */
+/* --- 11. TECHNICAL FOOTNOTE / AUDIT --- */
 .vault-audit {
   border-top: 1px solid var(--border);
   margin-top: 3rem;
@@ -399,21 +525,35 @@ a:visited {
   color: var(--text-muted);
 }
 
-/* Ensure mobile stacking */
+/* Mobile stacking for audit grid */
 @media (max-width: 600px) {
-  .audit-grid { flex-direction: column; gap: 0.8rem; }
+  .audit-grid { 
+    flex-direction: column; 
+    gap: 0.8rem; 
+  }
 }
 
+/* --- 12. QUADRANT LEGEND --- */
 .quadrant-legend {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 2rem 0;
 }
+
 .legend-box {
-    padding: 15px;
-    border-radius: 4px;
-    border: 1px solid var(--border);
+  padding: 15px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
 }
-.legend-box.grail { border-left: 5px solid #2a9d8f; background: #f0f9f8; }
-.legend-box.dud { border-left: 5px solid #e76f51; background: #fef4f2; }
+
+/* Semantic colors for data visualization - remain consistent across themes */
+.legend-box.grail { 
+  border-left: 5px solid #2a9d8f; 
+  background: #f0f9f8; 
+}
+
+.legend-box.dud { 
+  border-left: 5px solid #e76f51; 
+  background: #fef4f2; 
+}
