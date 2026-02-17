@@ -21,7 +21,7 @@ menu:
       weight: 30
 params:
   MathJaxCDN: //cdnjs.cloudflare.com/ajax/libs
-  MathJaxVersion: 2.7.5
+  MathJaxVersion: 3.2.2
   dateFormat: "January 2, 2006"
   description: A website calculating the value proposition of scented candles.
   favicon: favicon.ico

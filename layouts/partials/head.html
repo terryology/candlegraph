@@ -17,6 +17,7 @@
 {{ else }}
 <title>{{ .Title }}{{ with .Params.subtitle }} - {{ . }} {{ end }} - {{ .Site.Title }}</title>
 <meta property="og:title" content="{{ .Title }} - {{ .Site.Title }}">
+<meta property="og:type" content="article">
 {{ end }}
 
 {{ with .Site.Params.favicon }}
@@ -46,14 +47,17 @@
 <link rel="stylesheet" href="{{ "css/fonts.css" | relURL }}" media="all">
 <link rel="stylesheet" href="{{ "css/main.css" | relURL }}" media="all">
 
-{{ range .Site.Params.customCSS }}
-<link rel="stylesheet" href="{{ . | relURL }}">
-{{ end }}
-
 {{ partial "head_custom" . }}
 
-<link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
-
-{{ if (fileExists "static/css/test.css") }}
+{{/* Load CSS based on environment:
+     - Development: test.css (local testing)
+     - Production: custom.css (live site) */}}
+{{ if eq hugo.Environment "development" }}
   <link rel="stylesheet" href="{{ "css/test.css" | relURL }}">
+{{ else }}
+  <link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
 {{ end }}
+
+{{/* Font Awesome - uncomment when needed for icons
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+*/}}

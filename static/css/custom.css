@@ -50,19 +50,6 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   text-decoration: none;
 }
 
-/* Post title and archive link hover states */
-.post-title a:hover,
-.post-title a:focus-visible,
-.archive-item-link:hover,
-.archive-item-link:focus-visible,
-.article-title a:hover,
-.article-title a:focus-visible,
-.read-more:hover,
-.read-more:focus-visible {
-  color: var(--accent) !important;
-  border-bottom: 1px solid var(--accent-glow);
-}
-
 /* Global Link Behavior */
 a {
   color: var(--text-primary);
@@ -87,13 +74,30 @@ a:visited {
   border-bottom: 1px solid var(--accent-glow);
 }
 
-.article-content a:hover, 
-.article-content a:focus-visible,
-.post-content a:hover,
-.post-content a:focus-visible {
+/* Article content link hover - excludes read-more */
+.article-content a:not(.read-more):hover, 
+.article-content a:not(.read-more):focus-visible,
+.post-content a:not(.read-more):hover,
+.post-content a:not(.read-more):focus-visible {
   background-color: var(--accent-glow);
   color: var(--text-primary);
   border-bottom: 1px solid var(--accent);
+}
+
+/* Post title, archive link, and Read More hover states */
+.post-title a:hover,
+.post-title a:focus-visible,
+.archive-item-link:hover,
+.archive-item-link:focus-visible,
+.article-title a:hover,
+.article-title a:focus-visible,
+.archive-item-summary .read-more:hover,
+.archive-item-summary .read-more:focus-visible,
+.read-more:hover,
+.read-more:focus-visible {
+  background-color: transparent;
+  color: var(--accent) !important;
+  border-bottom: 1px solid var(--accent-glow);
 }
 
 /* --- 3. ACCESSIBILITY - FOCUS STATES --- */
@@ -513,6 +517,31 @@ select:focus-visible {
 .tier-workhorse { color: #967E5D; }
 .tier-overachiever { color: var(--accent); }
 .tier-dud { color: #d63031; }
+
+/* --- BLOG TAGS --- */
+.blog-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: var(--space-sm);
+}
+
+.blog-tags a {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  transition: var(--transition-smooth);
+}
+
+.blog-tags a:hover,
+.blog-tags a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+  background: rgba(217, 119, 6, 0.05);
+}
 
 /* --- 11. TECHNICAL FOOTNOTE / AUDIT --- */
 .vault-audit {

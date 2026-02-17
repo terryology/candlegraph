@@ -20,7 +20,7 @@
       <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
     {{ end }}
     <li><a href="https://terryology.com" class="terry-link">Hub</a></li>
-    
+
     <li class="nav-item">
       <button id="theme-toggle" class="candle-toggle" aria-label="Toggle Dark Mode">
         <div class="wick">
@@ -29,20 +29,30 @@
         <div class="candle-body"></div>
       </button>
     </li>
-    </ul>
+  </ul>
 </nav>
 
 <script>
   const body = document.documentElement;
   const toggle = document.getElementById('theme-toggle');
 
+  // Dark mode toggle
   toggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
-    
+
     if (body.classList.contains('dark-mode')) {
       localStorage.setItem('theme', 'dark');
     } else {
       localStorage.setItem('theme', 'light');
     }
   });
+
+  // Respect reduced motion preference for SVG logo animation
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const flameAnimate = document.querySelector('.nav-logo animate');
+    if (flameAnimate) {
+      flameAnimate.setAttribute('repeatCount', '0');
+      flameAnimate.setAttribute('dur', '0s');
+    }
+  }
 </script>
