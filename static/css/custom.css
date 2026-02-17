@@ -649,6 +649,12 @@ select:focus-visible {
   margin-bottom: 1rem;
 }
 
+.audit-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 .audit-label {
   display: block;
   font-size: 0.6rem;
@@ -673,6 +679,59 @@ select:focus-visible {
   .audit-grid { 
     flex-direction: column; 
     gap: 0.8rem; 
+  }
+}
+
+/* Vault methodology link */
+.vault-methodology-link {
+  color: #967E5D; /* Workhorse tier color - intentionally hardcoded */
+  text-decoration: underline;
+  transition: var(--transition-smooth);
+}
+
+.vault-methodology-link:hover,
+.vault-methodology-link:focus-visible {
+  color: var(--accent);
+  border-bottom: none;
+}
+
+/* --- 12. VAULT BASELINES --- */
+.methodology-baselines {
+  display: flex;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+  padding: var(--space-sm) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin: var(--space-md) 0;
+}
+
+.baseline-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.baseline-label {
+  display: block;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.baseline-value {
+  font-family: 'Lora', serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+/* Mobile stacking for baselines */
+@media (max-width: 600px) {
+  .methodology-baselines {
+    flex-direction: column;
+    gap: var(--space-sm);
   }
 }
 

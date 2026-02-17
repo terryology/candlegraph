@@ -4,61 +4,100 @@ library(here)
 library(ggrepel)
 
 # 1. AUTH & LINK
-gs4_deauth() 
+# gs4_deauth() is used because the sheet is intentionally public.
+# If you ever make the sheet private, move sheet_url to .Renviron
+# and authenticate with gs4_auth() instead.
+gs4_deauth()
 sheet_url <- "https://docs.google.com/spreadsheets/d/1UZ1JB-RD30dOB2WFd9vqyP-1uFTyl6a-fhO6rvw8EPg/"
 
 # 2. FETCH DATA
-brands     <- read_sheet(sheet_url, sheet = "brands")
-materials  <- read_sheet(sheet_url, sheet = "materials")
-purchases  <- read_sheet(sheet_url, sheet = "purchases")
-burn_times <- read_sheet(sheet_url, sheet = "burn_times") %>%
-  mutate(total_time = as.numeric(difftime(stop_time, start_time, units = "hours")))
+# Error handling ensures a clear message if the API or sheet is unavailable
+brands <- tryCatch({
+  read_sheet(sheet_url, sheet = "brands")
+}, error = function(e) {
+  stop(paste("Failed to load brands sheet:", e$message))
+})
 
-# 3. THE MASTER JOIN & CLEAN 5-SCALE LOGIC
+materials <- tryCatch({
+  read_sheet(sheet_url, sheet = "materials")
+}, error = function(e) {
+  stop(paste("Failed to load materials sheet:", e$message))
+})
+
+purchases <- tryCatch({
+  read_sheet(sheet_url, sheet = "purchases")
+}, error = function(e) {
+  stop(paste("Failed to load purchases sheet:", e$message))
+})
+
+burn_times <- tryCatch({
+  read_sheet(sheet_url, sheet = "burn_times") %>%
+    mutate(total_time = as.numeric(difftime(stop_time, start_time, units = "hours")))
+}, error = function(e) {
+  stop(paste("Failed to load burn_times sheet:", e$message))
+})
+
+# 3. THE MASTER JOIN & SCENT LOGIC
 df_master <- burn_times %>%
   left_join(purchases, by = c("candle_id", "brand_id")) %>%
   left_join(brands, by = "brand_id") %>%
   rename(brand_name = any_of(c("brand_name.x", "brand_name"))) %>%
   mutate(
-    # Direct 1-5 mapping: prioritizes Hot, falls back to Cold, defaults to Neutral (3)
-    combined_scent = coalesce(as.numeric(throw_hot), as.numeric(throw_cold), 3),
+    # Weighted scent score: 40% Cold Throw + 60% Hot Throw
+    # Falls back to Cold only if Hot is missing, defaults to neutral (3) if both missing
+    cold_score = coalesce(as.numeric(throw_cold), 3),
+    hot_score  = coalesce(as.numeric(throw_hot), as.numeric(throw_cold), 3),
+    weighted_scent = (cold_score * 0.4) + (hot_score * 0.6),
+    
     # PROVENANCE: Strictly check the explicit 'Measured' tag in your basis column
     is_hot_empirical = !is.na(throw_hot_basis) & throw_hot_basis == "Measured"
   )
 
 # 4. BASELINES
-# Efficiency is relative to the collection average; Scent is relative to the scale midpoint (3)
+# Both indexes are relational - 100 always = current collection average
 global_avg_eff   <- mean(df_master$total_time / df_master$price_usd, na.rm = TRUE)
-target_scent_avg <- 3.0 
+global_avg_scent <- mean(df_master$weighted_scent, na.rm = TRUE)
 
 # 5. BRAND RANKINGS
 brand_rankings <- df_master %>%
   group_by(brand_name) %>%
   summarise(
-    n_candles   = n_distinct(candle_id),
-    total_hrs   = sum(total_time, na.rm = TRUE),
-    avg_eff     = mean(total_time / price_usd, na.rm = TRUE),
-    avg_scent   = mean(combined_scent, na.rm = TRUE),
-    is_verified = any(is_hot_empirical == TRUE),
+    n_candles      = n_distinct(candle_id),
+    total_hrs      = sum(total_time, na.rm = TRUE),
+    avg_eff        = mean(total_time / price_usd, na.rm = TRUE),
+    avg_scent      = mean(weighted_scent, na.rm = TRUE),
+    is_verified    = any(is_hot_empirical == TRUE),
     .groups = "drop"
   ) %>%
   mutate(
+    # PAE: Hours per dollar relative to collection average
     pae_index = (avg_eff / global_avg_eff) * 100,
-    # SAV = Efficiency scaled by how much the scent exceeds or fails the 3.0 midpoint
-    sav_index = pae_index * (avg_scent / target_scent_avg)
+    
+    # SAV: Weighted scent density relative to collection average
+    # This matches the methodology page formula:
+    # SAV = (weighted_scent / collection_avg_scent) × 100
+    sav_index = (avg_scent / global_avg_scent) * 100,
+    
+    # Confidence Tax: 20% penalty for brands with fewer than 3 candles
+    # Applied to both indexes since small samples affect all measurements
+    pae_index = if_else(n_candles < 3, pae_index * 0.8, pae_index),
+    sav_index = if_else(n_candles < 3, sav_index * 0.8, sav_index)
   )
 
 # 6. GENERATE PERFORMANCE PLOT
 performance_plot <- ggplot(brand_rankings, aes(x = pae_index, y = sav_index)) +
-  # Quadrant Labels
-  annotate("text", x = 160, y = 160, label = "GRAIL", alpha = 0.1, size = 10, fontface = "bold") +
-  annotate("text", x = 40, y = 40, label = "DUD", alpha = 0.1, size = 10, fontface = "bold") +
   
-  # Grid Lines
+  # Quadrant Labels
+  annotate("text", x = 160, y = 160, label = "GRAIL",       alpha = 0.1, size = 10, fontface = "bold") +
+  annotate("text", x = 40,  y = 40,  label = "DUD",         alpha = 0.1, size = 10, fontface = "bold") +
+  annotate("text", x = 40,  y = 160, label = "OVERACHIEVER",alpha = 0.1, size = 6,  fontface = "bold") +
+  annotate("text", x = 160, y = 40,  label = "WORKHORSE",   alpha = 0.1, size = 6,  fontface = "bold") +
+  
+  # Quadrant Grid Lines
   geom_hline(yintercept = 100, linetype = "dashed", color = "grey85") +
   geom_vline(xintercept = 100, linetype = "dashed", color = "grey85") +
   
-  # Points: Bubble size for depth, Color for quality of data
+  # Points: Bubble size for collection depth, Color for data quality
   geom_point(aes(size = n_candles, color = is_verified), alpha = 0.6) +
   
   geom_text_repel(aes(label = brand_name), size = 3.5, family = "sans") +
@@ -66,24 +105,37 @@ performance_plot <- ggplot(brand_rankings, aes(x = pae_index, y = sav_index)) +
   scale_color_manual(
     values = c("TRUE" = "#2a9d8f", "FALSE" = "#e76f51"),
     labels = c("TRUE" = "Empirical (Measured)", "FALSE" = "Anecdotal (Recall)"),
-    drop = FALSE 
+    drop = FALSE
   ) +
   
-  # Hide the size legend to keep the dashboard clean
-  scale_size_continuous(range = c(3, 12), guide = "none") + 
+  # Hide size legend to keep dashboard clean
+  scale_size_continuous(range = c(3, 12), guide = "none") +
   
   labs(
-    title = "CANDLEGRAPH PERFORMANCE MAP",
+    title    = "CANDLEGRAPH PERFORMANCE MAP",
     subtitle = "Size indicates collection depth | Color indicates Hot Throw basis",
-    x = "Efficiency Index (PAE)",
-    y = "Value Index (SAV)",
-    color = "Data Provenance"
+    x        = "Efficiency Index (PAE)",
+    y        = "Scent Value Index (SAV)",
+    color    = "Data Provenance"
   ) +
+  
   theme_minimal(base_size = 12) +
   theme(
-    legend.position = "bottom",
-    plot.title = element_text(face = "bold"),
+    legend.position  = "bottom",
+    plot.title       = element_text(face = "bold"),
     panel.grid.minor = element_blank()
   )
 
-message("Sync Complete: Standardized 1-5 Performance Index Loaded.")
+# 7. EXPORT PLOT
+# Saves to static/images/ so Hugo can serve it directly
+# Also available as R object (performance_plot) for inline .Rmd rendering
+ggsave(
+  filename = here::here("static", "images", "performance_map.png"),
+  plot     = performance_plot,
+  width    = 10,
+  height   = 8,
+  dpi      = 150,
+  bg       = "white"
+)
+
+message("Sync Complete: SAV/PAE indexes calculated. Performance map exported to static/images/.")
