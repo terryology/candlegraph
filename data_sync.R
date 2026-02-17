@@ -43,14 +43,22 @@ df_master <- burn_times %>%
   left_join(brands, by = "brand_id") %>%
   rename(brand_name = any_of(c("brand_name.x", "brand_name"))) %>%
   mutate(
+    # Average all available hot throw measurements (1-3 checkpoints across candle life)
+    throw_hot_avg = rowMeans(
+      select(., throw_hot_1, throw_hot_2, throw_hot_3), 
+      na.rm = TRUE
+    ),
+    # Replace NaN (when all three are NA) with NA
+    throw_hot_avg = if_else(is.nan(throw_hot_avg), NA_real_, throw_hot_avg),
+    
     # Weighted scent score: 40% Cold Throw + 60% Hot Throw
     # Falls back to Cold only if Hot is missing, defaults to neutral (3) if both missing
     cold_score = coalesce(as.numeric(throw_cold), 3),
-    hot_score  = coalesce(as.numeric(throw_hot), as.numeric(throw_cold), 3),
+    hot_score  = coalesce(throw_hot_avg, as.numeric(throw_cold), 3),
     weighted_scent = (cold_score * 0.4) + (hot_score * 0.6),
     
-    # PROVENANCE: Strictly check the explicit 'Measured' tag in your basis column
-    is_hot_empirical = !is.na(throw_hot_basis) & throw_hot_basis == "Measured"
+    # PROVENANCE: Check if throws were measured empirically vs recalled from memory
+    is_empirical = !is.na(throw_basis) & throw_basis == "Measured"
   )
 
 # 4. BASELINES
@@ -66,7 +74,7 @@ brand_rankings <- df_master %>%
     total_hrs      = sum(total_time, na.rm = TRUE),
     avg_eff        = mean(total_time / price_usd, na.rm = TRUE),
     avg_scent      = mean(weighted_scent, na.rm = TRUE),
-    is_verified    = any(is_hot_empirical == TRUE),
+    is_verified    = any(is_empirical == TRUE),
     .groups = "drop"
   ) %>%
   mutate(
@@ -75,7 +83,7 @@ brand_rankings <- df_master %>%
     
     # SAV: Weighted scent density relative to collection average
     # This matches the methodology page formula:
-    # SAV = (weighted_scent / collection_avg_scent) × 100
+    # SAV = (weighted_scent / collection_avg_scent) Ã— 100
     sav_index = (avg_scent / global_avg_scent) * 100,
     
     # Confidence Tax: 20% penalty for brands with fewer than 3 candles
