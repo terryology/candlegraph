@@ -19,22 +19,47 @@
       {{ $pages = .Site.RegularPages }}
     {{ end }}
 
-    {{ range (where $pages "Section" "!=" "").GroupByDate "2006" }}
-      {{ range .Pages }}
-      <article class="archive-item">
-        <a href="{{ .RelPermalink }}" class="archive-item-link">{{ .Title }}</a><br>
-  
-        <div class="archive-item-meta">
-        {{ partial "post_meta.html" . }}
-        </div>
+    {{ $paginator := .Paginate (where $pages "Section" "!=" "") }}
 
-        <div class="archive-item-summary">
-        {{ .Summary }}
-        <a href="{{ .Permalink }}" class="read-more">Read Post »</a>
-        </div>  
-      </article>
-      {{ end }}
+    {{ range $paginator.Pages }}
+      {{ partial "post_preview.html" . }}
     {{ end }}
+
+    {{ if gt $paginator.TotalPages 1 }}
+    <nav class="pagination" aria-label="Page navigation">
+
+      {{/* Previous button */}}
+      {{ if $paginator.HasPrev }}
+        <a href="{{ $paginator.Prev.URL }}" class="pagination-btn pagination-prev" aria-label="Previous page">
+          &laquo; Previous
+        </a>
+      {{ else }}
+        <span class="pagination-btn pagination-prev pagination-disabled">&laquo; Previous</span>
+      {{ end }}
+
+      {{/* Numbered pages */}}
+      <div class="pagination-numbers">
+        {{ range $paginator.Pagers }}
+          {{ if eq . $paginator }}
+            <span class="pagination-number pagination-current" aria-current="page">{{ .PageNumber }}</span>
+          {{ else }}
+            <a href="{{ .URL }}" class="pagination-number">{{ .PageNumber }}</a>
+          {{ end }}
+        {{ end }}
+      </div>
+
+      {{/* Next button */}}
+      {{ if $paginator.HasNext }}
+        <a href="{{ $paginator.Next.URL }}" class="pagination-btn pagination-next" aria-label="Next page">
+          Next &raquo;
+        </a>
+      {{ else }}
+        <span class="pagination-btn pagination-next pagination-disabled">Next &raquo;</span>
+      {{ end }}
+
+    </nav>
+    {{ end }}
+
   </div>
 
 </main>

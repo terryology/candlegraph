@@ -319,7 +319,92 @@ select:focus-visible {
   color: var(--text-primary);
 }
 
-/* --- 7. FOOTER --- */
+/* --- 7. PAGINATION --- */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin: var(--space-xl) 0;
+  flex-wrap: wrap;
+}
+
+.pagination-btn {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  transition: var(--transition-smooth);
+}
+
+.pagination-btn:hover,
+.pagination-btn:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+  background: rgba(217, 119, 6, 0.05);
+}
+
+.pagination-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.pagination-numbers {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+.pagination-number {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  transition: var(--transition-smooth);
+}
+
+.pagination-number:hover,
+.pagination-number:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+  background: rgba(217, 119, 6, 0.05);
+}
+
+.pagination-current {
+  color: var(--bg-secondary);
+  background: var(--accent);
+  border-color: var(--accent);
+  font-weight: 700;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+/* Mobile pagination */
+@media (max-width: 600px) {
+  .pagination {
+    gap: var(--space-xs);
+  }
+  .pagination-btn {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+  }
+}
+
+/* --- 8. FOOTER --- */
 .footer {
   background-color: var(--bg-secondary) !important; 
   border-top: 1px solid var(--border) !important;

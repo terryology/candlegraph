@@ -1,40 +1,21 @@
-<article class="post-preview">
-    <a href="{{ .Permalink }}">
-        <h2 class="post-title">{{ .Title }}</h2>
-        {{ if .Params.subtitle }}
-        <h3 class="post-subtitle">
-            {{ .Params.subtitle }}
-        </h3>
-        {{ end }}
-        {{ if .Params.image }}
-        <img src="{{ .Params.image }}" alt="{{ .Title }}" class="img-title" />
-        {{ end }}
-        {{ if .Params.video }}
-        <video loop autoplay muted playsinline class="img-title">
-            <source src="{{ .Params.video }}">
-        </video>
-        {{ end }}
-    </a>
+<article class="archive-item">
+  <a href="{{ .RelPermalink }}" class="archive-item-link">{{ .Title }}</a><br>
 
-    <p class="post-meta">
-        {{ partial "post_meta.html" . }}
-    </p>
+  <div class="archive-item-meta">
+    {{ partial "post_meta.html" . }}
+  </div>
 
-    <div class="post-entry">
-        {{ if or (.Truncated) (.Params.summary) }}
-        {{ .Summary }}
-        <a href="{{ .Permalink }}" class="read-more">[{{ i18n "readMore" }}]</a>
-        {{ else }}
-        {{ .Content }}
-        {{ end }}
-    </div>
+  <div class="archive-item-summary">
+    {{ .Summary }}
+    <a href="{{ .Permalink }}" class="read-more">Read Post »</a>
+  </div>
 
-    {{ if .Params.tags }}
-    <div class="blog-tags">
-        {{ range .Params.tags }}
-        <a href="{{ "tags" | absLangURL }}/{{ . | urlize }}/">{{ . }}</a>
-        {{ end }}
-    </div>
+  {{ if .Params.tags }}
+  <div class="blog-tags">
+    {{ range .Params.tags }}
+    <a href="{{ "tags" | absLangURL }}/{{ . | urlize }}/">{{ . }}</a>
     {{ end }}
+  </div>
+  {{ end }}
 
 </article>

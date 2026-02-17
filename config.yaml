@@ -2,6 +2,8 @@ baseurl: "https://candlegraph.netlify.app/"
 languageCode: en-US
 title: Candlegraph
 theme: hugo-lithium
+pagination:
+  pagerSize: 5
 ignoreFiles:
   - \.Rmd$
   - \.Rmarkdown$
