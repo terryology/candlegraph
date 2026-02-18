@@ -2,6 +2,7 @@
 title: "The Methodology: Inside the Candlegraph Engine"
 date: 2026-02-15
 draft: false
+math: true
 description: "A deep dive into the math, normalization, and provenance of the Candlegraph performance index."
 ---
 

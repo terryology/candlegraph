@@ -1,0 +1,21 @@
+{{ if .Params.math }}
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        // Optional: Makes SAV and PAE look like professional variables
+        macros: {
+          SAV: "{\\text{SAV}}",
+          PAE: "{\\text{PAE}}"
+        }
+      },
+      options: {
+        // Ensures MathJax scans the content passed through by Goldmark
+        processHtmlClass: 'tex2jax_process'
+      }
+    };
+  </script>
+{{ end }}
