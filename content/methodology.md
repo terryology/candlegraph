@@ -68,7 +68,8 @@ As the collection grows and I discover better-engineered candles, the "Average" 
 
 ### Current Performance Map
 {{< data-vault title="Global Collection Index" >}}
-  {{< /data-vault >}}
+<img src="/images/performance_map.png" alt="Performance Map">
+{{< /data-vault >}}
 
 ---
 *The Candlegraph Engine is a technically sophisticated system powered by R, pulling live data via JSON to ensure the performance map is always reflective of the most recent burn logs.*
