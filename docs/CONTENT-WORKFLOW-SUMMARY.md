@@ -132,19 +132,23 @@ snippet candleplot
 ### Step-by-Step Process
 
 **1. Create the post**
-- In RStudio, create new `.Rmd` file in `content/post/`
-- Type `candlereview` + Shift+Tab
+- In R Console, run:
+ ```r
+ blogdown::new_post(title = "Brand Name Review", ext = ".Rmarkdown")
+ ```
+- RStudio opens the new `index.Rmarkdown` file in a folder structure
+- Use your `candlereview` snippet to add the template (delete the auto-generated front matter first)
 - Fill in the tab-stop fields:
  - Title
  - Description
  - Slug (URL-friendly, e.g., `paddywax-apricot-rose`)
  - Brand Name (must match exactly with `brand_name` in Google Sheets)
 
-**2. Initial knit**
+**2. Get the shortcodes**
 - Save the file
-- Click Knit (or Cmd/Ctrl+Shift+K)
-- The setup chunk runs `get_brief()` automatically
-- Console output shows two shortcodes ready to copy
+- Run the setup chunk manually (Cmd/Ctrl+Shift+Enter while in the chunk)
+- `get_brief()` output appears in console
+- Console shows two shortcodes ready to copy
 
 **Console output example:**
 ```
@@ -164,10 +168,12 @@ snippet candleplot
 - Reference stats inline if needed (e.g., `` `r round(b$sav_index, 1)` ``)
 - Add additional sections, images, whatever the post needs
 
-**5. Test locally**
-- Knit again to regenerate `.html`
-- Run `hugo server` or `blogdown::serve_site()`
-- Preview at `localhost:4321` (or whatever port Hugo assigns)
+**5. Preview with blogdown**
+- Save the file
+- Run `blogdown::serve_site()` in R Console (if not already running)
+- Blogdown automatically converts `.Rmarkdown` -> `.markdown`
+- Hugo processes `.markdown` (including shortcodes!)
+- Preview in browser at the URL shown (usually `http://localhost:4321`)
 - Check for:
  - Shortcode rendering
  - Performance map display
@@ -175,7 +181,7 @@ snippet candleplot
  - Mobile responsiveness
 
 **6. Commit and deploy**
-- Stage both `.Rmd` and `.html` files in GitHub Desktop
+- Stage `.Rmarkdown` and `.markdown` files in GitHub Desktop
 - Commit with a clear message (e.g., "Add Paddywax review")
 - Push to GitHub
 - GitHub webhook triggers Netlify
@@ -225,7 +231,7 @@ After editing:
 
 ### How get_brief() works
 
-When you knit a review post, the setup chunk calls:
+When you run the setup chunk in a review post, it calls:
 ```r
 source(here::here("data_sync.R"))
 get_brief("Brand Name")
@@ -253,10 +259,10 @@ If you:
 - Re-run `data_sync.R` with formula updates
 
 Then you need to:
-1. Re-knit affected posts
+1. Save the affected `.Rmarkdown` posts (blogdown regenerates `.markdown`)
 2. Run `get_brief()` again for those brands
 3. Update the shortcode values in the post
-4. Commit updated `.html` files
+4. Commit updated `.markdown` files
 
 **This is why the SAV formula change is a breaking change** -- it affects all published posts.
 
@@ -269,32 +275,32 @@ Then you need to:
 ```
 +-----------------+
 | RStudio |
-| (.Rmd file) |
+| (.Rmarkdown) |
 +--------+--------+
  |
- | Knit
- ?
+ | blogdown::serve_site()
+ |
 +-----------------+
 | Generated |
-| (.html file) |
+| (.markdown) |
 +--------+--------+
  |
  | Commit both files
- ?
+ |
 +-----------------+
 | GitHub |
 | (repo) |
 +--------+--------+
  |
  | Webhook triggers
- ?
+ |
 +-----------------+
 | Netlify |
 | (Hugo build) |
 +--------+--------+
  |
  | Deploy
- ?
+ |
 +-----------------+
 | Live Site |
 | candlegraph |
@@ -305,13 +311,14 @@ Then you need to:
 ### What happens at each step
 
 **RStudio (Local):**
-- You write in `.Rmd`
-- Knitr/blogdown processes R code
-- Generates `.html` with evaluated chunks and shortcodes
-- Hugo server previews locally
+- You write in `.Rmarkdown`
+- Run `blogdown::serve_site()` to start the preview server
+- Blogdown converts `.Rmarkdown` -> `.markdown` automatically
+- Hugo processes `.markdown` with shortcodes and generates HTML
+- Preview appears in browser
 
 **GitHub (Version Control):**
-- Stores both `.Rmd` (source) and `.html` (output)
+- Stores both `.Rmarkdown` (source) and `.markdown` (blogdown output)
 - Tracks all changes
 - Triggers Netlify webhook on push
 
@@ -320,11 +327,11 @@ Then you need to:
 - Runs `hugo` command to build site
 - Processes layouts, partials, shortcodes
 - Serves static files at live URL
-- No R processing happens here (already done locally)
+- Uses the `.markdown` files (R code already evaluated locally)
 
 ### Key insight
 
-**R code runs locally, not on Netlify.** This is why you commit the `.html` file -- it already contains the evaluated R output (charts, inline stats, etc.). Netlify just builds the Hugo site from the pre-processed HTML.
+**R code runs locally via blogdown, not on Netlify.** When you run `blogdown::serve_site()`, it evaluates all R chunks and creates `.markdown` files with the output embedded. Netlify just builds the Hugo site from those pre-processed markdown files. This is why you commit both `.Rmarkdown` (your source) and `.markdown` (blogdown's output).
 
 ---
 
@@ -351,26 +358,49 @@ Name your R chunks, especially if you have multiple in one post:
 
 Unnamed chunks can cause knit errors when you have several.
 
+### Why .Rmarkdown instead of .Rmd?
+
+Candlegraph uses `.Rmarkdown` files (not `.Rmd`) for an important reason:
+
+**The problem with .Rmd:**
+- Blogdown converts `.Rmd` -> `.html`
+- Hugo serves HTML directly without processing
+- Hugo shortcodes don't work in HTML files
+- Your vault components wouldn't render
+
+**The solution with .Rmarkdown:**
+- Blogdown converts `.Rmarkdown` -> `.markdown`
+- Hugo processes `.markdown` files (including shortcodes!)
+- Vault components, data-vault wrappers, all work perfectly
+
+**When to use each:**
+- `.Rmarkdown` - For Hugo sites with shortcodes (like Candlegraph)
+- `.Rmd` - For standalone HTML documents or non-Hugo sites
+
+Always use `.Rmarkdown` for Candlegraph posts. This is why you use `blogdown::new_post(ext = ".Rmarkdown")` instead of manually creating files.
+
 ### File organization
 
-Posts go in `content/post/`:
+Posts go in `content/post/` using blogdown's folder structure:
 
-- 2024-01-15-paddywax-apricot-rose.Rmd
-- 2024-01-15-paddywax-apricot-rose.html
-- 2024-02-01-collection-six-months.Rmd
-- 2024-02-01-collection-six-months.html
+- 2024-01-15-paddywax-apricot-rose/
+ - index.Rmarkdown
+ - index.markdown
+- 2024-02-01-collection-six-months/
+ - index.Rmarkdown
+ - index.markdown
 - etc.
 
-Hugo uses the date in the filename for sorting, so follow the `YYYY-MM-DD-slug` convention.
+Use `blogdown::new_post()` to create this structure automatically. Hugo uses the folder name (with date prefix) for sorting and URL generation.
 
-### When to re-knit
+### When blogdown rebuilds
 
-Always re-knit before committing if you've:
-- Edited the `.Rmd` (even just fixing a typo)
+Blogdown automatically regenerates `.markdown` files when you:
+- Save changes to `.Rmarkdown` (while `blogdown::serve_site()` is running)
 - Re-run `data_sync.R` (updated data affects inline stats)
-- Changed any R code in chunks
+- Change any R code in chunks
 
-The `.html` file timestamp will update, and Git will catch it.
+Just save the file and blogdown handles the rest. The `.markdown` file timestamp will update, and Git will catch it.
 
 ---
 
@@ -405,11 +435,11 @@ Halfway between feature and review -- sources the data but doesn't call `get_bri
 ### Automated shortcode updates
 
 If the SAV formula changes again in the future, you could write a script to:
-1. Read all `.Rmd` files in `content/post/`
+1. Read all `.Rmarkdown` files in `content/post/`
 2. Extract brand names from shortcodes
 3. Run `get_brief()` for each
 4. Update shortcode values via regex
-5. Re-knit all affected posts
+5. Save files (blogdown regenerates `.markdown` automatically)
 
 Not worth building until it's a recurring problem.
 
@@ -435,7 +465,7 @@ Right now the performance map is embedded in every review post as a snapshot of 
 
 ### get_brief() returns "Brand not found"
 
-**Symptom:** Console error when knitting 
+**Symptom:** Console error when running setup chunk 
 **Cause:** Brand name doesn't match `brand_name` in Google Sheets (case-sensitive) 
 **Fix:** Check spelling and capitalization, verify in `brand_rankings`
 
@@ -457,16 +487,17 @@ Right now the performance map is embedded in every review post as a snapshot of 
 
 Use this for every review post:
 
-- [ ] Create `.Rmd` with `candlereview` snippet
+- [ ] Run `blogdown::new_post(title = "Brand Name", ext = ".Rmarkdown")`
+- [ ] Paste `candlereview` snippet content (delete auto-generated front matter)
 - [ ] Fill in title, description, slug, brand name
-- [ ] Knit to run `get_brief()`
+- [ ] Save file and run setup chunk to execute `get_brief()`
 - [ ] Copy/paste both shortcodes from console output
 - [ ] Write review prose
-- [ ] Knit again to regenerate `.html`
-- [ ] Test locally with `hugo server`
+- [ ] Save file (blogdown regenerates `.markdown` automatically)
+- [ ] Run `blogdown::serve_site()` to preview
 - [ ] Verify shortcodes render correctly
 - [ ] Check dark mode
-- [ ] Stage `.Rmd` and `.html` in GitHub Desktop
+- [ ] Stage `.Rmarkdown` and `.markdown` in GitHub Desktop
 - [ ] Commit with clear message
 - [ ] Push to GitHub
 - [ ] Verify live deploy on Netlify
@@ -494,11 +525,12 @@ Use this for every review post:
 
 ## [TAKEAWAYS] Key Takeaways
 
-1. **Two snippets cover 95% of use cases:** Reviews (`candlereview`) and features (`candlefeature`)
-2. **R runs locally, not on Netlify:** Always commit both `.Rmd` and `.html`
-3. **get_brief() is your friend:** Generates accurate shortcodes from live data
-4. **Test before pushing:** Local Hugo server catches issues before they go live
-5. **Keep it simple:** Only add complexity when you actually need it
+1. **Always use .Rmarkdown, not .Rmd:** Hugo shortcodes only work with `.Rmarkdown` -> `.markdown` workflow
+2. **Use blogdown::new_post() to create posts:** Never manually create files - let blogdown handle the folder structure
+3. **Use blogdown::serve_site() to preview:** Don't knit manually - blogdown converts `.Rmarkdown` automatically
+4. **get_brief() is your friend:** Generates accurate shortcodes from live data
+5. **Test before pushing:** Local preview catches issues before they go live
+6. **Keep it simple:** Only add complexity when you actually need it
 
 ---
 

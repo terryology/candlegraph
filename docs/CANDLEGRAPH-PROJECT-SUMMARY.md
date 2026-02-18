@@ -294,8 +294,8 @@ These should be done before committing to GitHub:
 - [ ] Re-run `data_sync.R` with new SAV formula
 - [ ] Run `get_brief()` for all brands in published posts
 - [ ] Update shortcode values in published posts with new SAV/PAE scores
-- [ ] Go through burn_times and fill in missing `throw_hot` recall values
-- [ ] Update `throw_hot_basis` to "Recall" for any filled-in values
+- [ ] Go through completed candles and fill in `throw_hot_1`, `throw_hot_2`, `throw_hot_3` in purchases (recall 2-3 checkpoints across candle life)
+- [ ] Update `throw_basis` to "Recall" for any recalled values, "Measured" for empirical data
 
 ---
 

@@ -25,11 +25,12 @@ snippet candlereview
 	description: "${2:One-sentence description}"
 	slug: "${3:url-slug}"
 	type: "review"
-	output: blogdown::html_page
+	output: html_document
 	---
 	```{r setup, include=FALSE}
 	knitr::opts_chunk\$set(echo = FALSE, dev = 'svg', fig.width = 10, fig.height = 8)
 	source(here::here("data_sync.R"))
+	source(here::here("post_brief.R"))
 	get_brief("${4:Brand Name}")
 	```
 	<!-- Paste brand-specs shortcode from get_brief() output below -->
@@ -63,7 +64,7 @@ snippet candlefeature
 	description: "${2:One-sentence description}"
 	slug: "${3:url-slug}"
 	type: "post"
-	output: blogdown::html_page
+	output: html_document
 	---
 	```{r setup, include=FALSE}
 	knitr::opts_chunk\$set(echo = FALSE)
@@ -98,8 +99,21 @@ snippet candleplot
 
 ## Usage
 
-**candlereview:** Type `candlereview` + Shift+Tab in a new .Rmd file 
-**candlefeature:** Type `candlefeature` + Shift+Tab in a new .Rmd file 
+**candlereview:** 
+1. Run `blogdown::new_post(title = "Brand Review", ext = ".Rmarkdown")` in R Console
+2. Delete the auto-generated front matter
+3. Type `candlereview` + Shift+Tab in the empty file
+4. Fill in fields and save
+5. Run setup chunk to get shortcodes
+6. Use `blogdown::serve_site()` to preview
+
+**candlefeature:** 
+1. Run `blogdown::new_post(title = "Feature Post", ext = ".Rmarkdown")` in R Console  
+2. Delete the auto-generated front matter
+3. Type `candlefeature` + Shift+Tab
+4. Fill in fields and write
+5. Use `blogdown::serve_site()` to preview
+
 **candleplot:** Type `candleplot` + Shift+Tab inside an R chunk
 
 ---
@@ -107,7 +121,7 @@ snippet candleplot
 ## Troubleshooting
 
 **Snippet doesn't expand:**
-- Make sure you're in an .Rmd file (not .R)
+- Make sure you're in a `.Rmarkdown` file (not `.R` or plain `.Rmd`)
 - Verify every line starts with exactly one tab
 - Check for no leading spaces
 
@@ -116,8 +130,15 @@ snippet candleplot
 - Example: `knitr::opts_chunk\$set`
 
 **get_brief() errors:**
+- Make sure you sourced both `data_sync.R` AND `post_brief.R`
 - Brand name must match exactly with Google Sheets
 - Check capitalization and spelling
+- Verify `data_sync.R` ran successfully
+
+**Shortcodes not rendering:**
+- Must use `.Rmarkdown` files (not `.Rmd`)
+- Use `blogdown::serve_site()` to preview (don't knit manually)
+- Hugo processes `.markdown` files, not `.html` files
 - Verify `data_sync.R` ran successfully
 
 ---
