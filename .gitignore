@@ -6,7 +6,6 @@ Thumbs.db
 .Rproj.user/
 .Rhistory
 .RData
-.httr-oauth
 **/*.log
 
 # --- Auth Tokens ---
