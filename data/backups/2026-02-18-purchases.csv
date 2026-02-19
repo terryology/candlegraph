@@ -1,0 +1,16 @@
+brand_id,candle_id,brand_name,scent_name,purchase_date,price_usd,weight_oz,throw_cold,throw_hot_1,throw_hot_2,throw_hot_3,throw_basis
+1,1,Boy Smells,Slow Burn,NA,39,8.5,3,3,3,3,Recall
+2,2,Diptyque,Mentheverte,NA,74,6.5,4,4,4,4,Recall
+3,3,Wax Cabin,Cozy Cabin,NA,12,4,3,2,2,2,Recall
+4,4,goop,Edition 02 - Shiso,NA,72,10.2,3,3,3,3,Recall
+5,5,El Arroyo,Small Fires,NA,28,14,2,2,2,2,Recall
+6,6,Santa Maria Novella,Tobacco Toscano,NA,100,8.8,3,3,3,3,Recall
+2,7,Diptyque,34 Boulevard Saint-Germain,NA,120,10.6,4,5,5,5,Recall
+7,8,Christian Dior,30 Montaigne,NA,95,8.8,5,5,5,5,Recall
+8,9,Voluspa,Goji Tarocco Orange,NA,32,9,3,3,3,3,Recall
+9,10,Jackson Vaughn,No. 12 Hacienda,NA,38,14.5,3,3,3,3,Recall
+10,11,Opalhouse,Sandalwood Rose,NA,20,28,3,3,3,3,Recall
+1,12,Boy Smells,Ash,NA,14,3,2,2,2,2,Measured
+11,13,Erewhon,Smoked Oud & Frankincense,NA,64,12,3,4,NA,NA,Measured
+2,14,Diptyque,Narguile,NA,78,6.5,4,4,4,4,Measured
+1,15,Boy Smells,Kush,NA,14,3,2,2,2,2,Measured

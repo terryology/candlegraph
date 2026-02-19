@@ -1,0 +1,16 @@
+brand_id,candle_id,wax,wick_type,wick_count,container,container_shape
+1,1,Beeswax,Cotton,NA,Glass,Round
+2,2,Paraffin,Cotton,NA,Glass,Round
+3,3,Soy,Cotton,NA,Glass,Round
+4,4,Soy,Cotton,NA,Glass,Round
+5,5,Soy,Cotton,NA,Metal,Round
+6,6,Paraffin,Cotton,NA,Glass,Round
+2,7,Paraffin,Cotton,NA,Glass,Round
+7,8,Plant-Based,Cotton,NA,Porcelain,Round
+8,9,Coconut,Cotton,NA,Glass,Round
+9,10,Soy,Cotton,NA,Glass,Round
+10,11,Paraffin,Cotton,NA,Glass,Round
+1,12,Beeswax,Cotton,NA,Glass,Round
+11,13,Soy,Cotton,NA,Glass,Round
+2,14,Paraffin,Cotton,NA,Glass,Round
+1,15,Beeswax,Cotton,NA,Glass,Round
