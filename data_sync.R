@@ -157,3 +157,4 @@ ggsave(
 )
 
 message("Sync Complete: SAV/PAE indexes calculated. Performance map exported to static/images/.")
+
