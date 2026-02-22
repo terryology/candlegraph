@@ -60,8 +60,8 @@ $$PAE = \left( \frac{\text{Brand Avg Efficiency}}{\text{Collection Avg Efficienc
 - Value is measured in what matters: usable time per dollar
 
 **Example:**
-- Brand Y: 150 hours / $50 = 3.0 hrs/$
-- Collection average: 2.5 hrs/$
+- Brand Y: 150 hours / \\$50 = 3.0 hrs/\\$
+- Collection average: 2.5 hrs/\$
 - PAE = (3.0 / 2.5) × 100 = **120** (20% more efficient)
 
 **Important:** Burn sessions are capped at 4 hours (industry safety guideline), except for final burns where the candle is allowed to burn to completion naturally. This ensures fair comparisons and data quality.
