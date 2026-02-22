@@ -74,11 +74,11 @@ a:visited {
   border-bottom: 1px solid var(--accent-glow);
 }
 
-/* Article content link hover - excludes read-more */
-.article-content a:not(.read-more):hover, 
-.article-content a:not(.read-more):focus-visible,
-.post-content a:not(.read-more):hover,
-.post-content a:not(.read-more):focus-visible {
+/* Article content link hover - excludes read-more and mini-info-link */
+.article-content a:not(.read-more):not(.mini-info-link):hover, 
+.article-content a:not(.read-more):not(.mini-info-link):focus-visible,
+.post-content a:not(.read-more):not(.mini-info-link):hover,
+.post-content a:not(.read-more):not(.mini-info-link):focus-visible {
   background-color: var(--accent-glow);
   color: var(--text-primary);
   border-bottom: 1px solid var(--accent);
@@ -139,7 +139,7 @@ select:focus-visible {
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
-  overflow: visible !important; /* Prevent clipping */
+  overflow: visible !important;
 }
 
 .nav {
@@ -148,10 +148,10 @@ select:focus-visible {
   align-items: center;
   max-width: 1100px;
   margin: 0 auto;
-  height: 75px; /* Increased from 70px to prevent border clipping */
+  height: 75px;
   padding: 0 1.5rem;
   position: relative;
-  overflow: visible !important; /* Prevent clipping */
+  overflow: visible !important;
 }
 
 .nav-title {
@@ -162,7 +162,9 @@ select:focus-visible {
   z-index: 10;
 }
 
-.nav-title a { font-size: 2.1rem; }
+.nav-title a { 
+  font-size: 2.1rem; 
+}
 
 .nav-title a:hover,
 .nav-title a:focus-visible { 
@@ -180,36 +182,39 @@ select:focus-visible {
 }
 
 .nav-links li {
-  line-height: 1 !important; /* Force reset line-height */
-  padding: 4px 0; /* Add vertical padding to give border space */
+  line-height: 1 !important;
+  padding: 4px 0;
 }
 
 .nav-links a {
   color: var(--text-muted);
   font-size: 0.95rem;
   border-bottom: none;
-  padding-bottom: 2px; /* Prevents border cutoff on hover */
+  padding-bottom: 2px;
 }
 
 @media (min-width: 851px) {
-  .nav-links a { margin-left: -10px !important; display: inline-block; }
+  .nav-links a { 
+    margin-left: -10px !important; 
+    display: inline-block; 
+  }
 }
 
 .terry-link {
-  color: var(--accent) !important; /* Force amber color always */
+  color: var(--accent) !important;
   font-weight: 700;
   padding: 0 !important;
   background: none;
   border: none;
   border-bottom: none;
-  vertical-align: baseline; /* Align with other nav links */
+  vertical-align: baseline;
 }
 
 .terry-link:hover,
 .terry-link:focus-visible {
-  color: var(--accent) !important; /* Stay amber on hover */
-  border-bottom: none; /* No underline on hover */
-  opacity: 0.8; /* Subtle hover effect */
+  color: var(--accent) !important;
+  border-bottom: none;
+  opacity: 0.8;
 }
 
 /* --- 5. THE CANDLE --- */
@@ -448,7 +453,7 @@ select:focus-visible {
   filter: invert(0.8) brightness(1.2); 
 }
 
-/* --- 8. MOBILE --- */
+/* --- 9. MOBILE --- */
 @media (max-width: 850px) {
   .nav { 
     height: auto; 
@@ -483,7 +488,7 @@ select:focus-visible {
   }
 }
 
-/* --- 9. DATA VAULT --- */
+/* --- 10. DATA VAULT --- */
 .terryology-vault {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
@@ -548,13 +553,14 @@ select:focus-visible {
   border-top: 1px solid var(--border);
 }
 
-/* --- 10. MINI-VAULT SPECS --- */
+/* --- 11. MINI-VAULT SPECS --- */
 .mini-vault {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
   border-radius: 6px;
-  margin: 1.5rem 0;
+  margin: 1.5rem auto;
   max-width: 400px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
 }
 
 .mini-header {
@@ -565,6 +571,28 @@ select:focus-visible {
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
+}
+
+/* Info link in mini-header */
+.mini-info-link {
+  margin-left: auto;
+  color: var(--text-muted) !important;
+  font-size: 0.85rem;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  opacity: 0.6;
+  transition: var(--transition-smooth);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.mini-info-link:hover,
+.mini-info-link:focus-visible {
+  opacity: 1;
+  color: var(--accent) !important;
+  background: rgba(217, 119, 6, 0.02);
+  border-bottom: none !important;
+  text-decoration: none !important;
 }
 
 .mini-grid {
@@ -603,7 +631,7 @@ select:focus-visible {
 .tier-overachiever { color: var(--accent); }
 .tier-dud { color: #d63031; }
 
-/* --- BLOG TAGS --- */
+/* --- 12. BLOG TAGS --- */
 .blog-tags {
   display: flex;
   flex-wrap: wrap;
@@ -628,12 +656,15 @@ select:focus-visible {
   background: rgba(217, 119, 6, 0.05);
 }
 
-/* --- 11. TECHNICAL FOOTNOTE / AUDIT --- */
+/* --- 13. TECHNICAL FOOTNOTE / AUDIT --- */
 .vault-audit {
-  border-top: 1px solid var(--border);
-  margin-top: 3rem;
-  padding-top: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 3rem auto 0 auto;
+  padding: 1.5rem;
   font-family: 'serif';
+  max-width: 600px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
 }
 
 .audit-line {
@@ -641,12 +672,14 @@ select:focus-visible {
   letter-spacing: 0.05em;
   color: var(--text-muted);
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .audit-grid {
   display: flex;
   gap: 2rem;
   margin-bottom: 1rem;
+  justify-content: center;
 }
 
 .audit-cell {
@@ -672,6 +705,7 @@ select:focus-visible {
   font-size: 0.6rem;
   font-style: italic;
   color: var(--text-muted);
+  text-align: center;
 }
 
 /* Mobile stacking for audit grid */
@@ -684,7 +718,7 @@ select:focus-visible {
 
 /* Vault methodology link */
 .vault-methodology-link {
-  color: #967E5D; /* Workhorse tier color - intentionally hardcoded */
+  color: #967E5D;
   text-decoration: underline;
   transition: var(--transition-smooth);
 }
@@ -695,7 +729,7 @@ select:focus-visible {
   border-bottom: none;
 }
 
-/* --- 12. VAULT BASELINES --- */
+/* --- 14. VAULT BASELINES --- */
 .methodology-baselines {
   display: flex;
   gap: var(--space-lg);
@@ -735,7 +769,7 @@ select:focus-visible {
   }
 }
 
-/* --- 12. QUADRANT LEGEND --- */
+/* --- 15. QUADRANT LEGEND --- */
 .quadrant-legend {
   display: grid;
   grid-template-columns: 1fr 1fr;

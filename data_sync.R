@@ -32,7 +32,16 @@ purchases <- tryCatch({
 
 burn_times <- tryCatch({
   read_sheet(sheet_url, sheet = "burn_times") %>%
-    mutate(total_time = as.numeric(difftime(stop_time, start_time, units = "hours")))
+    mutate(
+      total_time = as.numeric(difftime(stop_time, start_time, units = "hours")),
+      # Cap at 4 hours UNLESS it's the final burn
+      # Final burns are allowed full time to extract all remaining value
+      effective_time = if_else(
+        is_final_burn == TRUE,
+        total_time,              # No cap on final burn
+        pmin(total_time, 4)      # Cap at 4hr for all other sessions
+      )
+    )
 }, error = function(e) {
   stop(paste("Failed to load burn_times sheet:", e$message))
 })
@@ -63,7 +72,8 @@ df_master <- burn_times %>%
 
 # 4. BASELINES
 # Both indexes are relational - 100 always = current collection average
-global_avg_eff   <- mean(df_master$total_time / df_master$price_usd, na.rm = TRUE)
+# Uses effective_time (capped at 4hr except final burns) for fair efficiency comparison
+global_avg_eff   <- mean(df_master$effective_time / df_master$price_usd, na.rm = TRUE)
 global_avg_scent <- mean(df_master$weighted_scent, na.rm = TRUE)
 
 # 5. BRAND RANKINGS
@@ -71,8 +81,8 @@ brand_rankings <- df_master %>%
   group_by(brand_name) %>%
   summarise(
     n_candles      = n_distinct(candle_id),
-    total_hrs      = sum(total_time, na.rm = TRUE),
-    avg_eff        = mean(total_time / price_usd, na.rm = TRUE),
+    total_hrs      = sum(effective_time, na.rm = TRUE),
+    avg_eff        = mean(effective_time / price_usd, na.rm = TRUE),
     avg_scent      = mean(weighted_scent, na.rm = TRUE),
     is_verified    = any(is_empirical == TRUE),
     .groups = "drop"
@@ -83,7 +93,7 @@ brand_rankings <- df_master %>%
     
     # SAV: Weighted scent density relative to collection average
     # This matches the methodology page formula:
-    # SAV = (weighted_scent / collection_avg_scent) Ã— 100
+    # SAV = (weighted_scent / collection_avg_scent) × 100
     sav_index = (avg_scent / global_avg_scent) * 100,
     
     # Confidence Tax: 20% penalty for brands with fewer than 3 candles

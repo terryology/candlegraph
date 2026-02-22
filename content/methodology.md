@@ -51,11 +51,15 @@ When we plot **SAV** against **PAE**, four distinct categories of candle enginee
 ---
 
 ## 5. Data Provenance (The Evidence Scale)
+
 In the spirit of technical honesty, we track the **Reliability** of our data. Not all metrics are created equal.
 
-* <span style="color: #2D5A27; font-weight: bold;">● Archival:</span> The Gold Standard. Both Cold and Hot throws were measured and logged in real-time with a stopwatch and rubric.
-* <span style="color: #967E5D; font-weight: bold;">● Recovered:</span> Mixed Certainty. One metric was logged; the other was filled in retroactively from memory.
-* <span style="color: #D4A373; font-weight: bold;">● Recalled:</span> Anecdotal. The data is based on best-memory reconstruction from before the Engine was live.
+* <span style="color: #2D5A27; font-weight: bold;">● Empirical:</span> The Gold Standard. Throw measurements were recorded in real-time with contemporaneous notes during burns. This data reflects actual observed performance.
+
+* <span style="color: #d63031; font-weight: bold;">● Anecdotal:</span> Recalled. The data is based on best-memory reconstruction from candles burned before systematic tracking began. These scores are honest estimates but lack the precision of measured data.
+
+Brands with **fewer than 3 candles** receive a 20% Confidence Tax on both SAV and PAE indexes, regardless of data provenance. Small sample sizes introduce higher variance, and the penalty reflects this statistical reality.
+
 
 ---
 
