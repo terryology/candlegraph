@@ -67,6 +67,9 @@ get_brief <- function(target_brand) {
 
 get_candle_brief <- function(target_brand, target_scent) {
   
+  # Load data if not already in environment
+  if (!exists("df_master")) source(here::here("data_sync.R"))
+  
   # 1. Filter the master dataframe created in data_sync.R
   candle_sessions <- df_master %>%
     filter(tolower(brand_name) == tolower(target_brand),
