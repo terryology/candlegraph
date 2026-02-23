@@ -31,6 +31,15 @@
   /* --accent stays the same */
 }
 
+/* Dark mode legend box backgrounds */
+.dark-mode .legend-box.grail { 
+  background: rgba(42, 157, 143, 0.1); 
+}
+
+.dark-mode .legend-box.dud { 
+  background: rgba(231, 111, 81, 0.1); 
+}
+
 /* --- 2. GLOBAL FOUNDATION --- */
 body {
   background-color: var(--bg-primary);
@@ -631,7 +640,74 @@ select:focus-visible {
 .tier-overachiever { color: var(--accent); }
 .tier-dud { color: #d63031; }
 
-/* --- 12. BLOG TAGS --- */
+/* --- 12. CANDLE SPECS STRIP --- */
+.candle-specs-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--bg-tertiary);
+    border-left: 4px solid var(--accent);
+    padding: var(--space-sm);
+    margin: var(--space-md) 0;
+    font-family: 'Lora', serif;
+}
+
+.spec-item {
+    display: flex;
+    flex-direction: column; /* Stack label over data */
+    align-items: center;    /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    border-right: 1px solid var(--border);
+    min-height: 60px;       /* Ensures all boxes are uniform height */
+}
+
+.spec-item:last-child { border-right: none; }
+
+.spec-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.spec-data {
+    font-weight: bold;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    line-height: 1; /* Prevents descenders from pushing the box height */
+}
+
+/* --- 12.1 REFINED METHODOLOGY LINK --- */
+.methodology-link {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    font-size: 0.85rem;
+    color: var(--text-muted) !important; /* Start muted/plain, matching the label */
+    margin-left: 5px;
+    transition: all 0.25s ease;
+    outline: none; 
+    background: none !important; /* Forces removal of any default orange background */
+    -webkit-tap-highlight-color: transparent; /* Removes mobile tap highlight */
+}
+
+.methodology-link:hover {
+    color: var(--accent) !important; /* Turns Amber only on hover */
+    text-shadow: 0 0 12px var(--accent); /* Only the icon glows */
+    background: transparent !important; /* Ensures no background box appears */
+    cursor: pointer;
+}
+
+/* Ensure the label alignment is locked in */
+.spec-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* --- 13. BLOG TAGS --- */
 .blog-tags {
   display: flex;
   flex-wrap: wrap;
@@ -656,7 +732,7 @@ select:focus-visible {
   background: rgba(217, 119, 6, 0.05);
 }
 
-/* --- 13. TECHNICAL FOOTNOTE / AUDIT --- */
+/* --- 14. TECHNICAL FOOTNOTE / AUDIT --- */
 .vault-audit {
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -729,7 +805,7 @@ select:focus-visible {
   border-bottom: none;
 }
 
-/* --- 14. VAULT BASELINES --- */
+/* --- 15. VAULT BASELINES --- */
 .methodology-baselines {
   display: flex;
   gap: var(--space-lg);
@@ -769,7 +845,7 @@ select:focus-visible {
   }
 }
 
-/* --- 15. QUADRANT LEGEND --- */
+/* --- 16. QUADRANT LEGEND --- */
 .quadrant-legend {
   display: grid;
   grid-template-columns: 1fr 1fr;
