@@ -64,3 +64,37 @@ get_brief <- function(target_brand) {
     low_sample = b$n_candles < 3
   ))
 }
+
+get_candle_brief <- function(target_brand, target_scent) {
+  
+  # 1. Filter the master dataframe created in data_sync.R
+  candle_sessions <- df_master %>%
+    filter(tolower(brand_name) == tolower(target_brand),
+           tolower(scent_name) == tolower(target_scent))
+  
+  if (nrow(candle_sessions) == 0) {
+    stop(paste("No data found for:", target_brand, "-", target_scent))
+  }
+  
+  # 2. Aggregate stats using Hybrid Logic
+  stats <- candle_sessions %>%
+    summarise(
+      price = first(price_usd),
+      actual_burn_hrs = sum(total_time, na.rm = TRUE),    # Total physical life
+      effective_hrs   = sum(effective_time, na.rm = TRUE), # "Rule of Four" life
+      .groups = "drop"
+    )
+  
+  # 3. Efficiency Calculation (The "Terryology" standard)
+  # Uses effective_hrs to penalize over-burning beyond 4 hours
+  efficiency_val <- (stats$effective_hrs * 60) / stats$price
+  cost_hr_val <- stats$price / stats$actual_burn_hrs # Consumer cost per hour
+  
+  # 4. Generate Shortcode
+  cat("\n--- CANDLE SPECS SHORTCODE ---\n")
+  cat(sprintf(
+    '{{< candle-specs price="%.2f" burn="%.1f" efficiency="%.0f" cost_hour="%.2f" >}}',
+    stats$price, stats$actual_burn_hrs, efficiency_val, cost_hr_val
+  ))
+  cat("\n------------------------------\n")
+}
