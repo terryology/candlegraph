@@ -1,0 +1,21 @@
+<div class="candle-specs-strip">
+    <div class="spec-item">
+        <span class="spec-label">MSRP</span>
+        <span class="spec-data">${{ .Get "price" }}</span>
+    </div>
+    <div class="spec-item">
+        <span class="spec-label">Burn Time</span>
+        <span class="spec-data">{{ .Get "burn" }}h</span>
+    </div>
+    <div class="spec-item">
+        <span class="spec-label">
+            Efficiency 
+            <a href="/methodology/#efficiency" class="methodology-link">ⓘ</a>
+        </span>
+        <span class="spec-data">{{ .Get "efficiency" }} min/$</span>
+    </div>
+    <div class="spec-item">
+        <span class="spec-label">Cost/Hour</span>
+        <span class="spec-data">${{ .Get "cost_hour" }}</span>
+    </div>
+</div>
