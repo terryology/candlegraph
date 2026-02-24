@@ -686,6 +686,7 @@ select:focus-visible {
   justify-content: flex-start;
   border-right: 1px solid var(--border);
   padding: 12px 0;
+  gap: 0.5rem;
 }
 
 .spec-item:last-child { border-right: none; }
@@ -695,12 +696,13 @@ select:focus-visible {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--text-muted);
-  min-height: 1.2rem;
+  min-height: 2.4rem;
   margin-bottom: 0.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
+  text-align: center;
 }
 
 /* Nudge "Efficiency" label to center visually with its icon */
