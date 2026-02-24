@@ -714,6 +714,27 @@ select:focus-visible {
   font-size: 1.15rem;
   color: var(--text-primary);
   line-height: 1;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .candle-specs-strip {
+    padding: var(--space-xs);  /* Tighter on mobile */
+  }
+  
+  .spec-data {
+    font-size: 1rem;  /* Slightly smaller on mobile */
+  }
+  
+  .spec-label {
+    font-size: 0.6rem;  /* Slightly smaller labels */
+  }
+  
+  .info-link,
+  .methodology-link {
+    font-size: 0.8rem;  /* Smaller icon on mobile */
+    margin-left: 3px;   /* Less spacing */
+  }
 }
 
 /* --- 14. BLOG TAGS --- */
