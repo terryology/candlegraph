@@ -20,11 +20,6 @@
   --space-2xl: 4rem;     /* 64px */
 }
 
-/*
-  NOTE: !important is used throughout this stylesheet primarily to enforce theme overrides
-  and ensure custom styles take precedence over Hugo or third-party defaults.
-*/
-
 .dark-mode {
   --bg-primary: #121212;      /* Dark page background */
   --bg-secondary: #1E1E1E;    /* Dark cards */
@@ -49,7 +44,7 @@
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Lora', serif !important;
+  font-family: 'Lora', serif !important; /* Override lithium theme */
   font-size: 1.1rem;
   line-height: 1.7;
   margin: 0;
@@ -58,22 +53,24 @@ body {
 }
 
 h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .article-title {
-  font-family: 'Lora', serif !important;
+  font-family: 'Lora', serif !important; /* Override lithium theme */
   font-weight: 700;
   color: var(--text-primary);
   text-decoration: none;
 }
 
-/* Global Link Behavior */
-a {
+/* --- 3. GLOBAL LINK BEHAVIOR --- */
+/* Exclude nav links from global hover styles */
+a:not(.nav a):not(.nav-logo):not(.nav-title a) {
   color: var(--text-primary);
   text-decoration: none;
   transition: var(--transition-smooth);
   border-bottom: 1px solid transparent;
 }
 
-a:hover,
-a:focus-visible {
+/* Exclude nav links and info icons from global hover styles */
+a:not(.nav a):not(.nav-logo):not(.nav-title a):not(.info-link):not(.methodology-link):not(.mini-info-link):hover,
+a:not(.nav a):not(.nav-logo):not(.nav-title a):not(.info-link):not(.methodology-link):not(.mini-info-link):focus-visible {
   color: var(--accent);
   border-bottom: 1px solid var(--accent-glow);
 }
@@ -110,44 +107,60 @@ a:visited {
 .read-more:hover,
 .read-more:focus-visible {
   background-color: transparent;
-  color: var(--accent) !important;
+  color: var(--accent);
   border-bottom: 1px solid var(--accent-glow);
 }
 
-/* --- 3. UNIFIED INFO ICON LINKS --- */
-/* Consolidates .info-link, .methodology-link, .mini-info-link */
-.info-link, 
-.methodology-link, 
-.mini-info-link {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+/* --- 4. INFO ICON LINKS --- */
+/* More specific selectors to override global link styles without !important */
+a.info-link, 
+a.methodology-link, 
+a.mini-info-link,
+.mini-header .info-link,
+.brand-specs-strip .info-link,
+.candle-specs-strip .info-link {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 0.95rem;
-  color: var(--text-muted) !important;
+  color: var(--text-muted);
   margin-left: 5px;
   padding: 1px 4px;
   border-radius: 3px;
   opacity: 0.8;
   display: inline-flex;
   align-items: center;
-  text-decoration: none !important;
-  border: none !important;
-  background: transparent !important;
+  text-decoration: none;
+  border: none;
+  border-bottom: none !important;
+  background: transparent;
   transition: var(--transition-smooth);
   -webkit-tap-highlight-color: transparent;
 }
 
-.info-link:hover, 
-.methodology-link:hover, 
-.mini-info-link:hover {
-  opacity: 1;
+a.info-link:hover:hover, 
+a.methodology-link:hover:hover, 
+a.mini-info-link:hover:hover,
+.mini-header .info-link:hover,
+.brand-specs-strip .info-link:hover,
+.candle-specs-strip .info-link:hover {
+  opacity: 1 !important;
   color: var(--accent) !important;
-  text-shadow: 0 0 10px var(--accent-glow);
+  text-shadow: 0 0 10px var(--accent-glow) !important;
   background: rgba(217, 119, 6, 0.05) !important;
   cursor: pointer;
+  border-bottom: none !important;
 }
 
-/* --- 4. ACCESSIBILITY - FOCUS STATES --- */
+/* Mobile info links */
+@media (max-width: 600px) {
+  .info-link, .methodology-link, .mini-info-link { 
+    font-size: 0.8rem; 
+    margin-left: 3px; 
+  }
+}
+
+/* --- 5. ACCESSIBILITY - FOCUS STATES --- */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -173,44 +186,57 @@ select:focus-visible {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important; /* Override all animations */
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
 
-/* --- 5. HEADER & NAVIGATION --- */
+/* --- 6. HEADER & NAVIGATION --- */
 .header {
-  background-color: var(--bg-secondary) !important;
+  background-color: var(--bg-secondary) !important; /* Override lithium theme */
   border-bottom: 1px solid var(--border) !important;
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
-  overflow: visible !important;
+  overflow: visible !important; /* Prevent clipping */
 }
 
 .nav {
-  display: flex !important;
-  justify-content: space-between;
+  display: flex !important; /* Override lithium theme */
+  justify-content: flex-start !important; /* Left-aligned layout */
   align-items: center;
+  gap: 12px !important;
   max-width: 1100px;
   margin: 0 auto;
   height: 75px;
   padding: 0 1.5rem;
-  position: relative;
-  overflow: visible !important;
+  overflow: visible !important; /* Prevent clipping */
 }
 
+/* Logo - no absolute positioning */
+.nav-logo {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Remove underlines from logo and title */
+.nav-logo:hover,
+.nav-logo:focus-visible,
+.nav-title a:hover,
+.nav-title a:focus-visible {
+  border-bottom: none;
+}
+
+/* Title - sits next to logo */
 .nav-title {
-  position: absolute !important;
-  left: 50% !important;
-  transform: translate(-50%, -2px) !important;
-  margin: 0 !important;
-  z-index: 10;
+  margin: 0 0 0 12px;
+  text-align: left;
 }
 
 .nav-title a { 
-  font-size: 2.1rem; 
+  font-size: 1.9rem;
+  color: var(--text-primary); /* Syncs with dark mode */
 }
 
 .nav-title a:hover,
@@ -219,17 +245,18 @@ select:focus-visible {
   text-shadow: 0 0 12px var(--accent-glow); 
 }
 
+/* Nav items - pushed to the right */
 .nav-links {
   display: flex;
   list-style: none;
   align-items: center;
   padding: 0;
-  margin: 0 0 0 auto !important; 
+  margin: 0 0 0 auto; /* Push to right */
   gap: 12px;
 }
 
 .nav-links li {
-  line-height: 1 !important;
+  line-height: 1;
   padding: 4px 0;
 }
 
@@ -242,29 +269,30 @@ select:focus-visible {
 
 @media (min-width: 851px) {
   .nav-links a { 
-    margin-left: -10px !important; 
+    margin-left: -10px;
     display: inline-block; 
   }
 }
 
-.terry-link {
-  color: var(--accent) !important;
+/* Special Terryology link styling */
+.nav-links .terry-link {
+  color: var(--accent);
   font-weight: 700;
-  padding: 0 !important;
+  padding: 0;
   background: none;
   border: none;
   border-bottom: none;
   vertical-align: baseline;
 }
 
-.terry-link:hover,
-.terry-link:focus-visible {
-  color: var(--accent) !important;
+.nav-links .terry-link:hover,
+.nav-links .terry-link:focus-visible {
+  color: var(--accent);
   border-bottom: none;
   opacity: 0.8;
 }
 
-/* --- 6. THE CANDLE --- */
+/* --- 7. THE CANDLE --- */
 .candle-toggle {
   background: none; 
   border: none; 
@@ -326,7 +354,7 @@ select:focus-visible {
   50% { transform: scale(1) rotate(1.5deg); opacity: 1; }
 }
 
-/* --- 7. CARDS & POSTS --- */
+/* --- 8. CARDS & POSTS --- */
 .intro.article { 
   max-width: 750px; 
   margin: 0 auto 3.5rem auto; 
@@ -340,7 +368,7 @@ select:focus-visible {
 }
 
 .archive-item, .content .article:not(.intro) {
-  background-color: var(--bg-secondary) !important; 
+  background-color: var(--bg-secondary) !important; /* Override lithium theme */
   border: 1px solid var(--border) !important;
   border-radius: 12px;
   transition: background-color 0.3s ease;
@@ -371,7 +399,7 @@ select:focus-visible {
   color: var(--text-primary);
 }
 
-/* --- 8. PAGINATION --- */
+/* --- 9. PAGINATION --- */
 .pagination {
   display: flex;
   align-items: center;
@@ -456,11 +484,11 @@ select:focus-visible {
   }
 }
 
-/* --- 9. FOOTER --- */
+/* --- 10. FOOTER --- */
 .footer {
-  background-color: var(--bg-secondary) !important; 
+  background-color: var(--bg-secondary) !important; /* Override lithium theme */
   border-top: 1px solid var(--border) !important;
-  padding: 1.2rem 0 !important; 
+  padding: 1.2rem 0 !important; /* Override lithium theme */
   margin-top: 3rem; 
   text-align: center;
   transition: var(--transition-smooth);
@@ -488,7 +516,7 @@ select:focus-visible {
 }
 
 .footer-links-kudos img {
-  height: 18px !important; 
+  height: 18px !important; /* Override lithium theme */
   width: auto !important; 
   margin-left: 6px !important; 
   display: inline-block !important; 
@@ -500,33 +528,32 @@ select:focus-visible {
   filter: invert(0.8) brightness(1.2); 
 }
 
-/* --- 10. MOBILE --- */
+/* --- 11. MOBILE --- */
 @media (max-width: 850px) {
   .nav { 
     height: auto; 
-    padding: 1rem !important; 
+    padding: 1rem !important; /* Override desktop padding */
     flex-direction: column; 
     gap: 10px; 
   }
   
   .nav-title { 
-    position: static !important; 
-    transform: none !important; 
+    margin: 0 !important; /* Override left margin */
   }
   
   .nav-links { 
-    margin: 0 !important; 
+    margin: 0 !important; /* Override auto margin */
     width: 100%; 
     justify-content: center; 
   }
   
   .archive-item-meta, .article-meta { 
-    margin-top: 4px !important; 
+    margin-top: 4px;
     display: block; 
   }
   
   .footer-links li::after, .footer-links li::before { 
-    content: "" !important; 
+    content: "" !important; /* Remove separators */
     display: none !important; 
   }
   
@@ -535,7 +562,7 @@ select:focus-visible {
   }
 }
 
-/* --- 11. DATA VAULT --- */
+/* --- 12. DATA VAULT --- */
 .terryology-vault {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
@@ -587,7 +614,7 @@ select:focus-visible {
 }
 
 .vault-body img, .vault-body svg { 
-  width: 100% !important; 
+  width: 100% !important; /* Override any img defaults */
   height: auto !important; 
 }
 
@@ -613,7 +640,7 @@ select:focus-visible {
   border-bottom: none;
 }
 
-/* --- 12. MINI-VAULT SPECS --- */
+/* --- 13. BRAND SPECS (MINI-VAULT) --- */
 .mini-vault {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
@@ -668,7 +695,7 @@ select:focus-visible {
 .tier-overachiever { color: var(--accent); }
 .tier-dud { color: #d63031; }
 
-/* --- 13. CANDLE SPECS STRIP --- */
+/* --- 14. CANDLE SPECS STRIP --- */
 .candle-specs-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -697,7 +724,7 @@ select:focus-visible {
   letter-spacing: 0.1em;
   color: var(--text-muted);
   min-height: 2.4rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -716,30 +743,23 @@ select:focus-visible {
   font-size: 1.15rem;
   color: var(--text-primary);
   line-height: 1;
-  white-space: nowrap;
 }
 
+/* Mobile candle specs */
 @media (max-width: 600px) {
-  .candle-specs-strip {
-    padding: var(--space-xs);  /* Tighter on mobile */
+  .candle-specs-strip { 
+    padding: var(--space-xs); 
   }
-  
-  .spec-data {
-    font-size: 1rem;  /* Slightly smaller on mobile */
+  .spec-data { 
+    font-size: 1rem; 
+    white-space: nowrap; 
   }
-  
-  .spec-label {
-    font-size: 0.6rem;  /* Slightly smaller labels */
-  }
-  
-  .info-link,
-  .methodology-link {
-    font-size: 0.8rem;  /* Smaller icon on mobile */
-    margin-left: 3px;   /* Less spacing */
+  .spec-label { 
+    font-size: 0.6rem; 
   }
 }
 
-/* --- 14. BLOG TAGS --- */
+/* --- 15. BLOG TAGS --- */
 .blog-tags {
   display: flex;
   flex-wrap: wrap;
@@ -764,7 +784,7 @@ select:focus-visible {
   background: rgba(217, 119, 6, 0.05);
 }
 
-/* --- 15. TECHNICAL FOOTNOTE / AUDIT --- */
+/* --- 16. VAULT AUDIT --- */
 .vault-audit {
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -824,7 +844,7 @@ select:focus-visible {
   }
 }
 
-/* --- 16. VAULT BASELINES --- */
+/* --- 17. VAULT BASELINES --- */
 .methodology-baselines {
   display: flex;
   gap: var(--space-lg);
@@ -864,7 +884,7 @@ select:focus-visible {
   }
 }
 
-/* --- 17. QUADRANT LEGEND --- */
+/* --- 18. QUADRANT LEGEND --- */
 .quadrant-legend {
   display: grid;
   grid-template-columns: 1fr 1fr;

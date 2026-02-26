@@ -12,14 +12,14 @@ permalinks:
   post: /:year/:month/:day/:slug/
 menu:
   main:
-    - name: About
-      url: /about/
+    - name: Start Here!
+      url: /start-here/
       weight: 10
-    - name: Infographics
-      url: https://public.tableau.com/views/Candlegraph/Candlegraph
+    - name: Reviews
+      url: /tags/reviews/
       weight: 20
-    - name: Archive
-      url: /archive/  
+    - name: Methodology
+      url: /methodology/
       weight: 30
 params:
   MathJaxCDN: //cdnjs.cloudflare.com/ajax/libs
