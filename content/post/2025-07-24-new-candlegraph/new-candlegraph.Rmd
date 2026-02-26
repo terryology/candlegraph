@@ -1,7 +1,8 @@
 ---
-title: "Playing with R"
+title: "Playing with R: My First Data Visualizations"
 author: "Terry"
 date: "2025-07-24"
+tags: ["technical", "r", "data-visualization"]
 output: html_document
 ---
 

@@ -3,7 +3,7 @@ title: "Welcome to Candlegraph!"
 author: "Terry"
 date: "2023-09-10"
 output: html_document
-categories: ["General"]
+tags: ["meta", "introduction"]
 ---
 
 ```{r setup, include=FALSE}

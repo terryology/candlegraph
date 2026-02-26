@@ -3,7 +3,7 @@ title: "Beginnings"
 author: "Terry"
 date: "2023-12-25"
 output: html_document
-categories: ["General"]
+tags: ["meta", "origin-story"]
 ---
 
 

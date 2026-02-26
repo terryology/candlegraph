@@ -4,7 +4,7 @@ author: "Terry"
 date: "2026-02-23"
 description: "A review of Diptyque's Narguile candle - a complex tobacco and honey scent"
 slug: "diptyque-narguile-review"
-type: "review"
+tags: ["reviews", "diptyque", "luxury"]
 output: html_document
 ---
 
