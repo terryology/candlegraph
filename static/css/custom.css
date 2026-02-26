@@ -90,8 +90,7 @@ a:visited {
 .article-content a:not(.read-more):not(.info-link):not(.methodology-link):not(.mini-info-link):focus-visible,
 .post-content a:not(.read-more):not(.info-link):not(.methodology-link):not(.mini-info-link):hover,
 .post-content a:not(.read-more):not(.info-link):not(.methodology-link):not(.mini-info-link):focus-visible {
-  background-color: var(--accent-glow);
-  color: var(--text-primary);
+  color: var(--text-accent);
   border-bottom: 1px solid var(--accent);
 }
 
