@@ -68,6 +68,14 @@ mjx-container {
   max-width: 100%;
 }
 
+@media (max-width: 600px) {
+  .MathJax_Display,
+  .MJXc-display,
+  mjx-container {
+    font-size: 0.9rem;
+  }
+}
+
 /* --- 3. GLOBAL LINK BEHAVIOR --- */
 /* Exclude nav links from global hover styles */
 a:not(.nav a):not(.nav-logo):not(.nav-title a) {
