@@ -59,6 +59,15 @@ h1, h2, h3, h4, .post-title, .post-title a, .nav-title a, .archive-item-link, .a
   text-decoration: none;
 }
 
+/* --- MATHJAX MOBILE FIX --- */
+.MathJax_Display,
+.MJXc-display,
+mjx-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
 /* --- 3. GLOBAL LINK BEHAVIOR --- */
 /* Exclude nav links from global hover styles */
 a:not(.nav a):not(.nav-logo):not(.nav-title a) {
