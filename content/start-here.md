@@ -19,7 +19,7 @@ Think of it as "candle reviews meet data science."
 
 **Start with these three posts:**
 
-1. **[Welcome to Candlegraph](/post/welcome/)** - Quick intro to what this site is about (2 min read)
+1. **[Welcome to Candlegraph](/2023/09/10/welcome-to-candlegraph/)** - Quick intro to what this site is about (2 min read)
 
 2. **[How Candlegraph Started](/post/origin-story/)** - The journey from Excel hobby to systematic performance analysis (8 min read)
 
@@ -32,7 +32,7 @@ After those, you'll understand the performance map and what the numbers mean in 
 ## Looking for Reviews?
 
 **Published Reviews:**
-- [Diptyque Narguile](/post/diptyque-narguile-review/) - Luxury tobacco and honey candle
+- [Diptyque Narguile](/2026/02/23/diptyque-narguile-review/) - Luxury tobacco and honey candle
 - [View all reviews](/tags/reviews/) - Complete archive
 
 **Understanding the Metrics:**
@@ -47,7 +47,7 @@ Check the [methodology page](/methodology/) for the full formulas.
 ## Interested in the Technical Side?
 
 **Behind the Scenes:**
-- [Playing with R](/post/playing-with-r/) - My first attempts at data visualization
+- [Playing with R](/2025/07/24/playing-with-r-my-first-data-visualizations/) - My first attempts at data visualization
 - [View all technical posts](/tags/technical/) - R code, data pipelines, learning journey
 
 **The Stack:**
@@ -78,7 +78,7 @@ Check the [methodology page](/methodology/) for the full formulas.
 I'm actively burning candles and building the dataset. Expect new reviews every few weeks as candles finish burning and data is collected.
 
 **Currently measuring:**
-- [Brands will be listed as you add them]
+- Erewhon - Smoked Oud & Incense
 
 **Coming soon:**
 - Interactive Tableau performance map
