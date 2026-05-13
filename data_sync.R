@@ -34,12 +34,15 @@ burn_times <- tryCatch({
   read_sheet(sheet_url, sheet = "burn_times") %>%
     mutate(
       total_time = as.numeric(difftime(stop_time, start_time, units = "hours")),
-      # Cap at 4 hours UNLESS it's the final burn
-      # Final burns are allowed full time to extract all remaining value
-      effective_time = if_else(
-        is_final_burn == TRUE,
-        total_time,              # No cap on final burn
-        pmin(total_time, 4)      # Cap at 4hr for all other sessions
+      burn_type = tolower(burn_type),
+      # Cap effective burn time by session type:
+      # standard = 4hr cap, initial = 6hr cap, final/maintenance = uncapped
+      effective_time = case_when(
+        burn_type == "final"       ~ total_time,
+        burn_type == "initial"     ~ pmin(total_time, 6),
+        burn_type == "maintenance" ~ total_time,
+        burn_type == "standard"    ~ pmin(total_time, 4),
+        TRUE                       ~ pmin(total_time, 4)  # fallback
       )
     )
 }, error = function(e) {
