@@ -46,4 +46,4 @@ While there are more expensive candles out there (believe it or not), Diptyque i
 
 <!-- Paste vault-audit shortcode from get_brief() output below -->
 
-{{< vault-audit brand="Diptyque" id="AUDIT-DIP" sessions="3" hours="148.4" confidence="Empirical" >}}
+{{< vault-audit brand="Diptyque" id="AUDIT-DIP" candles="3" hours="148.4" confidence="Empirical" >}}
