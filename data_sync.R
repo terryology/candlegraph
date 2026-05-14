@@ -70,7 +70,8 @@ df_master <- burn_times %>%
     weighted_scent = (cold_score * 0.4) + (hot_score * 0.6),
     
     # PROVENANCE: Check if throws were measured empirically vs recalled from memory
-    is_empirical = !is.na(throw_basis) & throw_basis == "Measured"
+    throw_basis  = tolower(throw_basis),
+    is_empirical = !is.na(throw_basis) & throw_basis == "measured"
   )
 
 # 4. BASELINES

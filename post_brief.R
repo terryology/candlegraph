@@ -36,7 +36,7 @@ get_brief <- function(target_brand) {
   )
   
   audit_shortcode <- sprintf(
-    '{{< vault-audit brand="%s" id="AUDIT-%s" sessions="%d" hours="%.1f" confidence="%s" >}}',
+    '{{< vault-audit brand="%s" id="AUDIT-%s" candles="%d" hours="%.1f" confidence="%s" >}}',
     b$brand_name,
     toupper(substr(b$brand_name, 1, 3)),
     b$n_candles,
