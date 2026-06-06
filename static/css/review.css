@@ -90,6 +90,23 @@
 }
 
 .rlayout.single-col .prose {
-  max-width: 65ch;
+  max-width: 800px;
   margin: 0 auto;
+}
+
+/* journal post prose panel */
+.prose.journal-panel {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  background: var(--panel);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r);
+  padding: 40px 52px;
+}
+
+@media (max-width: 880px) {
+  .prose.journal-panel {
+    padding: 28px 24px;
+  }
 }
