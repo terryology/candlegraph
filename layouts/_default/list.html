@@ -1,7 +1,5 @@
-{{ partial "header.html" . }}
-
+{{ define "main" }}
 <main class="content" role="main">
-
   {{ if .Content }}
   <article class="article intro">
     {{ if .Title }}
@@ -12,23 +10,17 @@
     </div>
   </article>
   {{ end }}
-
   <div class="archive">
     {{ $pages := .Pages }}
     {{ if .IsHome }}
       {{ $pages = .Site.RegularPages }}
     {{ end }}
-
     {{ $paginator := .Paginate (where $pages "Section" "!=" "") }}
-
     {{ range $paginator.Pages }}
       {{ partial "post_preview.html" . }}
     {{ end }}
-
     {{ if gt $paginator.TotalPages 1 }}
     <nav class="pagination" aria-label="Page navigation">
-
-      {{/* Previous button */}}
       {{ if $paginator.HasPrev }}
         <a href="{{ $paginator.Prev.URL }}" class="pagination-btn pagination-prev" aria-label="Previous page">
           &laquo; Previous
@@ -36,8 +28,6 @@
       {{ else }}
         <span class="pagination-btn pagination-prev pagination-disabled">&laquo; Previous</span>
       {{ end }}
-
-      {{/* Numbered pages */}}
       <div class="pagination-numbers">
         {{ range $paginator.Pagers }}
           {{ if eq . $paginator }}
@@ -47,8 +37,6 @@
           {{ end }}
         {{ end }}
       </div>
-
-      {{/* Next button */}}
       {{ if $paginator.HasNext }}
         <a href="{{ $paginator.Next.URL }}" class="pagination-btn pagination-next" aria-label="Next page">
           Next &raquo;
@@ -56,12 +44,8 @@
       {{ else }}
         <span class="pagination-btn pagination-next pagination-disabled">Next &raquo;</span>
       {{ end }}
-
     </nav>
     {{ end }}
-
   </div>
-
 </main>
-
-{{ partial "footer.html" . }}
+{{ end }}

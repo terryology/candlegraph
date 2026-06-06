@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" data-type="{{ .Site.Params.typeStyle | default "hybrid" }}">
+<head>
+{{ partial "head.html" . }}
+{{ block "pagecss" . }}{{ end }}
+</head>
+<body>
+{{ partial "masthead.html" . }}
+{{ block "main" . }}{{ end }}
+{{ partial "footer.html" . }}
+{{ partial "footer_highlightjs.html" . }}
+{{ partial "footer_mathjax.html" . }}
+</body>
+</html>

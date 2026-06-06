@@ -1,0 +1,39 @@
+<header class="masthead">
+  <div class="mast-inner">
+
+    {{/* Logo - wordmark only */}}
+    <a href="{{ "/" | relURL }}" class="logo">
+      <div class="word">Candle<b>graph</b></div>
+    </a>
+
+    {{/* Main navigation */}}
+    <nav class="main" aria-label="Main navigation">
+      {{ range .Site.Menus.main }}
+      <a href="{{ .URL }}"
+         {{ if or (eq $.RelPermalink .URL) (and (eq $.RelPermalink "/") (eq .URL "/")) }}class="active"{{ end }}>
+        {{ .Name }}
+      </a>
+      {{ end }}
+    </nav>
+
+    {{/* Candle dark mode toggle */}}
+    <button class="candle-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <div class="flame"></div>
+      <div class="wick"></div>
+      <div class="candle-body"></div>
+    </button>
+
+  </div>
+</header>
+
+<script>
+  (function() {
+    const toggle = document.querySelector('.candle-toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', function() {
+      const isDark = document.documentElement.classList.toggle('dark-mode');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  })();
+</script>

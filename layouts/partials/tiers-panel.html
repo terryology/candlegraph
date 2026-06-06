@@ -1,0 +1,17 @@
+{{- /* Four-tier legend. Pass (dict "short" true) for the terse leaderboard variant. */ -}}
+{{ $short := .short | default false }}
+{{ $rows := slice
+  (dict "k" "over"  "name" "Overachiever" "long" "High scent, low value — a splurge that delivers." "short" "High scent, low value.")
+  (dict "k" "grail" "name" "Grail"        "long" "High scent <i>and</i> high value. The dream."     "short" "High scent and value.")
+  (dict "k" "work"  "name" "Workhorse"    "long" "Modest scent, great value — the daily driver."     "short" "Modest scent, great value.")
+  (dict "k" "dud"   "name" "Dud"          "long" "Low on both. Skip it."                              "short" "Low on both.")
+}}
+<div class="panel">
+  <h4>The four tiers</h4>
+  {{ range $rows }}
+  <div class="tierrow">
+    <span class="swatch {{ .k }}"></span>
+    <span class="tx"><b>{{ .name }}</b><span>{{ if $short }}{{ .short | safeHTML }}{{ else }}{{ .long | safeHTML }}{{ end }}</span></span>
+  </div>
+  {{ end }}
+</div>

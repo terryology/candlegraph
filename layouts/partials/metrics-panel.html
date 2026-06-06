@@ -1,0 +1,13 @@
+{{- /* "Reading the numbers" sidebar panel. */ -}}
+<div class="panel">
+  <h4>Reading the numbers</h4>
+  <div class="metricdef">
+    <div class="top"><span class="abbr">SAV</span><span class="full">Scent Adjusted Value</span></div>
+    <p>How much scent performance a candle delivers — throw, complexity, longevity — indexed so {{ site.Params.baseline }} is the collection average. Higher is stronger.</p>
+  </div>
+  <div class="metricdef">
+    <div class="top"><span class="abbr">PAE</span><span class="full">Price-Adjusted Efficiency</span></div>
+    <p>What that performance costs you. Indexed to {{ site.Params.baseline }}; higher means more scent per dollar. The Diptyque scores low here — it's worth it, not cheap.</p>
+  </div>
+  <div class="baseline"><span class="pip num">{{ site.Params.baseline }}</span> = average of every candle scored to date.</div>
+</div>

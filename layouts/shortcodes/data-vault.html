@@ -1,14 +1,16 @@
-<div class="terryology-vault">
-    <div class="vault-accent"></div>
-    <div class="vault-header">
-        <div class="vault-status"><span class="pulse"></span> LIVE SYSTEM</div>
-        <div class="vault-meta">{{ .Get "title" | upper }}</div>
-    </div>
-    <div class="vault-body">
-        {{ with .Inner }}{{ . }}{{ else }}{{ end }}
-    </div>
-    <div class="vault-footer">
-        INDEX BASELINE: 100 = COLLECTION AVERAGE | 
-        <a href="/methodology" class="vault-methodology-link">UNDERSTAND THE MATH</a>
-    </div>
+<div class="panel" style="margin:28px 0;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+    <h4 style="margin:0;">{{ .Get "title" | upper }}</h4>
+    <span style="display:flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.05em;color:#3f8f5b;">
+      <span style="width:7px;height:7px;border-radius:50%;background:#3f8f5b;display:inline-block;"></span>
+      LIVE
+    </span>
+  </div>
+  <div>
+    {{ with .Inner }}{{ . }}{{ else }}{{ end }}
+  </div>
+  <div style="margin-top:14px;padding-top:13px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);">
+    Index baseline: 100 = collection average · 
+    <a href="/methodology" style="color:var(--muted);text-decoration:underline;">Understand the math</a>
+  </div>
 </div>

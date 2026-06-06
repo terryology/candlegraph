@@ -1,20 +1,23 @@
-<div class="mini-vault">
-    <div class="mini-header">
-        <span class="pulse"></span> {{ .Get "brand" | upper }} PERFORMANCE
-        <a href="/methodology/" class="methodology-link" title="How these indexes are calculated" aria-label="Methodology"><i class="fa fa-info-circle"></i></a>
+<div class="sc-panel" style="margin:28px 0;">
+  <div class="sc-prod">{{ .Get "brand" | upper }} PERFORMANCE</div>
+  <div class="sc-hero">
+    <span class="big num">{{ .Get "sav" }}</span>
+    <div class="herometa">
+      <span class="lab">SAV Index</span>
     </div>
-    <div class="mini-grid">
-        <div class="mini-item">
-            <span class="mini-label">SAV Index</span>
-            <span class="mini-value">{{ .Get "sav" }}</span>
-        </div>
-        <div class="mini-item">
-            <span class="mini-label">PAE Index</span>
-            <span class="mini-value">{{ .Get "pae" }}</span>
-        </div>
-        <div class="mini-item">
-            <span class="mini-label">Tier</span>
-            <span class="mini-value tier-{{ .Get "tier" | lower }}">{{ .Get "tier" | upper }}</span>
-        </div>
+  </div>
+  <div class="sc-grid">
+    <div class="sc-cell">
+      <span class="lab">PAE Index</span>
+      <span class="v num">{{ .Get "pae" }}</span>
     </div>
+    <div class="sc-cell">
+      <span class="lab">Tier</span>
+      <span class="v"><span class="tier {{ .Get "tier" | lower }}">{{ .Get "tier" }}</span></span>
+    </div>
+  </div>
+  <div class="sc-foot">
+    <span class="dotmark"></span>
+    <a href="/methodology/" style="color:var(--muted);font-size:11.5px;">How these indexes are calculated →</a>
+  </div>
 </div>

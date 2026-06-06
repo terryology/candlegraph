@@ -1,0 +1,11 @@
+<footer>
+  <div class="foot-inner">
+    <span class="word">Candle<b>graph</b></span>
+    <nav class="foot-links">
+      {{ range .Site.Menus.footer }}
+        <a href="{{ .URL | relURL }}">{{ .Name }}</a>
+      {{ end }}
+    </nav>
+    <p class="foot-note">{{ .Site.Params.footerNote }}</p>
+  </div>
+</footer>

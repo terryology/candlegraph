@@ -1,0 +1,61 @@
+{{ define "pagecss" }}<link rel="stylesheet" href="{{ "css/review.css" | relURL }}">{{ end }}
+{{ define "main" }}
+<nav class="crumb">
+  <a href="{{ "/" | relURL }}">Latest</a><span class="sep">/</span>
+  <span>{{ .Title }}</span>
+</nav>
+<header class="rhead">
+  {{ with .Params.kicker }}<div class="kicker">{{ . }}</div>{{ end }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.dek | default .Description }}<p class="dek">{{ . }}</p>{{ end }}
+  <div class="byline">
+    <span class="who">{{ .Params.author | default site.Params.author }}</span>
+    {{ if not .Date.IsZero }}<span>· {{ .Date.Format "Jan 2, 2006" }}</span>{{ end }}
+    {{ with .Params.readingTime }}<span>· {{ . }} min read</span>{{ end }}
+  </div>
+</header>
+<main class="rlayout">
+  <aside class="scorecard">
+    <div class="sc-panel">
+      <div class="sc-prod">{{ .Params.brand }}</div>
+      <div class="sc-name">{{ .Title }}</div>
+      <div class="sc-hero">
+        <span class="big num">{{ .Params.sav }}</span>
+        <div class="herometa">
+          <span class="lab">SAV Index</span>
+        </div>
+      </div>
+      <div class="sc-grid">
+        <div class="sc-cell">
+          <span class="lab">PAE</span>
+          <span class="v num">{{ .Params.pae }}</span>
+        </div>
+        <div class="sc-cell">
+          <span class="lab">Price</span>
+          <span class="v num">${{ .Params.price }}</span>
+        </div>
+      </div>
+      <div class="sc-tierrow">
+        <span class="tier {{ .Params.tier }}">{{ index site.Params.tiers .Params.tier }}</span>
+      </div>
+      <div class="sc-quad-wrap">
+        <p class="qcap">Where it plots on the performance map</p>
+        <div class="mini-quad sc-quad">
+          <span class="ax x"></span><span class="ax y"></span>
+          <span class="ql tl">OVER</span>
+          <span class="ql tr">GRAIL</span>
+          <span class="ql bl">DUD</span>
+          <span class="ql br">WORK</span>
+          <span class="d" style="left:{{ div .Params.pae 2.0 }}%;bottom:{{ div .Params.sav 2.0 }}%;"></span>
+        </div>
+         <div class="sc-foot">
+          <span class="dotmark"></span>
+          <a href="/methodology/">How these indexes are calculated →</a>
+      </div>
+    </div>
+  </aside>
+  <article class="prose">
+    {{ .Content }}
+  </article>
+</main>
+{{ end }}

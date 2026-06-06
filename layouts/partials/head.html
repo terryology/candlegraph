@@ -1,8 +1,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+{{/* Prevent dark mode flash on page load */}}
 <script>
-  // Immediate check to prevent flashing
   if (localStorage.getItem('theme') === 'dark') {
     document.documentElement.classList.add('dark-mode');
   }
@@ -10,52 +10,61 @@
 
 {{ hugo.Generator }}
 
-{{ if eq .RelPermalink "/" }}
-<title>{{ .Site.Title }}</title>
+{{/* Page title */}}
+{{ if .IsHome }}
+<title>{{ .Site.Title }} — {{ .Site.Params.tagline }}</title>
 <meta property="og:title" content="{{ .Site.Title }}">
 <meta property="og:type" content="website">
 {{ else }}
-<title>{{ .Title }}{{ with .Params.subtitle }} - {{ . }} {{ end }} - {{ .Site.Title }}</title>
-<meta property="og:title" content="{{ .Title }} - {{ .Site.Title }}">
+<title>{{ .Title }}{{ with .Params.subtitle }} - {{ . }}{{ end }} — {{ .Site.Title }}</title>
+<meta property="og:title" content="{{ .Title }} — {{ .Site.Title }}">
 <meta property="og:type" content="article">
 {{ end }}
 
+{{/* Favicon */}}
 {{ with .Site.Params.favicon }}
-  <link href='{{ . | absURL }}' rel='icon' type='image/x-icon'/>
+<link href="{{ . | absURL }}" rel="icon" type="image/x-icon"/>
 {{ end }}
 
-{{ if eq .RelPermalink "/" }}
-<meta property="description" content="{{ .Site.Params.description }}">
+{{/* Description */}}
+{{ if .IsHome }}
+<meta name="description" content="{{ .Site.Params.description }}">
 {{ else }}
-  {{ if .Description }}
-  <meta property="description" content="{{ .Description }}">
+  {{ with .Description }}
+  <meta name="description" content="{{ . }}">
   {{ end }}
 {{ end }}
 
-{{ if .Keywords }}
-<meta property="keywords" content ="{{ delimit .Keywords ", " }}">
+{{/* Keywords */}}
+{{ with .Keywords }}
+<meta name="keywords" content="{{ delimit . ", " }}">
 {{ end }}
 
+{{/* RSS */}}
 {{ with .OutputFormats.Get "RSS" }}
 <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
 {{ end }}
 
+{{/* Syntax highlighting */}}
 {{ partial "head_highlightjs" . }}
 
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+{{/* Fonts — preconnect for performance, then full load */}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
+{{/* Lithium base styles — our CSS layers on top */}}
 <link rel="stylesheet" href="{{ "css/fonts.css" | relURL }}" media="all">
 <link rel="stylesheet" href="{{ "css/main.css" | relURL }}" media="all">
 
-{{ partial "head_custom" . }}
-
-{{/* Load CSS based on environment:
-     - Development: test.css (local testing)
-     - Production: custom.css (live site) */}}
+{{/* Candlegraph CSS — environment-based loading
+     Development: test.css (local)
+     Production:  custom.css (Netlify) */}}
 {{ if eq hugo.Environment "development" }}
   <link rel="stylesheet" href="{{ "css/test.css" | relURL }}">
 {{ else }}
   <link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
 {{ end }}
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+{{/* Page-specific CSS block for future use */}}
+{{ block "pagecss" . }}{{ end }}

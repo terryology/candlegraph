@@ -1,0 +1,99 @@
+{{ define "pagecss" }}<link rel="stylesheet" href="{{ "css/home.css" | relURL }}">{{ end }}
+
+{{ define "main" }}
+{{ $all := where site.RegularPages "Section" "candles" }}
+{{ $scored := sort (where $all "Params.sav" "!=" nil) "Params.sav" "desc" }}
+
+<section class="promise">
+  <h1>{{ .Params.headline | default "Where scented candles meet <em>data analysis</em>." | safeHTML }}</h1>
+  <p class="sub">{{ .Params.sub | default "Every candle gets the same workup — burn-tested, scored, and plotted. No vibes, just the numbers (and the occasional tangent about how I got here)." }}</p>
+  <div class="statstrip">
+    <div class="stat"><span class="v num">{{ len $scored }}</span><span class="k">{{ cond (eq (len $scored) 1) "Candle scored" "Candles scored" }}</span></div>
+    <div class="stat"><span class="v num">{{ site.Params.baseline }}</span><span class="k">Index baseline</span></div>
+    <div class="stat"><span class="v num">2</span><span class="k">Indexes · SAV / PAE</span></div>
+    <div class="stat"><span class="v num">4</span><span class="k">Performance tiers</span></div>
+  </div>
+</section>
+
+<main class="layout">
+  <div class="feed-col">
+    <div class="feed-head"><h2>Latest</h2><span class="rule"></span></div>
+    <div class="feed">
+
+      {{- /* FEATURED REVIEW: the candle flagged `featured`, else the top-scoring one */ -}}
+      {{ $feat := where $scored "Params.featured" true }}
+      {{ if not $feat }}{{ $feat = first 1 $scored }}{{ end }}
+      {{ range first 1 $feat }}
+      <a class="card review featured" href="{{ .RelPermalink }}">
+        <div class="scorerail">
+          <div class="score-main">
+            <span class="lab">SAV Index</span>
+            <span class="big num">{{ printf "%.1f" .Params.sav }}</span>
+          </div>
+          <div class="score-sub">
+            <div class="blk"><span class="lab">PAE</span><span class="v num">{{ printf "%.1f" .Params.pae }}</span></div>
+            <div class="blk"><span class="lab">Price</span><span class="v num">${{ .Params.price }}</span></div>
+          </div>
+          <span class="tier {{ .Params.tier }}">{{ index site.Params.tiers .Params.tier }}</span>
+          <div class="mini-quad">
+            <span class="ax x"></span><span class="ax y"></span>
+            <span class="ql" style="top:4px;left:5px;">OVER</span>
+            <span class="ql" style="top:4px;right:5px;">GRAIL</span>
+            <span class="ql" style="bottom:3px;left:5px;">DUD</span>
+            <span class="ql" style="bottom:3px;right:4px;">WORK</span>
+            <span class="d" style="left:{{ div .Params.pae 2.0 }}%;bottom:{{ div .Params.sav 2.0 }}%;"></span>
+          </div>
+        </div>
+        <div class="review-body">
+          <div class="kicker">{{ .Params.kicker | default (printf "Review · %s" .Params.brand) }}</div>
+          <h3>{{ .Title }}</h3>
+          {{ partial "img.html" (dict "page" . "name" "thumb" "class" "thumb" "label" "Drop the burn photo") }}
+          <p class="dek">{{ .Params.dek | default .Summary }}</p>
+          <div class="review-meta">
+            <span class="by">by {{ .Params.author | default site.Params.author }} · {{ .Date.Format "Jan 2006" }}{{ with .Params.readingTime }} · {{ . }} min{{ end }}</span>
+            <span class="read">Read the review <span class="arr">→</span></span>
+          </div>
+        </div>
+      </a>
+      {{ end }}
+
+      {{- /* JOURNAL ENTRIES */ -}}
+      {{ range sort (where site.RegularPages "Section" "journal") "Date" "desc" }}
+      <a class="card journal" href="{{ .RelPermalink }}">
+        <div class="spine"{{ if .Params.accent }} style="background:var(--accent);"{{ end }}></div>
+        <div class="jbody">
+          <span class="jtag"><span class="dotmark"{{ if .Params.accent }} style="background:var(--accent);"{{ end }}></span>{{ .Params.tag | default "Journal" }}</span>
+          <h3>{{ .Title }}</h3>
+          <p class="dek">{{ .Params.dek | default .Summary }}</p>
+          <div class="jmeta">
+            <span>{{ .Date.Format "Jan 2006" }}{{ with .Params.readingTime }} · {{ . }} min{{ end }}</span>
+            <span class="read">Read <span class="arr">→</span></span>
+          </div>
+        </div>
+      </a>
+      {{ end }}
+
+      {{- /* LAB TEASER: a candle flagged `lab` that's still on the rig */ -}}
+      {{ range first 1 (where $all "Params.lab" true) }}
+      <div class="teaser">
+        <span class="pulse"></span>
+        <span class="tt"><b>Next in the lab</b> &nbsp;<span>— {{ .Params.teaser | default (printf "%s is on the burn rig. Scores pending." .Title) }}</span></span>
+        <span class="status num">{{ .Params.status | default "BURNING" }}</span>
+      </div>
+      {{ end }}
+
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="rail">
+    {{ partial "metrics-panel.html" . }}
+    {{ partial "tiers-panel.html" (dict "short" false) }}
+    <div class="panel railcta">
+      <h4>New here?</h4>
+      <p>Start with how the whole thing works — the indexes, the rig, and why a spreadsheet runs my candle shelf.</p>
+      <a href="{{ "/methodology/" | relURL }}" class="btn">Start here <span>→</span></a>
+    </div>
+  </aside>
+</main>
+{{ end }}

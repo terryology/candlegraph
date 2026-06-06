@@ -1,0 +1,14 @@
+{{- /*
+  Image-or-placeholder helper.
+  Usage: {{ partial "img.html" (dict "page" . "name" "hero" "class" "thumb" "label" "Drop the burn photo") }}
+  Looks for a page-bundle resource whose name starts with `name` (e.g. hero.jpg).
+  Falls back to a striped placeholder div carrying the same class, so layout holds
+  even before you've added a photo.
+*/ -}}
+{{ $page := .page }}
+{{ $res := $page.Resources.GetMatch (printf "%s.*" .name) }}
+{{ with $res }}
+  <img class="{{ $.class }}" src="{{ .RelPermalink }}" alt="{{ $page.Title }}" />
+{{ else }}
+  <div class="{{ .class }} ph">{{ .label }}</div>
+{{ end }}

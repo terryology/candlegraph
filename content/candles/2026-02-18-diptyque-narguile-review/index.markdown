@@ -2,6 +2,14 @@
 title: "Diptyque Narguile Review"
 author: "Terry"
 date: "2026-02-23"
+brand: "Diptyque"
+sav: 132.3
+pae: 40.7
+price: 68
+tier: "over"
+kicker: "Review - Diptyque"
+dek: "A smoky, honeyed luxury that scores absurdly high on scent and absurdly low on value — and somehow earns the splurge anyway."
+featured: true
 description: "A review of Diptyque's Narguile candle - a complex tobacco and honey scent"
 slug: "diptyque-narguile-review"
 tags: ["reviews", "diptyque", "luxury"]
@@ -12,9 +20,6 @@ output: html_document
 
 Diptyque is a French luxury candle house known for its complex, sophisticated scents and premium pricing. Here's how the brand performs in the Candlegraph index (see [methodology](/methodology/) for details on SAV and PAE):
 
-<!-- Paste brand-specs shortcode from get_brief() output below -->
-
-{{< brand-specs brand="Diptyque" sav="132.3" pae="40.7" tier="Overachiever" >}}
 
 ## Introduction
 A Diptyque candle was the first luxury candle I ever owned, and it was the brand that got me into scented candles in the first place. Or at least the one that led me down the rabbit hole into my current obsession. It also played an instrumental part in turning just lighting candles into my other obsession of data collection and analysis. I’ve burned more than a few Diptyque candles at this point, although I’ve only documented a handful using my current methodology. When I first began keeping track, the brand came strong out of the gate, even using my initial methods of only measuring burn time versus price. Now I’m curious to know how well it holds up against those earlier trials.

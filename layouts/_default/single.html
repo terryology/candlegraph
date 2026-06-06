@@ -1,0 +1,21 @@
+{{ define "main" }}
+<nav class="crumb">
+  <a href="{{ "/" | relURL }}">Latest</a><span class="sep">/</span>
+  <span>{{ .Title }}</span>
+</nav>
+<header class="rhead">
+  {{ with .Params.tag | default .Params.kicker }}<div class="kicker">{{ . }}</div>{{ end }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.dek | default .Description }}<p class="dek">{{ . }}</p>{{ end }}
+  <div class="byline">
+    <span class="who">{{ .Params.author | default site.Params.author }}</span>
+    {{ if not .Date.IsZero }}<span>· {{ .Date.Format "Jan 2, 2006" }}</span>{{ end }}
+    {{ with .Params.readingTime }}<span>· {{ . }} min read</span>{{ end }}
+  </div>
+</header>
+<main class="rlayout single-col">
+  <article class="prose">
+    {{ .Content }}
+  </article>
+</main>
+{{ end }}
