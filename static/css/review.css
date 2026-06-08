@@ -5,7 +5,7 @@
 
 .rhead{ max-width:var(--maxw); margin:0 auto; padding:18px 28px 26px; border-bottom:1px solid var(--line); }
 .rhead .kicker{ font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); font-weight:600; margin-bottom:12px; }
-.rhead h1{ font-family:var(--font-head); font-weight:600; font-size:clamp(30px,4.4vw,46px); line-height:1.04; letter-spacing:-.015em; margin:0 0 14px; max-width:20ch; text-wrap:balance; }
+.rhead h1{ font-family:var(--font-head); font-weight:600; font-size:clamp(30px,4.4vw,46px); line-height:1.04; letter-spacing:-.015em; margin:0 0 14px; max-width:30ch; text-wrap:balance; }
 .rhead .dek{ font-size:18px; color:var(--ink-soft); max-width:60ch; margin:0; line-height:1.45; }
 .rhead .byline{ margin-top:18px; display:flex; gap:14px; align-items:center; font-size:13.5px; color:var(--muted); flex-wrap:wrap; }
 .rhead .byline .who{ color:var(--ink); font-weight:600; }

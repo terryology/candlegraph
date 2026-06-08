@@ -105,7 +105,7 @@ As the collection grows and I discover better-engineered candles, the average sh
 
 ### Current Performance Map
 {{< data-vault title="Global Collection Index" >}}
-<img src="/images/performance_map.png" alt="Performance Map">
+<img src="/images/performance_map.png" alt="Performance Map" class="perf-map">
 {{< /data-vault >}}
 
 ---
