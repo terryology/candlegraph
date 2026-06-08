@@ -7,6 +7,12 @@ New to Candlegraph? Here's your guide to navigating the site.
 
 ---
 
+## About Terry
+
+Welcome to more information about candles than you probably ever hoped to know! I started this project as a way to use one of my hobbies — scented candles — to expand my knowledge of Excel. From there it has grown into a full data analytics project, including SQL, R, and Tableau. It's fair to say I'm still learning about most of this, even how to best measure and analyze the data I get from burning candles. There may (read: probably will) be times when you say "Hey wait, that's wrong." Please bear with me — hopefully we can learn from each other!
+
+---
+
 ## What is Candlegraph?
 
 Candlegraph is a data-driven candle review site. Instead of just describing scents, I measure actual performance—burn time, cost efficiency, and throw potency—to calculate objective value indexes (SAV and PAE) for each brand.

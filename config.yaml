@@ -22,21 +22,12 @@ menu:
       url: /methodology/
       weight: 30
   footer:
-    - name: Reviews
-      url: /tags/reviews/
-      weight: 10
-    - name: Methodology
-      url: /methodology/
-      weight: 20
-    - name: About Terry
-      url: /about/
-      weight: 30
     - name: Terryology
       url: https://terryology.com
-      weight: 40
+      weight: 10
     - name: RSS
       url: /index.xml
-      weight: 50
+      weight: 20
 params:
   MathJaxCDN: //cdnjs.cloudflare.com/ajax/libs
   MathJaxVersion: 2.7.5
