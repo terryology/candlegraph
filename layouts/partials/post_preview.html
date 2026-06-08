@@ -1,21 +1,17 @@
-<article class="archive-item">
-  <a href="{{ .RelPermalink }}" class="archive-item-link">{{ .Title }}</a><br>
-
-  <div class="archive-item-meta">
-    {{ partial "post_meta.html" . }}
-  </div>
-
-  <div class="archive-item-summary">
-    {{ .Summary }}
-    <a href="{{ .Permalink }}" class="read-more">Read Post »</a>
-  </div>
-
-  {{ if .Params.tags }}
-  <div class="blog-tags">
-    {{ range .Params.tags }}
-    <a href="{{ "tags" | absLangURL }}/{{ . | urlize }}/">{{ . }}</a>
+<a class="card journal" href="{{ .RelPermalink }}">
+  <div class="spine"></div>
+  <div class="jbody">
+    {{ if .Params.tags }}
+    <span class="jtag">
+      <span class="dotmark"></span>
+      {{ range first 1 .Params.tags }}{{ . | title }}{{ end }}
+    </span>
     {{ end }}
+    <h3>{{ .Title }}</h3>
+    <p class="dek">{{ .Params.dek | default .Summary }}</p>
+    <div class="jmeta">
+      <span>{{ .Date.Format "Jan 2006" }}{{ with .ReadingTime }} · {{ . }} min{{ end }}</span>
+      <span class="read">Read <span class="arr">→</span></span>
+    </div>
   </div>
-  {{ end }}
-
-</article>
+</a>
