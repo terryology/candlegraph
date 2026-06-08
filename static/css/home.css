@@ -79,3 +79,10 @@
   .scorerail{ flex-direction:row; flex-wrap:wrap; align-items:center; border-right:none; border-bottom:1px solid var(--line); }
   .mini-quad{ width:84px; margin:0 0 0 auto; }
 }
+
+.feed-count {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: .05em;
+  flex-shrink: 0;
+}

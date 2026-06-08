@@ -7,17 +7,14 @@
 <section class="promise">
   <h1>{{ .Params.headline | default "Where scented candles meet <em>data analysis</em>." | safeHTML }}</h1>
   <p class="sub">{{ .Params.sub | default "Every candle gets the same workup — burn-tested, scored, and plotted. No vibes, just the numbers (and the occasional tangent about how I got here)." }}</p>
-  <div class="statstrip">
-    <div class="stat"><span class="v num">{{ len $scored }}</span><span class="k">{{ cond (eq (len $scored) 1) "Candle scored" "Candles scored" }}</span></div>
-    <div class="stat"><span class="v num">{{ site.Params.baseline }}</span><span class="k">Index baseline</span></div>
-    <div class="stat"><span class="v num">2</span><span class="k">Indexes · SAV / PAE</span></div>
-    <div class="stat"><span class="v num">4</span><span class="k">Performance tiers</span></div>
-  </div>
 </section>
 
 <main class="layout">
   <div class="feed-col">
-    <div class="feed-head"><h2>Latest</h2><span class="rule"></span></div>
+    <div class="feed-head">
+      <h2>Latest</h2><span class="rule"></span>
+      <span class="feed-count num">{{ len $scored }} {{ cond (eq (len $scored) 1) "candle scored" "candles scored" }}</span>
+    </div>
     <div class="feed">
 
       {{- /* FEATURED REVIEW: the candle flagged `featured`, else the top-scoring one */ -}}
@@ -87,13 +84,13 @@
 
   <!-- SIDEBAR -->
   <aside class="rail">
-    {{ partial "metrics-panel.html" . }}
-    {{ partial "tiers-panel.html" (dict "short" false) }}
-    <div class="panel railcta">
-      <h4>New here?</h4>
-      <p>Start with how the whole thing works — the indexes, the rig, and why a spreadsheet runs my candle shelf.</p>
-      <a href="{{ "/methodology/" | relURL }}" class="btn">Start here <span>→</span></a>
-    </div>
-  </aside>
+  <div class="panel railcta">
+    <h4>New here?</h4>
+    <p>Start with how the whole thing works — the indexes, the rig, and why a spreadsheet runs my candle shelf.</p>
+    <a href="{{ "/methodology/" | relURL }}" class="btn">Start here <span>→</span></a>
+  </div>
+  {{ partial "tiers-panel.html" (dict "short" false) }}
+  {{ partial "metrics-panel.html" . }}
+</aside>
 </main>
 {{ end }}
