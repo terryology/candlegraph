@@ -1,5 +1,5 @@
 ---
-title: "The Methodology: Inside the Candlegraph Engine"
+title: "Inside the Candlegraph Engine"
 date: 2026-02-15
 draft: false
 math: true
