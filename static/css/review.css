@@ -37,7 +37,25 @@
 .sc-quad .ql.bl{ bottom:4px; left:6px; }
 .sc-quad .ql.br{ bottom:4px; right:5px; color:var(--work); font-weight:600; }
 .sc-axislab{ font-size:9px; color:var(--muted); text-align:center; margin-top:5px; font-family:var(--font-num); }
-.sc-foot{ display:flex; align-items:center; gap:8px; font-size:11.5px; color:var(--muted); margin-top:4px; }
+.sc-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.sc-foot a {
+  color: var(--accent-ink);
+  font-weight: 600;
+  font-size: 12.5px;
+}
+
+.sc-foot a:hover {
+  color: var(--accent);
+}
 .sc-foot .dotmark{ width:7px; height:7px; border-radius:50%; background:var(--accent); }
 .sc-buy{ text-align:center; }
 .sc-buy .price{ font-family:var(--font-num); font-weight:600; font-size:17px; color:var(--ink); }

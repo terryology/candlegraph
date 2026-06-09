@@ -5,8 +5,10 @@
 {{ $scored := sort (where $all "Params.sav" "!=" nil) "Params.sav" "desc" }}
 
 <section class="promise">
-  <h1>{{ .Params.headline | default "Where scented candles meet <em>data analysis</em>." | safeHTML }}</h1>
-  <p class="sub">{{ .Params.sub | default "Every candle gets the same workup — burn-tested, scored, and plotted. No vibes, just the numbers (and the occasional tangent about how I got here)." }}</p>
+  <div class="promise-grid">
+    <h1>{{ .Params.headline | default "Where scented candles meet <em>data analysis</em>." | safeHTML }}</h1>
+    <p class="sub">{{ .Params.sub | default "Every candle gets the same workup — burn-tested, scored, and plotted. No vibes, just the numbers (and the occasional tangent about how I got here)." }}</p>
+  </div>
 </section>
 
 <main class="layout">

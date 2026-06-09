@@ -2,13 +2,34 @@
 
 /* promise strip */
 .promise{ max-width:var(--maxw); margin:0 auto; padding:30px 28px 6px; }
+.promise-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+@media (max-width: 880px) {
+  .promise-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
 .promise h1{
   font-family:var(--font-head); font-weight:600; letter-spacing:-.015em;
   font-size:clamp(28px,4vw,42px); line-height:1.05; margin:0 0 10px; max-width:18ch;
   text-wrap:balance;
 }
 .promise h1 em{ font-style:italic; color:var(--accent-ink); }
-.promise .sub{ font-size:17px; color:var(--ink-soft); max-width:54ch; margin:0; }
+.promise .sub {
+  font-size: 17px;
+  color: var(--ink-soft);
+  max-width: 54ch;
+  margin: 0;
+  padding-left: 16px;
+  border-left: 3px solid var(--accent);
+  line-height: 1.6;
+}
 .statstrip{ display:flex; gap:26px; margin-top:20px; padding-top:18px; border-top:1px solid var(--line); flex-wrap:wrap; }
 .stat{ display:flex; flex-direction:column; gap:1px; }
 .stat .v{ font-family:var(--font-num); font-weight:600; font-size:21px; color:var(--ink); }
