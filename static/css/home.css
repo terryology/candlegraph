@@ -69,7 +69,7 @@
 
 /* JOURNAL card */
 .journal{ display:grid; grid-template-columns:6px 1fr; }
-.journal .spine{ background:var(--line-2); }
+.journal .spine{ background:var(--work); }
 .journal .jbody{ padding:20px 24px; }
 .jtag{ display:inline-flex; align-items:center; gap:7px; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:10px; }
 .jtag .dotmark{ width:7px; height:7px; border-radius:2px; background:var(--ink-soft); }

@@ -1,3 +1,17 @@
+{{ if eq .Section "candles" }}
+<a class="card review-card" href="{{ .RelPermalink }}">
+  <div class="spine review-spine"></div>
+  <div class="jbody">
+    <span class="jtag"><span class="dotmark review-dot"></span>Review</span>
+    <h3>{{ .Title }}</h3>
+    <p class="dek">{{ .Params.dek | default .Summary }}</p>
+    <div class="jmeta">
+      <span>{{ .Date.Format "Jan 2006" }}{{ with .ReadingTime }} · {{ . }} min{{ end }}</span>
+      <span class="read">Read <span class="arr">→</span></span>
+    </div>
+  </div>
+</a>
+{{ else }}
 <a class="card journal" href="{{ .RelPermalink }}">
   <div class="spine"></div>
   <div class="jbody">
@@ -15,3 +29,5 @@
     </div>
   </div>
 </a>
+{{ end }}
+
