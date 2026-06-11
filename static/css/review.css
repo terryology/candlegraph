@@ -128,3 +128,98 @@
     padding: 28px 24px;
   }
 }
+
+/* ===== session details ===== */
+.session-details {
+  background: var(--panel);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r);
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+
+.sd-header {
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.sd-stats {
+  display: flex;
+  gap: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.sd-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sd-value {
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--ink);
+}
+
+.sd-label {
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sd-throws {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sd-throw {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sd-throw-label {
+  font-size: 13px;
+  color: var(--ink-soft);
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.sd-pips {
+  display: flex;
+  gap: 4px;
+}
+
+.sd-pip {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--line-2);
+  border: 1.5px solid var(--line-2);
+}
+
+.sd-pip.filled {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.sd-throw-score {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  width: 20px;
+}
+
+.sd-throw-name {
+  font-size: 13px;
+  color: var(--muted);
+}

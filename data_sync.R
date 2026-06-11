@@ -84,11 +84,18 @@ global_avg_scent <- mean(df_master$weighted_scent, na.rm = TRUE)
 brand_rankings <- df_master %>%
   group_by(brand_name) %>%
   summarise(
-    n_candles      = n_distinct(candle_id),
-    total_hrs      = sum(effective_time, na.rm = TRUE),
-    avg_eff        = mean(effective_time / price_usd, na.rm = TRUE),
-    avg_scent      = mean(weighted_scent, na.rm = TRUE),
-    is_verified    = any(is_empirical == TRUE),
+    n_candles        = n_distinct(candle_id),
+    total_hrs        = sum(effective_time, na.rm = TRUE),
+    avg_eff          = mean(effective_time / price_usd, na.rm = TRUE),
+    avg_scent        = mean(weighted_scent, na.rm = TRUE),
+    avg_cold         = round(mean(cold_score, na.rm = TRUE), 1),
+    avg_hot          = round(mean(hot_score, na.rm = TRUE), 1),
+    n_sessions       = n(),
+    avg_session      = round(mean(total_time, na.rm = TRUE), 1),
+    min_session      = round(min(total_time, na.rm = TRUE), 1),
+    max_session      = round(max(total_time, na.rm = TRUE), 1),
+    sessions_over_4h = sum(total_time > 4, na.rm = TRUE),
+    is_verified      = any(is_empirical == TRUE),
     .groups = "drop"
   ) %>%
   mutate(

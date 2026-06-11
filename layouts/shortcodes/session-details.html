@@ -1,0 +1,58 @@
+{{ $cold := .Get "cold" | float }}
+{{ $hot  := .Get "hot"  | float }}
+
+<div class="session-details">
+  <div class="sd-header">Session Details</div>
+  
+  <div class="sd-stats">
+    <div class="sd-stat">
+      <span class="sd-value num">{{ .Get "sessions" }}</span>
+      <span class="sd-label">Burns</span>
+    </div>
+    <div class="sd-stat">
+      <span class="sd-value num">{{ .Get "avg" }}h</span>
+      <span class="sd-label">Avg Session</span>
+    </div>
+    <div class="sd-stat">
+      <span class="sd-value num">{{ .Get "min" }}–{{ .Get "max" }}h</span>
+      <span class="sd-label">Range</span>
+    </div>
+    {{ if gt (.Get "over4h" | int) 0 }}
+    <div class="sd-stat">
+      <span class="sd-value num">{{ .Get "over4h" }}</span>
+      <span class="sd-label">Over 4h</span>
+    </div>
+    {{ end }}
+  </div>
+
+  <div class="sd-throws">
+    <div class="sd-throw">
+      <span class="sd-throw-label">Cold Throw</span>
+      <span class="sd-pips">
+        {{ range seq 1 5 }}
+          {{ if le . (int $cold) }}
+            <span class="sd-pip filled"></span>
+          {{ else }}
+            <span class="sd-pip"></span>
+          {{ end }}
+        {{ end }}
+      </span>
+      <span class="sd-throw-score num">{{ .Get "cold" }}</span>
+      <span class="sd-throw-name">{{ .Get "cold-label" }}</span>
+    </div>
+    <div class="sd-throw">
+      <span class="sd-throw-label">Hot Throw</span>
+      <span class="sd-pips">
+        {{ range seq 1 5 }}
+          {{ if le . (int $hot) }}
+            <span class="sd-pip filled"></span>
+          {{ else }}
+            <span class="sd-pip"></span>
+          {{ end }}
+        {{ end }}
+      </span>
+      <span class="sd-throw-score num">{{ .Get "hot" }}</span>
+      <span class="sd-throw-name">{{ .Get "hot-label" }}</span>
+    </div>
+  </div>
+</div>

@@ -28,6 +28,9 @@ A Diptyque candle was the first luxury candle I ever owned, and it was the brand
 While I’m a fan of every Diptyque candle I’ve come across, Narguile is my current favorite. The scent is an almost counter-intuitive combination of tobacco and honey that shouldn’t work but absolutely does. The tobacco base imparts a nice earthy aroma, while the honey top note gives it an almost spicy fragrance that keeps the candle from overpowering the space. Even if you typically prefer sweeter candles, I would still encourage you to give the Narguile a try. You might find that it hits a sweet spot for you.
 
 ## Performance
+
+{{< session-details sessions="13" avg="3.8" min="1.6" max="5.5" over4h="2" cold="4.0" cold-label="Strong" hot="4.0" hot-label="Strong" >}}
+
 Diptyque is known for their room-filling candles, and Narguile is no exception. In fact, I consider Narguile to be one of the most potent scents that the Paris-based company has to offer. Upon first opening the box, I’m always taken aback by just how strong the immediate bouquet is. Sure, it’s been trapped in a box, but I cannot say the same for all candles I’ve tested. Even after things settle down, its unlit scent - cold throw - is still enough that you can smell it a few feet away from where it sits. But once it has been lit, it really shines.
 
 As with all candles, the Narguile can take a while to get going. On a first burn, you may be looking at 30 - 45 minutes before the scent really starts to emanate (and roughly an hour before you have a full pool of wax). Once it’s in its main sequence, however, there’s no denying just how powerful this jar is. I burned this candle over 13 sessions at my desk—a landing space at the top of the stairs that opens into a hallway and a couple of bedrooms. It easily filled the entire area, and the aroma traveled between rooms effortlessly.

@@ -3,6 +3,23 @@ get_brief <- function(target_brand) {
   # Load data if not already in environment
   if (!exists("brand_rankings")) source(here::here("data_sync.R"))
   
+  # Throw score label lookups
+  hot_labels <- c(
+    "1" = "Trace",
+    "2" = "Personal",
+    "3" = "Standard",
+    "4" = "Strong",
+    "5" = "Powerhouse"
+  )
+  
+  cold_labels <- c(
+    "1" = "Non-Existent",
+    "2" = "Faint",
+    "3" = "Standard",
+    "4" = "Strong",
+    "5" = "Room-Filling"
+  )
+  
   # Find brand (case-insensitive)
   b <- brand_rankings %>%
     filter(tolower(brand_name) == tolower(target_brand))
@@ -10,7 +27,6 @@ get_brief <- function(target_brand) {
   if (nrow(b) == 0) stop(paste("Brand not found:", target_brand))
   
   # Quadrant Logic
-  # Note: Tier is determined AFTER confidence tax has been applied in data_sync.R
   current_tier <- case_when(
     b$pae_index >= 100 & b$sav_index >= 100 ~ "Grail",
     b$pae_index <  100 & b$sav_index >= 100 ~ "Overachiever",
@@ -18,8 +34,11 @@ get_brief <- function(target_brand) {
     TRUE                                    ~ "Dud"
   )
   
-  # Confidence note for small samples
-  # Tax is already applied to scores in data_sync.R
+  # Throw labels
+  cold_label <- cold_labels[as.character(round(b$avg_cold))]
+  hot_label  <- hot_labels[as.character(round(b$avg_hot))]
+  
+  # Confidence note
   confidence_note <- if_else(
     b$n_candles < 3,
     paste0("\n\n<!-- NOTE: 20% Confidence Tax applied to scores (N = ", b$n_candles, " < 3) -->"),
@@ -32,7 +51,7 @@ get_brief <- function(target_brand) {
     b$brand_name,
     b$sav_index,
     b$pae_index,
-    current_tier
+    tolower(current_tier)
   )
   
   audit_shortcode <- sprintf(
@@ -44,60 +63,49 @@ get_brief <- function(target_brand) {
     ifelse(b$is_verified, "Empirical", "Anecdotal")
   )
   
+  session_shortcode <- sprintf(
+    '{{< session-details sessions="%d" avg="%.1f" min="%.1f" max="%.1f" over4h="%d" cold="%.1f" cold-label="%s" hot="%.1f" hot-label="%s" >}}',
+    b$n_sessions,
+    b$avg_session,
+    b$min_session,
+    b$max_session,
+    b$sessions_over_4h,
+    b$avg_cold,
+    cold_label,
+    b$avg_hot,
+    hot_label
+  )
+  
   # Print to console for copy/paste into post
   cat("\n--- HUGO SPECS ---\n")
   cat(specs_shortcode)
   cat(confidence_note)
   
-  cat("\n\n--- HUGO FOOTNOTE ---\n")
+  cat("\n\n--- HUGO AUDIT ---\n")
   cat(audit_shortcode)
+  
+  cat("\n\n--- HUGO SESSION DETAILS ---\n")
+  cat(session_shortcode)
   cat("\n")
   
   # Return invisibly for programmatic use
   invisible(list(
-    brand      = b$brand_name,
-    tier       = current_tier,
-    sav        = b$sav_index,
-    pae        = b$pae_index,
-    specs      = specs_shortcode,
-    audit      = audit_shortcode,
-    low_sample = b$n_candles < 3
+    brand            = b$brand_name,
+    tier             = current_tier,
+    sav              = b$sav_index,
+    pae              = b$pae_index,
+    specs            = specs_shortcode,
+    audit            = audit_shortcode,
+    session          = session_shortcode,
+    n_sessions       = b$n_sessions,
+    avg_session      = b$avg_session,
+    min_session      = b$min_session,
+    max_session      = b$max_session,
+    sessions_over_4h = b$sessions_over_4h,
+    avg_cold         = b$avg_cold,
+    cold_label       = cold_label,
+    avg_hot          = b$avg_hot,
+    hot_label        = hot_label,
+    low_sample       = b$n_candles < 3
   ))
-}
-
-get_candle_brief <- function(target_brand, target_scent) {
-  
-  # Load data if not already in environment
-  if (!exists("df_master")) source(here::here("data_sync.R"))
-  
-  # 1. Filter the master dataframe created in data_sync.R
-  candle_sessions <- df_master %>%
-    filter(tolower(brand_name) == tolower(target_brand),
-           tolower(scent_name) == tolower(target_scent))
-  
-  if (nrow(candle_sessions) == 0) {
-    stop(paste("No data found for:", target_brand, "-", target_scent))
-  }
-  
-  # 2. Aggregate stats using Hybrid Logic
-  stats <- candle_sessions %>%
-    summarise(
-      price = first(price_usd),
-      actual_burn_hrs = sum(total_time, na.rm = TRUE),    # Total physical life
-      effective_hrs   = sum(effective_time, na.rm = TRUE), # "Rule of Four" life
-      .groups = "drop"
-    )
-  
-  # 3. Efficiency Calculation (The "Terryology" standard)
-  # Uses effective_hrs to penalize over-burning beyond 4 hours
-  efficiency_val <- (stats$effective_hrs * 60) / stats$price
-  cost_hr_val <- stats$price / stats$actual_burn_hrs # Consumer cost per hour
-  
-  # 4. Generate Shortcode
-  cat("\n--- CANDLE SPECS SHORTCODE ---\n")
-  cat(sprintf(
-    '{{< candle-specs price="%.2f" burn="%.1f" efficiency="%.0f" cost_hour="%.2f" >}}',
-    stats$price, stats$actual_burn_hrs, efficiency_val, cost_hr_val
-  ))
-  cat("\n------------------------------\n")
 }
