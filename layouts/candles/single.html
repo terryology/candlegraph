@@ -34,9 +34,14 @@
           <span class="lab">Price</span>
           <span class="v num">${{ .Params.price }}</span>
         </div>
-      </div>
-      <div class="sc-tierrow">
-        <span class="tier {{ .Params.tier }}">{{ index site.Params.tiers .Params.tier }}</span>
+        <div class="sc-cell">
+          <span class="lab">Burn Time</span>
+          <span class="v num">{{ .Params.burn }}h</span>
+        </div>
+        <div class="sc-cell">
+          <span class="lab">Cost / Hour</span>
+          <span class="v num">${{ .Params.cost_hour }}</span>
+        </div>
       </div>
       <div class="sc-quad-wrap">
         <p class="qcap">Where it plots on the performance map</p>
@@ -47,10 +52,12 @@
           <span class="ql bl">DUD</span>
           <span class="ql br">WORK</span>
           <span class="d" style="left:{{ div .Params.pae 2.0 }}%;bottom:{{ div .Params.sav 2.0 }}%;"></span>
+          <span class="dot-label" style="left:{{ div .Params.pae 2.0 }}%;bottom:calc({{ div .Params.sav 2.0 }}% - 18px);">{{ index site.Params.tiers .Params.tier }}</span>
         </div>
-         <div class="sc-foot">
-          <span class="dotmark"></span>
-          <a href="/methodology/">How these indexes are calculated →</a>
+      </div>
+      <div class="sc-foot">
+        <span class="dotmark"></span>
+        <a href="/methodology/">How these indexes are calculated →</a>
       </div>
     </div>
   </aside>
