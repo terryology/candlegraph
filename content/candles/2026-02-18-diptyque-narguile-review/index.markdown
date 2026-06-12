@@ -43,6 +43,10 @@ The catch? Diptyque, being a luxury brand, sells candles that can easily cost mo
 
 The Narguile candle was $78 USD and burned for almost 50 hours, delivering 37 minutes of quality burn time per dollar spent. Combined with its strong potency, I would consider it worth the price, even if it's only a nice treat every now and then.
 
+{{< data-vault title="Collection Performance Map" >}}
+<img src="/images/performance_map.png" alt="Performance Map" class="perf-map">
+{{< /data-vault >}}
+
 ## Final Verdict
 While there are more expensive candles out there (believe it or not), Diptyque is a great choice whether this is your first or fiftieth luxury scented candle. Narguile remains my favorite fragrance of theirs, and they have been consistent throughout the years. If you’re new to luxury candles, the Diptyque brand, or even just the scent itself, I highly recommend giving it a try.
 
