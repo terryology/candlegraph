@@ -278,3 +278,12 @@
   transform: translateX(-50%);
   white-space: nowrap;
 }
+
+@media (max-width: 600px) {
+  .prose > p {
+    font-size: 16px;
+  }
+  .prose > p:first-of-type {
+    font-size: 17px;
+  }
+}
