@@ -48,11 +48,11 @@
           <h3>{{ .Title }}</h3>
           {{ partial "img.html" (dict "page" . "name" "thumb" "class" "thumb" "label" "Drop the burn photo") }}
           <p class="dek">{{ .Params.dek | default .Summary }}</p>
+          </div>
           <div class="review-meta">
             <span class="by">by {{ .Params.author | default site.Params.author }} · {{ .Date.Format "Jan 2006" }}{{ with .Params.readingTime }} · {{ . }} min{{ end }}</span>
             <span class="read">Read the review <span class="arr">→</span></span>
           </div>
-        </div>
       </a>
       {{ end }}
 
