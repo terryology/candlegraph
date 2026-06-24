@@ -5,9 +5,13 @@ date: "2026-02-23"
 brand: "Diptyque"
 sav: 132.3
 pae: 40.7
-price: 68
+price: 78
+weight: 6.5
 burn: 49.9
 cost_hour: 1.56
+hot: 4.0
+hot_label: "Strong"
+efficiency: 38
 tier: "over"
 kicker: "Review - Diptyque"
 dek: "A smoky, honeyed luxury that scores absurdly high on scent and absurdly low on value — and somehow earns the splurge anyway."
