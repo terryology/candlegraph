@@ -86,6 +86,7 @@ get_candle_brief <- function(target_id) {
   scent_name <- d$scent_name[1]
   brand_name <- d$brand_name[1]
   price      <- d$price_usd[1]
+  weight_oz  <- d$weight_oz[1]
   
   # Session stats
   n_sessions       <- nrow(d)
@@ -116,6 +117,7 @@ get_candle_brief <- function(target_id) {
   
   cat("\n--- FRONT MATTER ---\n")
   cat(sprintf("price: %.2f\n", price))
+  cat(sprintf("weight: %.1f\n", weight_oz))
   cat(sprintf("burn: %.1f\n", total_hrs))
   cat(sprintf("efficiency: %d\n", efficiency))
   cat(sprintf("cost_hour: %.2f\n", cost_hour))
@@ -128,6 +130,7 @@ get_candle_brief <- function(target_id) {
     brand            = brand_name,
     scent            = scent_name,
     price            = price,
+    weight           = weight_oz,
     burn             = total_hrs,
     efficiency       = efficiency,
     cost_hour        = cost_hour,

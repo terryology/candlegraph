@@ -16,35 +16,48 @@
 </header>
 <main class="rlayout">
   <aside class="scorecard">
-    <div class="sc-panel">
-      <div class="sc-prod">{{ .Params.brand }}</div>
-      <div class="sc-name">{{ .Title }}</div>
-      <div class="sc-hero">
-        <span class="big num">{{ .Params.sav }}</span>
-        <div class="herometa">
-          <span class="lab">SAV Index</span>
-        </div>
-      </div>
-      <div class="sc-grid">
-        <div class="sc-cell">
-          <span class="lab">PAE</span>
-          <span class="v num">{{ .Params.pae }}</span>
-        </div>
-        <div class="sc-cell">
-          <span class="lab">Price</span>
-          <span class="v num">${{ .Params.price }}</span>
-        </div>
-        <div class="sc-cell">
-          <span class="lab">Burn Time</span>
-          <span class="v num">{{ .Params.burn }}h</span>
-        </div>
-        <div class="sc-cell">
-          <span class="lab">Cost / Hour</span>
-          <span class="v num">${{ .Params.cost_hour }}</span>
-        </div>
-      </div>
+   <div class="sc-panel">
+    <div class="sc-prod">{{ .Params.brand }}</div>
+    <div class="sc-name">{{ .Title }}</div>
+<div class="sc-hero">
+  <div class="sc-hero-throw">
+  <span class="lab">HOT THROW</span>
+  <span class="big num">{{ .Params.hot }}</span>
+  <div class="sc-throw-bottom">
+    <div class="sc-pips">
+      {{ $score := int (math.Round .Params.hot) }}
+      {{ range slice 1 2 3 4 5 }}
+        <span class="pip{{ if le . $score }} pip-filled{{ end }}"></span>
+      {{ end }}
+    </div>
+    <span class="lab throw-desc">{{ .Params.hot_label }}</span>
+  </div>
+</div>
+<div class="sc-hero-burn">
+  <span class="lab">BURN TIME</span>
+  <span class="med num">{{ .Params.burn }}h</span>
+</div>
+<div class="sc-grid">
+  <div class="sc-cell">
+    <span class="lab">Price</span>
+    <span class="v num">${{ .Params.price }}</span>
+  </div>
+  <div class="sc-cell">
+    <span class="lab">Weight</span>
+    <span class="v num">{{ .Params.weight }}oz</span>
+  </div>
+  <div class="sc-cell">
+    <span class="lab">Cost / Hour</span>
+    <span class="v num">${{ .Params.cost_hour }}</span>
+  </div>
+  <div class="sc-cell">
+    <span class="lab">Efficiency</span>
+    <span class="v num">{{ .Params.efficiency }}<span class="unit">min/$</span></span>
+  </div>
+</div>
+  <!-- quadrant plot and sc-foot unchanged -->
       <div class="sc-quad-wrap">
-        <p class="qcap">Where it plots on the performance map</p>
+        <p class="qcap">Where {{ .Params.brand }} ranks across all candles</p>
         <div class="mini-quad sc-quad">
           <span class="ax x"></span><span class="ax y"></span>
           <span class="ql tl">OVER</span>
