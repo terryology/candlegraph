@@ -24,25 +24,28 @@
       {{ if not $feat }}{{ $feat = first 1 $scored }}{{ end }}
       {{ range first 1 $feat }}
       <a class="card review featured" href="{{ .RelPermalink }}">
-        <div class="scorerail">
-          <div class="score-main">
-            <span class="lab">SAV Index</span>
-            <span class="big num">{{ printf "%.1f" .Params.sav }}</span>
-          </div>
-          <div class="score-sub">
-            <div class="blk"><span class="lab">PAE</span><span class="v num">{{ printf "%.1f" .Params.pae }}</span></div>
-            <div class="blk"><span class="lab">Price</span><span class="v num">${{ .Params.price }}</span></div>
-          </div>
-          <span class="tier {{ .Params.tier }}">{{ index site.Params.tiers .Params.tier }}</span>
-          <div class="mini-quad">
-            <span class="ax x"></span><span class="ax y"></span>
-            <span class="ql" style="top:4px;left:5px;">OVER</span>
-            <span class="ql" style="top:4px;right:5px;">GRAIL</span>
-            <span class="ql" style="bottom:3px;left:5px;">DUD</span>
-            <span class="ql" style="bottom:3px;right:4px;">WORK</span>
-            <span class="d" style="left:{{ div .Params.pae 2.0 }}%;bottom:{{ div .Params.sav 2.0 }}%;"></span>
-          </div>
-        </div>
+<div class="scorerail">
+  <div class="score-main">
+    <span class="lab">Hot Throw</span>
+    <span class="big num">{{ .Params.hot }}<span class="out-of">/5</span></span>
+  </div>
+  <div class="score-sub">
+    <div class="blk"><span class="lab">Burn Time</span><span class="v num">{{ .Params.burn }}h</span></div>
+    <div class="blk"><span class="lab">Cost/hr</span><span class="v num">${{ .Params.cost_hour }}</span></div>
+  </div>
+<div class="brand-perf">
+  <span class="tier-context">Brand performance</span>
+  <span class="tier {{ .Params.tier }}">{{ index site.Params.tiers .Params.tier }}</span>
+</div>
+  <div class="mini-quad">
+    <span class="ax x"></span><span class="ax y"></span>
+    <span class="ql" style="top:4px;left:5px;">OVER</span>
+    <span class="ql" style="top:4px;right:5px;">GRAIL</span>
+    <span class="ql" style="bottom:3px;left:5px;">DUD</span>
+    <span class="ql" style="bottom:3px;right:4px;">WORK</span>
+    <span class="d" style="left:{{ div .Params.pae 2.0 }}%;bottom:{{ div .Params.sav 2.0 }}%;"></span>
+  </div>
+</div>
         <div class="review-body">
           <div class="kicker">{{ .Params.kicker | default (printf "Review · %s" .Params.brand) }}</div>
           <h3>{{ .Title }}</h3>
