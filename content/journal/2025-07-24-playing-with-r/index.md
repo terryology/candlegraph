@@ -2,7 +2,8 @@
 title: "Playing with R: My First Data Visualizations"
 author: "Terry"
 date: "2025-07-24"
-draft: true
+draft: false
+dek: "My first experiments with R and ggplot2 — turning raw candle burn data into something you can actually look at."
 tags: ["technical", "r", "data-visualization"]
 output: html_document
 ---
