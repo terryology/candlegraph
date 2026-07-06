@@ -2,9 +2,9 @@
 title: Candle Burn Times v1
 author: Terry
 date: '2025-07-28'
-slug: candle-burn-times-v1
-categories: []
-tags: []
+dek: "See the first versions of this project."
+tags: ["meta", "origin-story"]
+output: html_document
 ---
 
 Before this project started, I enjoyed scented candles as much as the next person - well, maybe a bit more than the next person - but the thought of taking measurements had not yet crossed my mind. As I've mentioned, I wanted to increase my Excel skills, and candles just so happened to be there. The very first candle I measured was one from Paddywax Apothecary, probably because it was the most recent candle I had purchased. The scent was Patchouli and Tobacco, and it's one of the candles in my first presentation, so I'm sure I'll have a separate post about it somewhere down the line. While I don't burn candles every single day anymore, at the time, I was deep into my new obsession and quickly went down the data-gathering rabbit hole. Soon, I had recorded information about burn times, price, and weight from five different candles, and it was time to start making some of my favorite things - charts and graphs.

@@ -2,8 +2,9 @@
 title: "Beginnings"
 author: "Terry"
 date: "2023-12-25"
-output: html_document
+dek: "How humble Excel and PowerPoint beginnings turned into a data pipeline."
 tags: ["meta", "origin-story"]
+output: html_document
 ---
 
 ```{r setup, include=FALSE}

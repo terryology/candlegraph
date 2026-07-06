@@ -2,8 +2,9 @@
 title: "Welcome to Candlegraph!"
 author: "Terry"
 date: "2023-09-10"
+dek: "Hello, and welcome to Candlegraph!"
+tags: ["meta", "introduction"]
 output: html_document
-categories: ["meta", "introduction"]
 ---
 
 
